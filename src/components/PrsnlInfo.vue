@@ -47,15 +47,15 @@ import Footer from './Footer.vue';
             <div class="div-8">BASIC INFORMATION</div>
             <div class="div-9">
               <div class="div-10">First Name<br /></div>
-              <div class="div-11"></div>
+              <input type="text" id="first-name" class="input" />
             </div>
             <div class="div-12">
               <div class="div-13">Last Name<br /></div>
-              <div class="div-14"></div>
+              <input type="text" id="last-name" class="input" />
             </div>
             <div class="div-15">
               <div class="div-16">Middle Name<br /></div>
-              <div class="div-17"></div>
+              <input type="text" id="middle-name" class="input" />
             </div>
             <div class="div-18">
               <div class="div-19">
@@ -75,7 +75,7 @@ import Footer from './Footer.vue';
                   >(optional)</span
                 >
               </div>
-              <div class="div-20"></div>
+              <input type="text" id="suffix" class="input" />
             </div>
             <div class="div-21">
               <div class="div-22">
@@ -95,42 +95,42 @@ import Footer from './Footer.vue';
                   >(dd/mm/yyyy)</span
                 >
               </div>
-              <div class="div-23"></div>
+              <input type="date" id="birth-date" class="div-23" />
             </div>
             <div class="div-24">CONTACT INFORMATION</div>
             <div class="div-25">
               <div class="div-26">Address</div>
-              <div class="div-27"></div>
+              <input type="text" id="address" class="input" />
             </div>
             <div class="div-28">
               <div class="div-29">Email Address</div>
-              <div class="div-30"></div>
+              <input type="text" id="email-address" class="input" />
             </div>
             <div class="div-31">
               <div class="div-32">Mobile Number</div>
-              <div class="div-33"></div>
+              <input type="text" id="mobile-number" class="input" />
             </div>
             <div class="div-34">COLLEGE / COURSE HISTORY</div>
             <div class="div-35">
               <div class="div-36">Last School Year Attended</div>
-              <div class="div-37"></div>
+              <input type="text" id="last-school" class="input" />
             </div>
             <div class="div-38">
               <div class="div-39">College / Course Attended</div>
-              <div class="div-40"></div>
+              <input type="text" id="course-attended" class="input" />
             </div>
             <div class="div-41">SIGN UP</div>
             <div class="div-42">
               <div class="div-43">Username</div>
-              <div class="div-44"></div>
+              <input type="text" id="username" class="input" />
             </div>
             <div class="div-45">
               <div class="div-46">Password</div>
-              <div class="div-47"></div>
+              <input type="password" id="password" class="input" />
             </div>
             <div class="div-48">
               <div class="div-49">Confirm Password</div>
-              <div class="div-50"></div>
+              <input type="password" id="confirm-password" class="input" />
             </div>
             <div class="div-51">Page 2 of 7</div>
           </div>
@@ -138,7 +138,12 @@ import Footer from './Footer.vue';
       </div>
       <div class="column-2">
         <div class="div-52">
-          <div class="div-53"><div class="div-54">NEXT</div></div>
+          <div class="div-53">
+            <router-link to="/docrequest" type="button" class="div-54">NEXT
+
+            </router-link>
+            
+          </div>
         </div>
       </div>
     </div>
@@ -287,7 +292,10 @@ import Footer from './Footer.vue';
   margin: auto 0;
   font: 400 15px/22.5px Poppins, sans-serif;
 }
-.div-11 {
+.input {
+  color: #000;
+  margin: auto 0;
+  font: 400 15px/22.5px Poppins, sans-serif;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: rgba(199, 199, 199, 0.09);
   align-self: stretch;
@@ -432,6 +440,9 @@ import Footer from './Footer.vue';
   width: 296px;
   height: 42px;
   flex-direction: column;
+  color: #000;
+  margin: auto 0;
+  font: 400 15px/22.5px Poppins, sans-serif;
 }
 .div-24 {
   color: #000;
@@ -791,6 +802,9 @@ import Footer from './Footer.vue';
   margin: 1495px 0 42px;
   padding: 12px 20px;
   font: 800 25px/37.5px Poppins, sans-serif;
+}
+.div-54:hover{
+  background-color: #082707;
 }
 @media (max-width: 991px) {
   .div-54 {

@@ -1,5 +1,5 @@
 <template>
-  <div class="div">
+  <div class="div1">
     <div class="div-2">
       <img
         loading="lazy"
@@ -31,7 +31,7 @@
 
 
 <style scoped>
-.div {
+.div1 {
   justify-content: center;
   background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
   display: flex;

@@ -27,7 +27,8 @@ import NavigationBar from './NavigationBar.vue'
                 confidentiality of your records, ensuring a secure and efficient
                 process.
               </div>
-              <div class="div-8">REQUEST FOR OFFICIAL DOCUMENT</div>
+              
+              <router-link to="/consent" type="button" class="div-8">REQUEST FOR OFFICIAL DOCUMENT</router-link>
             </div>
           </div>
           <div class="column-2">
@@ -44,7 +45,8 @@ import NavigationBar from './NavigationBar.vue'
                 real-time updates on the status and location of your important
                 records.
               </div>
-              <div class="div-11">TRACK MY DOCUMENT</div>
+              
+              <router-link to="/login" type="button" class="div-8">TRACK MY DOCUMENT</router-link>
             </div>
           </div>
         </div>
@@ -180,6 +182,9 @@ import NavigationBar from './NavigationBar.vue'
     max-width: 100%;
     padding-right: -1px;
   }
+}
+.div-8:hover{
+  background-color: #2f3030;
 }
 .column-2 {
   display: flex;

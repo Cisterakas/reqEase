@@ -54,7 +54,7 @@
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/654ffd33-cf95-40fc-af3b-78c3a672ab11?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-3"
+                  class="img-2"
                 />
                 <div class="div-18">registrar’sOffice@uic.edu.ph</div>
               </div>
@@ -62,7 +62,7 @@
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f62f8a7-6ce9-4b48-817c-0114aeb343de?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-4"
+                  class="img-2"
                 />
                 <div class="div-20">
                   University of the Immaculate Conception
@@ -72,7 +72,7 @@
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/ec3b86ac-e8fc-4871-b109-8c4be0f0341c?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-5"
+                  class="img-2"
                 />
                 <div class="div-22">
                   <a
@@ -86,7 +86,7 @@
                 <img
                   loading="lazy"
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/dae543a3-fa23-4b9c-a6d1-9c1e55543028?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-6"
+                  class="img-2"
                 />
                 <div class="div-24">
                   Operation Hours : 7:30 am to 5:00 pm Monday to Friday

@@ -214,7 +214,6 @@
 }
 .div-10 {
   display: flex;
-  margin-top: 7px;
   flex-direction: column;
 }
 @media (max-width: 991px) {

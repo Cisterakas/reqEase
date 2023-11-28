@@ -28,7 +28,7 @@
           </div>
           <div class="column-2">
             <div class="div-10">
-              <div class="div-11">About US</div>
+              <div class="div-14">About US</div>
               <div class="div-12">
                 The Office of the Registrar is custodian of the private
                 documents of the students, It is responsible for monitoring the
@@ -236,7 +236,7 @@
 .div-12 {
   color: #fff;
   text-transform: capitalize;
-  margin-top: 18px;
+  margin-top: 17px;
   font: 400 10px/15px Poppins, sans-serif;
 }
 .column-3 {

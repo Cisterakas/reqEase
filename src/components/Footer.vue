@@ -134,7 +134,7 @@
   }
 }
 .div-4 {
-  gap: 20px;
+  gap: 90px;
   display: flex;
 }
 @media (max-width: 991px) {

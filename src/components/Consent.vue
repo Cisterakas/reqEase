@@ -368,7 +368,7 @@ import NavigationBar from './NavigationBar.vue'
                           have your MYUIC account.</span
                         >
                       </div>
-                      <router-link to="/personalInfo" type="button" class="div-20">SELECT</router-link>
+                      <router-link to="/personalInfo2" type="button" class="div-20">SELECT</router-link>
                     </div>
                   </div>
                 </div>

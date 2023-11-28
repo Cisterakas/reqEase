@@ -17,7 +17,7 @@ import NavigationBar from './NavigationBar.vue'
             <div class="div-6">
               <img
                 loading="lazy"
-                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/0175db0d-25d8-4908-b1f8-ceba6ad196b4?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/0175db0d-25d8-4908-b1f8-ceba6ad196b4?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/0175db0d-25d8-4908-b1f8-ceba6ad196b4?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/0175db0d-25d8-4908-b1f8-ceba6ad196b4?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/0175db0d-25d8-4908-b1f8-ceba6ad196b4?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/0175db0d-25d8-4908-b1f8-ceba6ad196b4?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/0175db0d-25d8-4908-b1f8-ceba6ad196b4?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/0175db0d-25d8-4908-b1f8-ceba6ad196b4?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/81babc39-6bf8-4683-b4aa-65f1cb481809?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/81babc39-6bf8-4683-b4aa-65f1cb481809?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/81babc39-6bf8-4683-b4aa-65f1cb481809?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/81babc39-6bf8-4683-b4aa-65f1cb481809?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/81babc39-6bf8-4683-b4aa-65f1cb481809?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/81babc39-6bf8-4683-b4aa-65f1cb481809?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/81babc39-6bf8-4683-b4aa-65f1cb481809?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/81babc39-6bf8-4683-b4aa-65f1cb481809?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                 class="img"
               />
               <div class="div-7">
@@ -27,15 +27,15 @@ import NavigationBar from './NavigationBar.vue'
                 confidentiality of your records, ensuring a secure and efficient
                 process.
               </div>
-              
               <router-link to="/consent" type="button" class="div-8">REQUEST FOR OFFICIAL DOCUMENT</router-link>
+            
             </div>
           </div>
           <div class="column-2">
             <div class="div-9">
               <img
                 loading="lazy"
-                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/563e95e3-7419-4861-940a-3649dd2ff8ea?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/563e95e3-7419-4861-940a-3649dd2ff8ea?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/563e95e3-7419-4861-940a-3649dd2ff8ea?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/563e95e3-7419-4861-940a-3649dd2ff8ea?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/563e95e3-7419-4861-940a-3649dd2ff8ea?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/563e95e3-7419-4861-940a-3649dd2ff8ea?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/563e95e3-7419-4861-940a-3649dd2ff8ea?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/563e95e3-7419-4861-940a-3649dd2ff8ea?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/9cd76ff4-4f74-4f54-adde-ac0e2bc31f99?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/9cd76ff4-4f74-4f54-adde-ac0e2bc31f99?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/9cd76ff4-4f74-4f54-adde-ac0e2bc31f99?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/9cd76ff4-4f74-4f54-adde-ac0e2bc31f99?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/9cd76ff4-4f74-4f54-adde-ac0e2bc31f99?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/9cd76ff4-4f74-4f54-adde-ac0e2bc31f99?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/9cd76ff4-4f74-4f54-adde-ac0e2bc31f99?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/9cd76ff4-4f74-4f54-adde-ac0e2bc31f99?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                 class="img"
               />
               <div class="div-10">
@@ -45,8 +45,8 @@ import NavigationBar from './NavigationBar.vue'
                 real-time updates on the status and location of your important
                 records.
               </div>
-              
               <router-link to="/login" type="button" class="div-8">TRACK MY DOCUMENT</router-link>
+             
             </div>
           </div>
         </div>
@@ -63,27 +63,24 @@ import NavigationBar from './NavigationBar.vue'
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  padding: 50px 20px;
 }
 .div-2 {
   display: flex;
-  width: 100%;
-  max-width: 1224px;
+  width: 949px;
+  max-width: 100%;
   flex-direction: column;
-  margin: 70px 0;
-}
-@media (max-width: 991px) {
-  .div-2 {
-    max-width: 100%;
-    margin: 40px 0;
-  }
+  align-items: center;
+  margin: 12px 0 30px;
 }
 .div-3 {
   color: #000;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font: 500 22px/33px Poppins, sans-serif;
+  max-width: 861px;
+  font: 500 18px Poppins, sans-serif;
 }
 @media (max-width: 991px) {
   .div-3 {
@@ -91,10 +88,13 @@ import NavigationBar from './NavigationBar.vue'
   }
 }
 .div-4 {
-  align-self: center;
-  margin-top: 25px;
-  width: 1123px;
-  max-width: 100%;
+  align-self: stretch;
+  margin-top: 21px;
+}
+@media (max-width: 991px) {
+  .div-4 {
+    max-width: 100%;
+  }
 }
 .div-5 {
   gap: 20px;
@@ -111,7 +111,7 @@ import NavigationBar from './NavigationBar.vue'
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 50%;
+  width: 53%;
   margin-left: 0px;
 }
 @media (max-width: 991px) {
@@ -124,63 +124,51 @@ import NavigationBar from './NavigationBar.vue'
   background-color: #fff;
   display: flex;
   flex-grow: 1;
-  padding-bottom: 22px;
+  padding-bottom: 25px;
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
 }
 @media (max-width: 991px) {
   .div-6 {
-    max-width: 100%;
     margin-top: 40px;
   }
 }
 .img {
-  aspect-ratio: 1.17;
+  aspect-ratio: 1.2;
   object-fit: contain;
   object-position: center;
   width: 100%;
-  justify-content: center;
-  align-items: center;
   box-shadow: 8px 18px 23.3px 0px rgba(0, 0, 0, 0.3) inset;
-  overflow: hidden;
-}
-@media (max-width: 991px) {
-  .img {
-    max-width: 100%;
-  }
+ 
 }
 .div-7 {
   color: #000;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   align-self: center;
-  margin-top: 34px;
-  max-width: 478px;
-  font: 400 15px/22.5px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-7 {
-    max-width: 100%;
-  }
+  margin-top: 27px;
+  max-width: 315px;
+  font: 400 10px Poppins, sans-serif;
 }
 .div-8 {
   color: #fff;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  justify-content: center;
   border-radius: 10px;
   background-color: #e54f70;
   align-self: center;
-  margin-top: 26px;
-  width: 480px;
+  margin-top: 27px;
+  width: 303px;
   max-width: 100%;
-  padding: 9px 1px;
-  font: 800 25px/37.5px Poppins, sans-serif;
+  padding: 9px 20px;
+  font: 800 15px Poppins, sans-serif;
 }
 @media (max-width: 991px) {
   .div-8 {
-    max-width: 100%;
-    padding-right: -1px;
+    white-space: initial;
   }
 }
 .div-8:hover{
@@ -190,7 +178,7 @@ import NavigationBar from './NavigationBar.vue'
   display: flex;
   flex-direction: column;
   line-height: normal;
-  width: 50%;
+  width: 53%;
   margin-left: 20px;
 }
 @media (max-width: 991px) {
@@ -203,14 +191,13 @@ import NavigationBar from './NavigationBar.vue'
   background-color: #fff;
   display: flex;
   flex-grow: 1;
-  padding-bottom: 22px;
+  padding-bottom: 25px;
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
 }
 @media (max-width: 991px) {
   .div-9 {
-    max-width: 100%;
     margin-top: 40px;
   }
 }
@@ -219,32 +206,29 @@ import NavigationBar from './NavigationBar.vue'
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   align-self: center;
-  margin-top: 34px;
-  max-width: 472px;
-  font: 400 15px/22.5px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-10 {
-    max-width: 100%;
-  }
+  margin-top: 27px;
+  max-width: 315px;
+  font: 400 10px Poppins, sans-serif;
 }
 .div-11 {
   color: #fff;
   text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
   border-radius: 10px;
   background-color: #e54f70;
   align-self: center;
-  margin-top: 26px;
-  width: 480px;
+  margin-top: 27px;
+  width: 304px;
   max-width: 100%;
-  padding: 9px 1px;
-  font: 800 25px/37.5px Poppins, sans-serif;
+  padding: 9px 20px;
+  font: 800 15px Poppins, sans-serif;
 }
 @media (max-width: 991px) {
   .div-11 {
-    max-width: 100%;
-    padding-right: -1px;
+    white-space: initial;
   }
 }
 </style>

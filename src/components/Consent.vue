@@ -290,6 +290,28 @@ import NavigationBar from './NavigationBar.vue'
                   "
                   ><br
                 /></span>
+                <div class="diva">
+    <div class="div-2a">
+      <input
+                      type="radio"
+                      class="imga"
+                      id="agree"
+                      name="payment"
+                      value="agree"
+                    />
+      <div class="div-3a">I AGREE</div>
+    </div>
+    <div class="div-4a">
+      <input
+                      type="radio"
+                      class="imga"
+                      id="disagree"
+                      name="payment"
+                      value="disagree"
+                    />
+      <div class="div-5a">I DISAGREE</div>
+    </div>
+  </div>
               </div>
             </div>
           </div>
@@ -816,6 +838,74 @@ import NavigationBar from './NavigationBar.vue'
 @media (max-width: 991px) {
   .div-27 {
     white-space: initial;
+  }
+}
+
+
+.diva {
+  display: flex;
+  width: 569px;
+  max-width: 100%;
+  flex-direction: column;
+  margin: 12px 0 0 23px;
+}
+.div-2a {
+  display: flex;
+  justify-content: space-between;
+  gap: 7px;
+  padding: 0 3px;
+}
+@media (max-width: 991px) {
+  .div-2a {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.imga {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 20px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.div-3a {
+  color: #000;
+  align-self: center;
+  flex-grow: 1;
+  flex-basis: auto;
+  margin: auto 0;
+  font: 400 12px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-3a {
+    max-width: 100%;
+  }
+}
+.div-4a {
+  display: flex;
+  margin-top: 5px;
+  justify-content: space-between;
+  gap: 7px;
+  padding: 0 3px;
+}
+@media (max-width: 991px) {
+  .div-4a {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.div-5a {
+  color: #000;
+  align-self: center;
+  flex-grow: 1;
+  flex-basis: auto;
+  margin: auto 0;
+  font: 400 12px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-5a {
+    max-width: 100%;
   }
 }
 </style>

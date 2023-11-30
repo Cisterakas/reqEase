@@ -14,8 +14,8 @@ import NavigationBar from './NavigationBar.vue';
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="Enter your password">
       </div>
+      <router-link to="/docrequest" type="button" class="button">Login</router-link>
       
-      <a href="/docrequest" type="button" class="button">Login</a>
     </form>
   </div>
     </div>
@@ -25,7 +25,7 @@ import NavigationBar from './NavigationBar.vue';
   <style scoped>
 .bg {
     position: relative;
-background: linear-gradient(127.55deg, #f6557e, rgba(255, 201, 245, 0.949));
+background: #fff;
 width: 100%;
 height: 100vh;
 overflow: hidden;

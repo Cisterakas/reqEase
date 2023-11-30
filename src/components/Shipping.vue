@@ -1,7 +1,7 @@
 <template>
    <ApplicationNavigationBar />
    <main class="main-container">
-    <div class="progress-bar-ship">
+    <!-- <div class="progress-bar-ship">
     <div class="progress-line">
       <div class="line-1"></div>
       <div class="line-12"></div>
@@ -263,7 +263,7 @@
 
       <div class="tracking-number">TRACKING<br />NUMBER</div>
     </div>
-  </div>
+  </div> -->
 
     <section class="description">
         <section class="forms-section">
@@ -340,9 +340,9 @@
   </section>
 </section>
 <section class="navigation">
-        <a href="/docrequest" type="button" class="btnBack">Back</a>
-      
-      <a href="/personalInfo2" type="button" class="btnNext">Next</a>
+  <router-link to="/docrequest" type="button" class="btnBack">Back</router-link>
+      <router-link to="/" type="button" class="btnNext">Next</router-link>
+        
     </section>
 </main>
    <Footer/>
@@ -693,12 +693,12 @@ align-self: center;
 }
 
 .form-wrapper.is-active .switcher-login {
-	color: #fff;
+	color: #2b2b2b;
 	transform: translateX(90px);
 }
 
 .form-wrapper.is-active .switcher-signup {
-	color: #fff;
+	color: #2b2b2b  ;
 	transform: translateX(-90px);
     
 }
@@ -748,6 +748,7 @@ align-self: center;
 
 .form-login {
 	animation: hideLogin .3s ease-out forwards;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .form-wrapper.is-active .form-login {
@@ -912,7 +913,7 @@ align-self: center;
 
  .main-container {
     width: auto;
-    background: linear-gradient(127.55deg, #f6557e, rgba(255, 201, 245, 0.949));
+    background: #fff;
     display: flex;
     flex-direction: column;
   }

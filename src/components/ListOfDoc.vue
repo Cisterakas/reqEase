@@ -6,7 +6,7 @@
 
 
     <main class="main-container">
-      <div class="progress-bar-doc-req">
+      <!-- <div class="progress-bar-doc-req">
     <div class="progress-line">
       <div class="line-1"></div>
       <div class="line-3"></div>
@@ -267,7 +267,7 @@
 
       <div class="tracking-number">TRACKING<br />NUMBER</div>
     </div>
-  </div>
+  </div> -->
 
 
 
@@ -407,9 +407,9 @@
   </div>
       </section>
       <section class="navigation">
-        <a href="/personalInfo2" type="button" class="btnBack">Back</a>
-      
-      <a href="/shipping" type="button" class="btnNext">Next</a>
+  
+      <router-link to="/personalInfo2" type="button" class="btnBack">Back</router-link>
+      <router-link to="/shipping" type="button" class="btnNext">Next</router-link>
     </section>
     </main>
     <Footer />
@@ -895,9 +895,10 @@ icon-shape {
   }
  .main-container {
     width: auto;
-    background: linear-gradient(127.55deg, #f6557e, rgba(255, 201, 245, 0.949));
+    background: #fff;
     display: flex;
     flex-direction: column;
+    
   }
   .description {
     background-color: #fff;
@@ -910,6 +911,7 @@ icon-shape {
     flex-direction: column;
     border-radius: 10px;
     padding: 5%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     
   }
 

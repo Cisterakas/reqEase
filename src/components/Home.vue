@@ -13,11 +13,11 @@ import newNavbar from './newNavbar.vue';
         class="img"
       />
       <div class="div-3">
-        <img
+        <!-- <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/6a124d43e8938cda54d70010235048f35600feec874f860685119cc657b8f732?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
           class="img"
-        />
+        /> -->
         <div class="div-4">
           <div class="div-5">
             <div class="div-6">
@@ -69,8 +69,8 @@ import newNavbar from './newNavbar.vue';
                   font-weight: 700;
                 "
               >
-                12/13/23 - no transaction 12/18/23 - 7:00 a.m. to 11:50 a.m.
-                12/25/23 - no in-person transaction <br /><br /></span
+                12/13/23 - no transaction <br>12/18/23 - 7:00 a.m. to 11:50 a.m.
+                <br>12/25/23 - no in-person transaction <br /><br /></span
               ><span
                 style="
                   font-family: Poppins, -apple-system, Roboto, Helvetica,
@@ -106,146 +106,42 @@ import newNavbar from './newNavbar.vue';
                     sans-serif;
                   font-weight: 400;
                 "
-                >1.</span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 700;
-                "
-              >
-              </span
+                >1. Please allow maximum of <b>3 working days</b> to verify your request. 
+                You will receive <b>an email or SMS for the costs</b>, and the manner of payment 
+                and confirmation. If you haven’t received a confirmation that your request 
+                has been attended to after 3 working days, please send us an email at for assistance. <br></span
               ><span
                 style="
                   font-family: Poppins, -apple-system, Roboto, Helvetica,
                     sans-serif;
                   font-weight: 400;
                 "
-              >
-                Please allow maximum of </span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 700;
-                "
-                >3 working days</span
+                ><br>2. <b>Only the owner</b> of the records is allowed to request for documents in connection with his/her records. <br></span
               ><span
                 style="
                   font-family: Poppins, -apple-system, Roboto, Helvetica,
                     sans-serif;
                   font-weight: 400;
                 "
-              >
-                to verify your request. You will receive an </span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 700;
-                "
-                >email or SMS for the costs</span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                >, and the manner of payment and confirmation. If you haven’t
-                received a confirmation that your request has been attended to
-                after 3 working days, please send us an email at for
-                assistance.</span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                ><br /></span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                >2. </span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 700;
-                "
-                >Only the owner </span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                >of the records is allowed to request for documents in
-                connection with his/her records.</span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                ><br /></span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                >3. This University reserves the right to withhold, deny or
+                ><br>3. This University reserves the right to withhold, deny or
                 cancel any request for document due to pending accountabilities
-                (bank accounts, incomplete credentials on file, etc.)</span
+                (bank accounts, incomplete credentials on file, etc.) <br></span
               ><span
                 style="
                   font-family: Poppins, -apple-system, Roboto, Helvetica,
                     sans-serif;
                   font-weight: 400;
                 "
-                ><br /></span
+                ><br>4. Processing time of request commences only upon receipt of
+                payment and confirmation from the Cashier. <br></span
               ><span
                 style="
                   font-family: Poppins, -apple-system, Roboto, Helvetica,
                     sans-serif;
                   font-weight: 400;
                 "
-                >4. Processing time of request commences only upon receipt of
-                payment and confirmation from the Cashier.</span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                ><br /></span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                >5. Request </span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 700;
-                "
-                >not claimed after 60 days</span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-              >
-                from the date of request will be discarded. Therefore, another
-                request will be charged.</span
-              >
+                ><br>5. Request <b>not claimed after 60 days</b> from the date of request will be discarded. 
+                Therefore, another request will be charged. <br></span>
             </div>
           </div>
         </div>
@@ -261,10 +157,10 @@ import newNavbar from './newNavbar.vue';
                 "
                 >I hereby agree and consent the University of the Immaculate
                 Conception may collect, use, disclose and process my personal
-                information set out in <br />this form and/or otherwise provided
+                information set out in this form and/or otherwise provided
                 by me for the purpose of requesting school documents as stated
                 in the R.A. 10173, otherwise known as the Data Privacy Act of
-                2012 and other related data privacy policies. </span
+                2012 and other related data privacy policies. <br></span
               ><span
                 style="
                   font-family: Poppins, -apple-system, Roboto, Helvetica,
@@ -282,7 +178,7 @@ import newNavbar from './newNavbar.vue';
                 staff. I understand that my data will be held securely and will
                 not be disclosed to third parties without my permission. When
                 this information is no longer required, official university
-                procedure will be followed to dispose my data. </span
+                procedure will be followed to dispose my data. <br></span
               ><span
                 style="
                   font-family: Poppins, -apple-system, Roboto, Helvetica,
@@ -296,26 +192,10 @@ import newNavbar from './newNavbar.vue';
                     sans-serif;
                   font-weight: 400;
                 "
-                >By clicking the </span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 700;
-                "
-                >“REQUEST FOR OFFICIAL DOCUMENT ” </span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                >option I represent and warrant that I am the data subject and
-                that I have read and understood all the conditions and reminders
-                in connection with this request and agree to comply with them.
-                By clicking selecting an option, I also certify that the
-                information given are true to the best of my knowledge and
-                belief.</span
+                >By clicking the <b>“REQUEST FOR OFFICIAL DOCUMENT”</b> option I represent and warrant that 
+                I am the data subject and that I have read and understood all the conditions and reminders 
+                in connection with this request and agree to comply with them. By clicking selecting an option, 
+                I also certify that the information given are true to the best of my knowledge and belief.</span
               >
             </div>
           </div>

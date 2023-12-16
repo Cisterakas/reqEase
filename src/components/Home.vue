@@ -652,7 +652,7 @@ import newNavbar from './newNavbar.vue';
 }
 .div-21 {
   display: flex;
-  margin-left: -60px;
+  margin-left: 3px;
   align-items: center;
   gap: 20px;
 }

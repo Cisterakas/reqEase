@@ -8,6 +8,7 @@ import PrsnlInfo from './components/PrsnlInfo.vue';
 import PrsnlInfo2 from './components/PrsnlInfo2.vue';
 import ListOfDoc from './components/ListOfDoc.vue';
 import Shipping from './components/Shipping.vue';
+import AsStudent from './components/AsStudent.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -19,6 +20,7 @@ const routes = [
     { path: '/personalInfo2', component: PrsnlInfo2 },
     { path: '/docrequest', component: ListOfDoc },
     { path: '/shipping', component: Shipping },
+    { path: '/regStudent', component: AsStudent },
 ];
 
 const router = createRouter({

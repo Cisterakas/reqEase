@@ -56,7 +56,11 @@
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/654ffd33-cf95-40fc-af3b-78c3a672ab11?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                   class="img-2"
                 />
-                <div class="div-18">registrar’sOffice@uic.edu.ph</div>
+                <div class="div-18" ><a
+                  href="mailto:registrar_request@uic.edu.ph"
+                  target="_blank"
+                  >registrar_request@uic.edu.ph</a
+                ></div>
               </div>
               <div class="div-19">
                 <img

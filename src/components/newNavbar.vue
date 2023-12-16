@@ -9,15 +9,15 @@
         <router-link to="/" type="button" class="div-3">Dashboard</router-link>
         <router-link to="/" type="button" class="div-4">Request Now</router-link>
         <router-link to="/" type="button" class="div-5">About Us</router-link>
-        <div type="button" class="div-6">
-            <router-link to="/login" type="button" class="div-7">Sign In</router-link>
+        
+       
+            <router-link to="/login" type="button" class="div-6">
+                
+                <div class="div-7">Sign In </div></router-link>
       
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2c1659e2650f5f7e08840b3881a08bc5fc8bb8079da39c213ea17da4a1a85d6?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-            class="img-2"
-          />
-        </div>
+          
+    
+        
       </div>
     </nav>
   </template>
@@ -108,15 +108,5 @@
     color: var(--Cinza-claro, #fcfcfc);
     font: 700 18px Roboto, sans-serif;
   }
-  .img-2 {
-    aspect-ratio: 1;
-    object-fit: contain;
-    object-position: center;
-    width: 20px;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    align-self: start;
-    max-width: 100%;
-  }
+ 
   </style>

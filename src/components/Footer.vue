@@ -1,7 +1,7 @@
 <template>
   <footer>
   <div class="div">
-    <div class="div-2">
+    <div class="div2">
       <div class="div-3">
         <div class="div-4">
           <div class="column">
@@ -89,7 +89,9 @@
                   class="img-2"
                 />
                 <div class="div-24">
-                  Operation Hours : 7:30 am to 5:00 pm Monday to Friday
+                  Operation Hours : 
+                  <br/> 7:30 am to 5:00 pm Monday to Friday
+                  <br/> 7:30 Am to 12:00 Pm Saturday
                 </div>
               </div>
             </div>
@@ -111,7 +113,7 @@
   display: flex;
   flex-direction: column;
 }
-.div-2 {
+.div2 {
   background-color: #2f3030;
   display: flex;
   width: 100%;
@@ -120,7 +122,7 @@
   padding: 34px 20px 44px;
 }
 @media (max-width: 991px) {
-  .div-2 {
+  .div2 {
     max-width: 100%;
   }
 }

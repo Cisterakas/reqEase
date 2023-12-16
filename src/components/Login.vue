@@ -24,11 +24,14 @@ const toggleVisibility = () => {
         <div class="div-4">
           <div class="column">
             <div class="div-5">
+
+              <router-link to="/" type="button" class="div-5">
               <img
                 loading="lazy"
                 srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/d517582c6790986da42d5984c2fd60ec261a41bd07ec8773b981d74f6b6a7363?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/d517582c6790986da42d5984c2fd60ec261a41bd07ec8773b981d74f6b6a7363?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d517582c6790986da42d5984c2fd60ec261a41bd07ec8773b981d74f6b6a7363?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/d517582c6790986da42d5984c2fd60ec261a41bd07ec8773b981d74f6b6a7363?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/d517582c6790986da42d5984c2fd60ec261a41bd07ec8773b981d74f6b6a7363?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d517582c6790986da42d5984c2fd60ec261a41bd07ec8773b981d74f6b6a7363?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/d517582c6790986da42d5984c2fd60ec261a41bd07ec8773b981d74f6b6a7363?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/d517582c6790986da42d5984c2fd60ec261a41bd07ec8773b981d74f6b6a7363?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                 class="img-2"
               />
+            </router-link>
               <div class="div-6">Registrar Document Request Suite</div>
               <div class="div-7">
                 Empowering Tomorrow, Preserving Today: Where Precision Meets

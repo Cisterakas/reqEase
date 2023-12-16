@@ -1,6 +1,14 @@
 <script setup>
 import NavigationBar from './NavigationBar.vue';
 
+import { ref } from 'vue';
+
+const password = ref('');
+const showPassword = ref(false);
+
+const toggleVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
 </script>
 
 
@@ -57,17 +65,47 @@ import NavigationBar from './NavigationBar.vue';
 
                 
     <div class="material-textfield">
-      <input placeholder=" " type="password">
-      <label>Password</label>
+      <input placeholder=" " 
+      v-model="password"
+      :type="showPassword ? 'text' : 'password'"
+      id="password">
+      <label for="password">Password</label>
     </div>
                 <div class="div-16">
-                  
-                  <input type="checkbox" class="div-17" checked="checked">Remember Me
+                  <input @click="toggleVisibility" type="checkbox" class="div-17" >{{ showPassword ? 'Hide' : 'Show' }} Password
+                  <input type="checkbox" class="div-17" >Remember Me
                
                 </div>
                 <router-link to="/" type="button" class="div-19">Log In</router-link>
                 
-                <router-link to="/" type="button" class="div-20">Create a New Account</router-link>
+                <a class="div-20" href="#open-modal">Create a New Account</a>
+
+              
+<div id="open-modal" class="modal-window">
+  <div>
+    
+    <!-- Your Modal Content Goes Here -->
+    <div class="div-">
+    <div class="div-2-">
+      <span style="color: rgba(47, 48, 48, 1)">WELCOME TO </span
+      ><span style="color: rgba(229, 79, 112, 1)">ReqEase!</span>
+    </div>
+    <div class="div-3-">Please choose role to Create a New Account</div>
+    <router-link to="/regStudent" type="button" class="div-4-">As STUDENT</router-link>
+    <router-link to="/" type="button" class="div-5-">As ADMIN</router-link>
+  
+    <a href="#" title="Close" class="div-6-">Go Back  </a>
+   
+  </div>
+
+    
+  </div>
+</div>
+
+
+
+
+
               
               </div>
             </div>
@@ -81,6 +119,202 @@ import NavigationBar from './NavigationBar.vue';
 
 
 <style scoped>
+.div-4-:hover{
+  background-color: #4fb0e5;
+}
+.div-5-:hover{
+  background-color: #4fb0e5;
+}
+.div-6-:hover{
+color: #4fb0e5;
+}
+.div- {
+  display: flex;
+  width: 100%;
+
+  flex-direction: column;
+}
+@media (max-width: 991px) {
+  .div- {
+    max-width: 100%;
+  }
+}
+.div-2- {
+  color: #e54f70;
+  letter-spacing: 4.5px;
+  font: 700 45px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-2- {
+    max-width: 100%;
+    font-size: 40px;
+  }
+}
+.div-3- {
+  color: var(--black-2-5, #444b59);
+  letter-spacing: 2.4px;
+  margin-top: 19px;
+  font: 400 24px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-3- {
+    max-width: 100%;
+  }
+}
+.div-4- {
+  color: #fff ;
+  text-align: center;
+  letter-spacing: 2.4px;
+  border-radius: 20px;
+  background-color: rgba(
+    229.00000154972076,
+    79.00000289082527,
+    112.000000923872,
+    1
+  );
+  align-self: center;
+  margin-top: 19px;
+  width: auto;
+  max-width: 100%;
+  justify-content: center;
+  padding: 27px 50px;
+  font: 700 24px Montserrat, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-4- {
+    padding: 0 20px;
+  }
+}
+.div-5- {
+  color:  #fff;
+  text-align: center;
+  letter-spacing: 2.4px;
+  border-radius: 20px;
+  background-color: rgba(
+    229.00000154972076,
+    79.00000289082527,
+    112.000000923872,
+    1
+  );
+  align-self: center;
+  margin-top: 19px;
+  width: auto;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 27px 60px;
+  font: 700 24px Montserrat, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-5- {
+    padding: 0 20px;
+  }
+}
+.div-6- {
+  color: #e54f70;
+  text-align: center;
+  align-self: center;
+  margin-top: 19px;
+  white-space: nowrap;
+  font: 400 16px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-6- {
+    white-space: initial;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(59, 59, 59, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.modal-window:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window > div {
+
+  width: 901px;
+height: auto;
+position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  
+  background: #ffffff;
+border-radius: 10px;
+padding: 40px 130px 40px 130px;
+display: flex;
+flex-direction: column;
+  
+}
+.modal-window header {
+  font-weight: bold;
+}
+.modal-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+.modal-close:hover {
+  color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .material-textfield {
   position: relative;  
   margin-top: 50px;
@@ -299,7 +533,6 @@ input:not(:placeholder-shown) + label {
   }
 }
 .div-8 {
-  disply: flex;
   flex-direction: column;
   fill: var(--, #fff);
   overflow: hidden;
@@ -481,6 +714,6 @@ input:not(:placeholder-shown) + label {
   font: 400 16px Poppins, sans-serif;
 }
 .div-20:hover{
-  color: #4fb0e5;
+ color: #4fb0e5;
 }
 </style>

@@ -6,7 +6,7 @@
         class="img"
       />
       <div class="div-2">
-        <router-link to="/" type="button" class="div-3">Dashboard</router-link>
+        <router-link to="/" type="button" class="div-3">Home</router-link>
         <router-link to="/" type="button" class="div-4">Request Now</router-link>
         <router-link to="/" type="button" class="div-5">About Us</router-link>
         

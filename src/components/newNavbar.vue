@@ -1,0 +1,122 @@
+<template>
+    <nav class="div1">
+      <img
+        loading="lazy"
+        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/2bb03f6a7046d1f6c536e7d031945114f9a449209ec032d3cac12a0d41dce334?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/2bb03f6a7046d1f6c536e7d031945114f9a449209ec032d3cac12a0d41dce334?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/2bb03f6a7046d1f6c536e7d031945114f9a449209ec032d3cac12a0d41dce334?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/2bb03f6a7046d1f6c536e7d031945114f9a449209ec032d3cac12a0d41dce334?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/2bb03f6a7046d1f6c536e7d031945114f9a449209ec032d3cac12a0d41dce334?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/2bb03f6a7046d1f6c536e7d031945114f9a449209ec032d3cac12a0d41dce334?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/2bb03f6a7046d1f6c536e7d031945114f9a449209ec032d3cac12a0d41dce334?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/2bb03f6a7046d1f6c536e7d031945114f9a449209ec032d3cac12a0d41dce334?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+        class="img"
+      />
+      <div class="div-2">
+        <router-link to="/" type="button" class="div-3">Dashboard</router-link>
+        <router-link to="/" type="button" class="div-4">Request Now</router-link>
+        <router-link to="/" type="button" class="div-5">About Us</router-link>
+        <div type="button" class="div-6">
+            <router-link to="/login" type="button" class="div-7">Sign In</router-link>
+      
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2c1659e2650f5f7e08840b3881a08bc5fc8bb8079da39c213ea17da4a1a85d6?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+            class="img-2"
+          />
+        </div>
+      </div>
+    </nav>
+  </template>
+  
+  
+  
+  <style scoped>
+  .div1 {
+    background-color: #2f3030;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 46px 16px 61px;
+  }
+  @media (max-width: 991px) {
+    .div1 {
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+  }
+  .img {
+    aspect-ratio: 0.99;
+    object-fit: contain;
+    object-position: center;
+    width: 68px;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .div-2 {
+    align-self: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 50px;
+    margin: auto 0;
+  }
+  @media (max-width: 991px) {
+    .div-2 {
+      max-width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  .div-3 {
+    color: var(--Cinza-claro, #fcfcfc);
+    align-self: center;
+    margin: auto 0;
+    font: 700 18px Roboto, sans-serif;
+  }
+  .div-3:hover{
+   color: #4fb0e5;
+  }
+  .div-4 {
+    color: var(--Cinza-claro, #fcfcfc);
+    margin: auto 0;
+    font: 700 18px Roboto, sans-serif;
+  }
+  .div-4:hover{
+   color: #4fb0e5;
+  }
+  .div-5 {
+    color: var(--Cinza-claro, #fcfcfc);
+    align-self: center;
+    margin: auto 0;
+    font: 700 18px Roboto, sans-serif;
+  }
+  .div-5:hover{
+   color: #4fb0e5;
+  }
+  .div-6 {
+    justify-content: space-between;
+    border-radius: 20px;
+    background-color: #e54f70;
+    align-self: stretch;
+    display: flex;
+    gap: 15px;
+    padding: 10px 58px;
+  }
+  @media (max-width: 991px) {
+    .div-6 {
+      padding: 0 20px;
+    }
+  }
+  .div-6:hover{
+    background-color: #4fb0e5;
+  }
+  .div-7 {
+    color: var(--Cinza-claro, #fcfcfc);
+    font: 700 18px Roboto, sans-serif;
+  }
+  .img-2 {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 20px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    align-self: start;
+    max-width: 100%;
+  }
+  </style>

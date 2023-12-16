@@ -92,7 +92,7 @@ const toggleVisibility = () => {
     </div>
     <div class="div-3-">Please choose role to Create a New Account</div>
     <router-link to="/regStudent" type="button" class="div-4-">As STUDENT</router-link>
-    <router-link to="/" type="button" class="div-5-">As ADMIN</router-link>
+    <router-link to="/regAdmin" type="button" class="div-5-">As ADMIN</router-link>
   
     <a href="#" title="Close" class="div-6-">Go Back  </a>
    
@@ -119,6 +119,7 @@ const toggleVisibility = () => {
 
 
 <style scoped>
+
 .div-4-:hover{
   background-color: #4fb0e5;
 }

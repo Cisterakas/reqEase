@@ -69,7 +69,7 @@
                                 Helvetica, sans-serif;
                               font-weight: 400;
                             "
-                            >Enter your name as a <b>STUDENT</b> during your stay at the university.
+                            >Enter your credentials as an <b>ADMIN.</b>
                           </span>
                         </li>
                       </ul>
@@ -93,22 +93,6 @@
     </div>
     <div class="material-textfield">
       <input placeholder=" " type="text">
-      <label>Address</label>
-    </div>  
-    <div class="material-textfield">
-      <input placeholder=" " type="text">
-      <label>Contact Number</label>
-    </div>
-    <div class="material-textfield">
-      <input placeholder=" " type="text">
-      <label>Last School Year Attended</label>
-    </div>
-    <div class="material-textfield">
-      <input placeholder=" " type="text">
-      <label>Degree</label>
-    </div>
-    <div class="material-textfield">
-      <input placeholder=" " type="text">
       <label>Email Address</label>
     </div>
     <div class="material-textfield">
@@ -120,10 +104,8 @@
                     <router-link to="/login" type="button" class="div-34">Back</router-link>
                     <a class="div-35" href="#open-modal">Create</a>
                   </div>
-                  
 
-              
-<div id="open-modal" class="modal-window">
+                  <div id="open-modal" class="modal-window">
   <div>
     
     <!-- Your Modal Content Goes Here -->
@@ -161,9 +143,6 @@
     
   </div>
 </div>
-
-
-
 
 
 
@@ -291,11 +270,6 @@ flex-direction: column;
 .modal-close:hover {
   color: black;
 }
-
-
-
-
-
 
 
 
@@ -485,7 +459,6 @@ input:not(:placeholder-shown) + label {
     line-height: normal;
     width: 62%;
     margin-left: 20px;
-    margin-bottom: -20px;
   }
   @media (max-width: 991px) {
     .column-2 {

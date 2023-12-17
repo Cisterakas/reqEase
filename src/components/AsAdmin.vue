@@ -1,5 +1,13 @@
 <script setup>
 
+import { ref } from 'vue';
+
+const password = ref('');
+const showPassword = ref(false);
+
+const toggleVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
 
 </script>
 
@@ -98,9 +106,15 @@
       <label>Email Address</label>
     </div>
     <div class="material-textfield">
-      <input placeholder=" " type="password">
-      <label>Password</label>
-    </div>      
+      <input placeholder=" " 
+      v-model="password"
+      :type="showPassword ? 'text' : 'password'"
+      id="password">
+      <label for="password">Password</label>
+    </div>    
+    <div class="div-16-">
+      <input @click="toggleVisibility" type="checkbox" class="div-17-" >{{ showPassword ? 'Hide' : 'Show' }} Password 
+    </div>  
 
                   <div class="div-33">
                     <router-link to="/login" type="button" class="div-34">Back</router-link>
@@ -161,6 +175,23 @@
   
   
   <style scoped>
+
+.div-16- {
+  align-self: start;
+  display: flex;
+  margin-top: 23px;
+  gap: 8px;
+}
+  .div-17- {
+  border: 1px solid #000;
+  background-color: var(--, #fff);
+  display: flex;
+  width: 20px;
+  height: 20px;
+  flex-direction: column;
+  font: 400 22px Poppins, sans-serif;
+}
+
 
 .div- {
   display: flex;

@@ -1,6 +1,5 @@
 <script setup>
 import Footer from './Footer.vue';
-import NavigationBar from './NavigationBar.vue'
 import newNavbar from './newNavbar.vue';
 </script>
 <template>
@@ -309,7 +308,7 @@ import newNavbar from './newNavbar.vue';
                   confidentiality of your records, ensuring a secure and
                   efficient process.
                 </div>
-                <router-link to="/consent" type="button" class="div-44">REQUEST FOR OFFICIAL DOCUMENT</router-link>
+                <router-link to="/reqDoc" type="button" class="div-44">REQUEST FOR OFFICIAL DOCUMENT</router-link>
                 
               </div>
             </div>
@@ -327,7 +326,7 @@ import newNavbar from './newNavbar.vue';
                   provide real-time updates on the status and location of your
                   important records.
                 </div>
-                <router-link to="/consent" type="button" class="div-47">TRACK MY DOCUMENT</router-link>
+                <router-link to="/login" type="button" class="div-47">TRACK MY DOCUMENT</router-link>
           
               </div>
             </div>
@@ -1014,7 +1013,7 @@ import newNavbar from './newNavbar.vue';
   }
 }
 .div-44:hover{
-  background-color: #2f3030;
+  background-color: #4fb0e5;
 }
 .column-5 {
   display: flex;
@@ -1084,6 +1083,6 @@ import newNavbar from './newNavbar.vue';
   }
 }
 .div-47:hover{
-  background-color: #2f3030;
+  background-color: #4fb0e5;
 }
 </style>

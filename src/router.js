@@ -10,6 +10,7 @@ import ListOfDoc from './components/ListOfDoc.vue';
 import Shipping from './components/Shipping.vue';
 import AsStudent from './components/AsStudent.vue';
 import AsAdmin from './components/AsAdmin.vue';
+import ReqDoc from './components/ReqDoc.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -23,6 +24,7 @@ const routes = [
     { path: '/shipping', component: Shipping },
     { path: '/regStudent', component: AsStudent },
     { path: '/regAdmin', component: AsAdmin },
+    { path: '/reqDoc', component: ReqDoc },
 ];
 
 const router = createRouter({

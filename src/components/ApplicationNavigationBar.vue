@@ -1,20 +1,13 @@
 <template>
   <div class="div1">
-    <div class="div2">
+    <div class="div-2-">
       <img
         loading="lazy"
-        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/e7f16088-d2af-4d65-9c90-5670ee82bddb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/e7f16088-d2af-4d65-9c90-5670ee82bddb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/e7f16088-d2af-4d65-9c90-5670ee82bddb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/e7f16088-d2af-4d65-9c90-5670ee82bddb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/e7f16088-d2af-4d65-9c90-5670ee82bddb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/e7f16088-d2af-4d65-9c90-5670ee82bddb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/e7f16088-d2af-4d65-9c90-5670ee82bddb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/e7f16088-d2af-4d65-9c90-5670ee82bddb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
         class="img"
       />
       <div class="div-3">
-        <img
-          loading="lazy"
-          srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/d7c7721d-ec91-43f9-9d4c-2dc4e0ab1110?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/d7c7721d-ec91-43f9-9d4c-2dc4e0ab1110?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d7c7721d-ec91-43f9-9d4c-2dc4e0ab1110?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/d7c7721d-ec91-43f9-9d4c-2dc4e0ab1110?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/d7c7721d-ec91-43f9-9d4c-2dc4e0ab1110?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d7c7721d-ec91-43f9-9d4c-2dc4e0ab1110?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/d7c7721d-ec91-43f9-9d4c-2dc4e0ab1110?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/d7c7721d-ec91-43f9-9d4c-2dc4e0ab1110?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-          class="img-2"
-        />
-        <div class="div-4">
-          Welcome to ReqEase: Registrar Document Request Suite
-        </div>
+        <div class="div-4">ReqEase: Registrar Document Request Suite</div>
         <div class="div-5">
           This is the official website of the Office of the Registrar at the
           University of the Immaculate Conception (UIC), which is responsible
@@ -32,23 +25,32 @@
 
 <style scoped>
 .div1 {
-  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 239, 239, 0.47) 0%,
+    rgba(217, 217, 217, 0) 155.56%
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.div2 {
-  display: flex;
+.div-2- {
+
   flex-direction: column;
   overflow: hidden;
   position: relative;
   display: flex;
-  width: 100%;
+  min-height: 306px;
   justify-content: center;
+  align-items: center;
+  padding: 50px 60px;
 }
 @media (max-width: 991px) {
-  .div-2 {
+  .div-2- {
     max-width: 100%;
+    margin-right: 2px;
+    padding: 0 20px;
   }
 }
 .img {
@@ -61,54 +63,36 @@
 }
 .div-3 {
   position: relative;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 239, 239, 0.83) 0%,
-    rgba(217, 217, 217, 0) 203.67%
-  );
   display: flex;
-  width: 100%;
+  margin-top: 47px;
+  width: 1179px;
+  max-width: 100%;
   flex-direction: column;
-  align-items: start;
-  padding: 50px 80px 50px 49px;
 }
 @media (max-width: 991px) {
   .div-3 {
-    max-width: 100%;
-    padding: 0 20px;
+    margin-top: 40px;
   }
 }
-.img-2 {
-  aspect-ratio: 1.01;
-  object-fit: contain;
-  object-position: center;
-  width: 100px;
-  overflow: hidden;
-  max-width: 100%;
-}
 .div-4 {
-  color: #fff;
+  color: #eff3f3;
   text-align: center;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-  align-self: center;
-  margin-top: 44px;
-  max-width: 1142px;
+  text-shadow: -3px 6px 15.4px rgba(0, 0, 0, 0.75);
   font: 700 35px Poppins, sans-serif;
 }
 @media (max-width: 991px) {
   .div-4 {
     max-width: 100%;
-    margin-top: 40px;
   }
 }
 .div-5 {
-  color: #fff;
+  color: #eff3f3;
   text-align: center;
-  text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.75);
+  text-shadow: 2px 1px 7.8px rgba(0, 0, 0, 0.89);
   align-self: center;
-  max-width: 946px;
-  margin: 24px 0 32px;
-  font: 400 15px Poppins, sans-serif;
+  margin-top: 7px;
+  max-width: 935px;
+  font: 500 15px Poppins, sans-serif;
 }
 @media (max-width: 991px) {
   .div-5 {

@@ -6,6 +6,8 @@
         srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/c8fe515027325adad7c1dae8ee021a7439c62ba9a6b7a315efb7a197aef023b3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
         class="img"
       />
+      
+
       <div class="div-3">
         <div class="div-4">ReqEase: Registrar Document Request Suite</div>
         <div class="div-5">
@@ -17,6 +19,7 @@
           Suite.
         </div>
       </div>
+    
     </div>
   </div>
 </template>
@@ -24,12 +27,16 @@
 
 
 <style scoped>
+
+
+
+
 .div1 {
   position: relative;
   background: linear-gradient(
     180deg,
     rgba(255, 239, 239, 0.47) 0%,
-    rgba(217, 217, 217, 0) 155.56%
+    rgba(217, 217, 217, 0) 203.67%
   );
   display: flex;
   flex-direction: column;

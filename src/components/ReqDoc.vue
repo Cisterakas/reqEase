@@ -1335,6 +1335,7 @@ appropriate disposition.
     }
   }
   .div-59 {
+    width: 15px;
     color: #000;
     align-self: center;
     margin: auto 0;

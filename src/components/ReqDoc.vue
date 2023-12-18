@@ -733,9 +733,14 @@ appropriate disposition.
             <div class="div-200">Page 1 of 3</div>
           </div>
         </div>
-    
+        <router-link to="/shipping" type="button" class="div-391">Next</router-link>
       </div>
-      <router-link to="/" type="button" class="div-201">Next</router-link>
+
+
+      
+      <!-- <router-link to="/shipping" type="button" class="div-201">Next</router-link> -->
+      
+      
     </div>
     
     <Footer/>
@@ -744,13 +749,39 @@ appropriate disposition.
   
   
   <style scoped>
+  .div-391:hover{
+  background-color: #084f06;
+}
+.div-391 {
+  color:  #fff;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #0c600a;
+  align-self: end;
+  margin-top: 33px;
+  width: 217px;
+  max-width: 100%;
+  padding: 9px 60px;
+  font: 800 15px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-391 {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+
   .div {
     background-color: var(--, #fff);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 41px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 60px;
   }
   @media (max-width: 991px) {
     .div {
@@ -760,7 +791,7 @@ appropriate disposition.
   .div-2 {
     display: flex;
     width: 100%;
-    max-width: 1504px;
+    max-width: 1508px;
     flex-direction: column;
   }
   @media (max-width: 991px) {

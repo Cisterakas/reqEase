@@ -885,7 +885,7 @@ flex-direction: column;
   }
   .div-34 {
     color: #000;
-    max-width: 1076px;
+    max-width: auto;
     margin: 18px 0 6px;
     font: 400 12px Poppins, sans-serif;
   }

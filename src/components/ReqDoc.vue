@@ -593,7 +593,7 @@ appropriate disposition.
                 <div class="div-58">
                   <div class="div-59">17</div>
                   <div class="div-60">
-                    Honorable Dismissal <b>(ISSUED ONLY ONCEAND SUBJECT TO VERIFICATION)</b>
+                    Honorable Dismissal <b>(ISSUED ONLY ONCE AND SUBJECT TO VERIFICATION)</b>
                   </div>
                   <div class="div-61">300.00 / set</div>
                   <div class="div-62">
@@ -1335,6 +1335,7 @@ appropriate disposition.
     }
   }
   .div-59 {
+    width: 15px;
     color: #000;
     align-self: center;
     margin: auto 0;

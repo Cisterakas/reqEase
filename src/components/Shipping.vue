@@ -303,7 +303,7 @@ const handleImageUpload = (event) => {
           <div class="div-38">Page 2 of 3</div>
         </div>
       </div>
-      <router-link to="/" type="button" class="div-39">Next</router-link>
+      <router-link to="/verify" type="button" class="div-39">Next</router-link>
     </div>
   </div>
   <Footer />
@@ -339,7 +339,7 @@ label {
 }
 
 .info{
-  font: 275 22px Poppins, sans-serif;
+  font: 275 15px Poppins, sans-serif;
   outline: none;
 
   color: #000;

@@ -11,6 +11,7 @@ import Shipping from './components/Shipping.vue';
 import AsStudent from './components/AsStudent.vue';
 import AsAdmin from './components/AsAdmin.vue';
 import ReqDoc from './components/ReqDoc.vue';
+import Verify from './components/Verification.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -25,6 +26,7 @@ const routes = [
     { path: '/regStudent', component: AsStudent },
     { path: '/regAdmin', component: AsAdmin },
     { path: '/reqDoc', component: ReqDoc },
+    { path: '/verify', component: Verify },
 ];
 
 const router = createRouter({

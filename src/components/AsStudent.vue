@@ -84,7 +84,7 @@ const toggleVisibility = () => {
                       </ul>
                     </div>
                   </div>
-                  <div class="material-textfield">
+                  <div class="material-textfield1">
       <input placeholder=" " type="text">
       <label>First Name</label>
     </div>
@@ -327,12 +327,15 @@ flex-direction: column;
 
 
 
-
+.material-textfield1 {
+  position: relative;  
+  margin-top: 54px;
+}
 
 
 .material-textfield {
   position: relative;  
-  margin-top: 50px;
+  margin-top: 18px;
 }
 
 label {

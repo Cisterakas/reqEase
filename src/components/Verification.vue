@@ -22,9 +22,9 @@ const decrement = (index) => {
     counters.value[index] = 0;
     
   }
-};
+};  
 </script>
-<template>
+<template>~
   <newNavbar/>
   <ApplicationNavigationBar/> 
     <div class="div">
@@ -166,22 +166,9 @@ const decrement = (index) => {
             font-weight: 400;
             color: rgba(68, 75, 89, 1);
           "
-          >Please wait for the </span
-        ><span
-          style="
-            font-family: Poppins, sans-serif;
-            font-weight: 700;
-            color: rgba(68, 75, 89, 1);
-          "
-          >Registrar’s confirmation</span
-        ><span
-          style="
-            font-family: Poppins, sans-serif;
-            font-weight: 400;
-            color: rgba(68, 75, 89, 1);
-          "
-          >, before moving on to the payment. While waiting, you can check your
-          status at the official website by going to </span
+          >Please allow maximum of <b>3 working days  </b> to verify your request and 
+          you will receive a <b>Registrar’s confirmation</b> email before moving on to the payment. 
+          While waiting, you can check your status at the official website by going to </span
         ><span
           style="
             font-family: Poppins, sans-serif;

@@ -22,7 +22,7 @@
   </div>
 
 
-        <router-link to="/" type="button" class="div-5">About Us</router-link>
+        <router-link to="/about" type="button" class="div-5">About Us</router-link>
         
        
             <router-link to="/login" type="button" class="div-6">

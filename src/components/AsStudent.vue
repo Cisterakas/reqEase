@@ -411,7 +411,7 @@ input:not(:placeholder-shown) + label {
     overflow: hidden;
     position: relative;
     display: flex;
-    min-height: 1543px;
+    min-height: auto;
     width: 100%;
     justify-content: center;
   }

@@ -17,7 +17,8 @@
     </button>
     <div class="dropdown-content">
       <router-link to="/reqDoc" class="div-51">Request Now</router-link>
-      <a href="#">Track Document</a>
+      <router-link to="/track" class="div-51">Track Document</router-link>
+    
     </div>
   </div>
 

@@ -12,6 +12,7 @@ import AsStudent from './components/AsStudent.vue';
 import AsAdmin from './components/AsAdmin.vue';
 import ReqDoc from './components/ReqDoc.vue';
 import Verify from './components/Verification.vue';
+import Track from './components/Tracker.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -27,6 +28,7 @@ const routes = [
     { path: '/regAdmin', component: AsAdmin },
     { path: '/reqDoc', component: ReqDoc },
     { path: '/verify', component: Verify },
+    { path: '/track', component: Track },
 ];
 
 const router = createRouter({

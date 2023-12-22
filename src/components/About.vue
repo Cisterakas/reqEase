@@ -2,8 +2,12 @@
 import newNavbar from "./newNavbar.vue";
 import ApplicationNavigationBar from "./ApplicationNavigationBar.vue";
 import Footer from "./Footer.vue";
+
+import { ref } from 'vue';
+
 </script>
 <template>
+   
     <newNavbar/>
     <ApplicationNavigationBar/>
     <div class="div">
@@ -18,11 +22,11 @@ import Footer from "./Footer.vue";
           It is a combining &quot;<span style="font-weight: 600">Request</span
           >&quot; with &quot;<span style="font-weight: 600">Ease</span>&quot;. It suggests that the document request process is designed to be easy or convenient for users. The term is likely coined to convey the idea that the Registrar Document Request Suite aims to simplify and streamline the procedure for requesting official documents from the University of the Immaculate Conception.
         </div>
-        <div class="div-5">DEVELOPERS</div>
+        <div class="div-5">DEVELOPMENT TEAM</div>
         <div class="div-6">
           <div class="div-7">
             <div class="column">
-              <div class="div-8">
+              <div class="div=8">
                 <img
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -30,12 +34,20 @@ import Footer from "./Footer.vue";
                 />
                 <div class="div-9">Joshua Mipaña <br />Cister</div>
                 <div class="div-10">Programmer</div>
+
+       
+
+
+
+
                 <div class="div-11">
+                    <router-link to="/" type="button">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7fff1a7fffd7a16d0d55e9cc1ccfdc4d0ad6aeb37cf4da207ab97ad7840a925?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                     class="img-3"
-                  /><img
+                  />
+                </router-link><img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8c74ef1cec84355717e0f36fb4c606376e9e30af18ea58d1c688fca8e5d719f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                     class="img-4"
@@ -51,8 +63,8 @@ import Footer from "./Footer.vue";
                 </div>
               </div>
             </div>
-            <div class="column-2">
-              <div class="div-12">
+            <div class="column">
+              <div class="box">
                 <img
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -82,7 +94,7 @@ import Footer from "./Footer.vue";
               </div>
             </div>
             <div class="column-3">
-              <div class="div-16">
+              <div class="box">
                 <img
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -112,7 +124,7 @@ import Footer from "./Footer.vue";
               </div>
             </div>
             <div class="column-4">
-              <div class="div-20">
+              <div class="box">
                 <img
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -143,14 +155,119 @@ import Footer from "./Footer.vue";
             </div>
           </div>
         </div>
+        
       </div>
+      
     </div>
+
     <Footer/>
   </template>
   
   
   
   <style scoped>
+
+.div-12 {
+    border: 1px solid #484848;
+    background-color: var(--, #fff);
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 9px 12px 18px;
+  }
+  @media (max-width: 991px) {
+    .div-12 {
+      margin-top: 27px;
+    }
+  }
+.box {
+    padding: 9px 12px 18px;
+
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+
+
+
+  width: auto;
+  height: auto;
+  float: left;
+  transition: .5s linear;
+  position: relative;
+ 
+  overflow: hidden;
+
+  text-align: center;
+ 
+  background: transparent;
+  text-transform: uppercase;
+
+
+  text-transform: uppercase;
+  align-self: center;
+  margin: 0 auto;
+
+}
+@media (max-width: 991px) {
+    .box {
+      margin-top: 27px;
+    }
+  }
+
+.box:before {
+  position: absolute;
+  content: '';
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(100%);
+}
+
+.box:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(-100%);
+}
+
+.box:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.box:hover:before {
+  border-color: #224f34;
+  height: 100%;
+  transform: translateX(0);
+  transition: .3s transform linear, .3s height linear .3s;
+}
+
+.box:hover:after {
+  border-color: #224f34;
+  height: 100%;
+  transform: translateX(0);
+  transition: .3s transform linear, .3s height linear .3s;
+}
+
+
+
+
+
+
+
+
   .div {
     background-color: var(--, #fff);
     display: flex;

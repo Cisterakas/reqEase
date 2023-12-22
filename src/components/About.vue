@@ -26,45 +26,59 @@ import { ref } from 'vue';
         <div class="div-6">
           <div class="div-7">
             <div class="column">
-              <div class="div=8">
+              <div class="div-8">
+                <div class="box">
                 <img
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/36b1d47289074f3f4a812c47f147fd6915d6fd3d5bf9a12bea5d7a511d30c915?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                   class="img-2"
                 />
+              
                 <div class="div-9">Joshua Mipaña <br />Cister</div>
                 <div class="div-10">Programmer</div>
 
-       
+              </div>
 
 
 
 
                 <div class="div-11">
-                    <router-link to="/" type="button">
+              
+                    <a href="https://github.com/Cisterakas" target="_blank" type="button">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7fff1a7fffd7a16d0d55e9cc1ccfdc4d0ad6aeb37cf4da207ab97ad7840a925?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                     class="img-3"
                   />
-                </router-link><img
+                </a>
+                <a href="https://www.facebook.com/joshua.cister.7" target="_blank" type="button">
+                <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8c74ef1cec84355717e0f36fb4c606376e9e30af18ea58d1c688fca8e5d719f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                     class="img-4"
-                  /><img
+                  />
+                </a>
+               
+                <a href="https://www.linkedin.com/in/joshuacister/" target="_blank" type="button">
+                  <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fb776c2e1d549f56ef24b23aff3de77cdf88fa0d27f469ce352baeaff615385?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                     class="img-5"
-                  /><img
+                  />
+                </a>
+                <a href="https://cisterakas.github.io/" target="_blank" type="button">
+                <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/400808a63aeb3a06cdadd35eee38512fe7467d42b1dce7a14e2d6d14b4d19ac1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                     class="img-6"
                   />
+                </a>
                 </div>
               </div>
             </div>
             <div class="column">
-              <div class="box">
+              <div class="div-8" >
+                <div class="box">
                 <img
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/cda79fcbda5d418643d9850afacb7c0c1c4d4610579e3ea7437c78add6c2ab8b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -72,29 +86,44 @@ import { ref } from 'vue';
                 />
                 <div class="div-13">Juvenile Christen Lanticse Bajo</div>
                 <div class="div-14">Analyst<br />UI / UX Designer</div>
-                <div class="div-15">
+
+              </div>
+                <div class="div-11">
+                  <a href="https://github.com/Christevuj" target="_blank" type="button">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7fff1a7fffd7a16d0d55e9cc1ccfdc4d0ad6aeb37cf4da207ab97ad7840a925?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-8"
-                  /><img
+                    class="img-3"
+                  />
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100082034745799" target="_blank" type="button">
+                <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8c74ef1cec84355717e0f36fb4c606376e9e30af18ea58d1c688fca8e5d719f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-9"
-                  /><img
+                    class="img-4"
+                  />
+                </a>
+               
+                <a href="https://www.linkedin.com/in/christevuj/" target="_blank" type="button">
+                  <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fb776c2e1d549f56ef24b23aff3de77cdf88fa0d27f469ce352baeaff615385?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-10"
-                  /><img
+                    class="img-5"
+                  />
+                </a>
+                <a href="https://christevuj.github.io/" target="_blank" type="button">
+                <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/400808a63aeb3a06cdadd35eee38512fe7467d42b1dce7a14e2d6d14b4d19ac1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-11"
+                    class="img-6"
                   />
+                </a>
                 </div>
               </div>
             </div>
             <div class="column-3">
-              <div class="box">
+              <div class="div-8">
+                <div class="box">
                 <img
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/3e8fe18496a628cab9c6cf1d9cea8be55a79aee0693246a187a1d5b5f6b47aff?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -102,29 +131,43 @@ import { ref } from 'vue';
                 />
                 <div class="div-17">Christian Jade <br />Luy Plaza</div>
                 <div class="div-18">Documenter</div>
-                <div class="div-19">
+              </div>
+              <div class="div-11">
+                  <a href="https://github.com/chrstianjdplaza" target="_blank" type="button">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7fff1a7fffd7a16d0d55e9cc1ccfdc4d0ad6aeb37cf4da207ab97ad7840a925?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-13"
-                  /><img
+                    class="img-3"
+                  />
+                </a>
+                <a href="https://www.facebook.com/chrstianjdluyplaza" target="_blank" type="button">
+                <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8c74ef1cec84355717e0f36fb4c606376e9e30af18ea58d1c688fca8e5d719f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-14"
-                  /><img
+                    class="img-4"
+                  />
+                </a>
+               
+                <a href="https://www.linkedin.com/in/christian-jade-plaza-79652426b/" target="_blank" type="button">
+                  <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fb776c2e1d549f56ef24b23aff3de77cdf88fa0d27f469ce352baeaff615385?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-15"
-                  /><img
+                    class="img-5"
+                  />
+                </a>
+                <a href="https://chrstianjdplaza.github.io/" target="_blank" type="button">
+                <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/400808a63aeb3a06cdadd35eee38512fe7467d42b1dce7a14e2d6d14b4d19ac1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-16"
+                    class="img-6"
                   />
+                </a>
                 </div>
               </div>
             </div>
             <div class="column-4">
-              <div class="box">
+              <div class="div-8">
+                <div class="box">
                 <img
                   loading="lazy"
                   srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/6204bb0e4ecb3c380e277cb6d8137afb31aefc284b98600ef013a652bb618f72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -132,24 +175,37 @@ import { ref } from 'vue';
                 />
                 <div class="div-21">Yukihiro Galope Gamale</div>
                 <div class="div-22">UI / UX Designer</div>
-                <div class="div-23">
+              </div>
+              <div class="div-11">
+                  <a href="https://github.com/HiroG0" target="_blank" type="button">
                   <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7fff1a7fffd7a16d0d55e9cc1ccfdc4d0ad6aeb37cf4da207ab97ad7840a925?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-18"
-                  /><img
+                    class="img-3"
+                  />
+                </a>
+                <a href="https://www.facebook.com/y.gamale26/" target="_blank" type="button">
+                <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8c74ef1cec84355717e0f36fb4c606376e9e30af18ea58d1c688fca8e5d719f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-19"
-                  /><img
+                    class="img-4"
+                  />
+                </a>
+               
+                <a href="https://www.linkedin.com/in/christian-jade-plaza-79652426b/" target="_blank" type="button">
+                  <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fb776c2e1d549f56ef24b23aff3de77cdf88fa0d27f469ce352baeaff615385?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-20"
-                  /><img
+                    class="img-5"
+                  />
+                </a>
+                <a href="https://hirog0.github.io/Portfolio/" target="_blank" type="button">
+                <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/400808a63aeb3a06cdadd35eee38512fe7467d42b1dce7a14e2d6d14b4d19ac1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-21"
+                    class="img-6"
                   />
+                </a>
                 </div>
               </div>
             </div>
@@ -183,6 +239,7 @@ import { ref } from 'vue';
     }
   }
 .box {
+  
     padding: 9px 12px 18px;
 
   align-items: center;
@@ -203,10 +260,8 @@ import { ref } from 'vue';
   text-align: center;
  
   background: transparent;
-  text-transform: uppercase;
 
 
-  text-transform: uppercase;
   align-self: center;
   margin: 0 auto;
 
@@ -393,7 +448,7 @@ import { ref } from 'vue';
     }
   }
   .div-8 {
-    border: 1px solid #484848;
+    
     background-color: var(--, #fff);
     display: flex;
     width: 100%;
@@ -438,7 +493,7 @@ import { ref } from 'vue';
   }
   .div-11 {
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     align-self: center;
     display: flex;
     margin-top: 32px;

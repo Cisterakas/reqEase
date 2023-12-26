@@ -24,7 +24,7 @@ const decrement = (index) => {
   }
 };  
 </script>
-<template>~
+<template>
   <newNavbar/>
   <ApplicationNavigationBar/> 
     <div class="div">

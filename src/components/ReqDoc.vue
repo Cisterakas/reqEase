@@ -1379,9 +1379,10 @@ appropriate disposition.
     font: 400 12px Poppins, sans-serif;
   }
   .div-61 {
+    align-self: center;
     width: 100px;
     color: #000;
-    align-self: center;
+    
     margin: auto 0;
     font: 400 12px Poppins, sans-serif;
   }

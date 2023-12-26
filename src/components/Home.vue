@@ -326,7 +326,7 @@ import newNavbar from './newNavbar.vue';
                   provide real-time updates on the status and location of your
                   important records.
                 </div>
-                <router-link to="/login" type="button" class="div-47">TRACK MY DOCUMENT</router-link>
+                <router-link to="/track" type="button" class="div-47">TRACK MY DOCUMENT</router-link>
           
               </div>
             </div>

@@ -521,7 +521,7 @@ const decrement = (index) => {
 
                 
                 <div class="div-58">
-                  <div class="div-59">16.1</div>
+                  <div class="div-59">16</div>
                   <div class="div-60">
                     <span
                       style="
@@ -561,7 +561,7 @@ const decrement = (index) => {
 
 
                 <div class="div-58">
-                  <div class="div-59">16.2</div>
+                  <div class="div-59">17</div>
                   <div class="div-60">
                     Diploma (Second Copy) - In case the Diploma is lost or whatever reason, you
 are required to submit a notarized <b>Affidavit 
@@ -591,7 +591,7 @@ appropriate disposition.
 
 
                 <div class="div-58">
-                  <div class="div-59">17</div>
+                  <div class="div-59">18</div>
                   <div class="div-60">
                     Honorable Dismissal <b>(ISSUED ONLY ONCE AND SUBJECT TO VERIFICATION)</b>
                   </div>
@@ -616,7 +616,7 @@ appropriate disposition.
                 </div>
 
                 <div class="div-58">
-                  <div class="div-59">18</div>
+                  <div class="div-59">19</div>
                   <div class="div-60">
                     Letter of No Objection
                   </div>
@@ -641,9 +641,9 @@ appropriate disposition.
                 </div>
 
                 <div class="div-58">
-                  <div class="div-59">19</div>
+                  <div class="div-59">20</div>
                   <div class="div-60">
-                    Letter of No Objection
+                    Official Transcript of Records
                   </div>
                   <div class="div-61">250.00 / set</div>
                   <div class="div-62">
@@ -666,7 +666,7 @@ appropriate disposition.
                 </div>
            
                 <div class="div-58">
-                  <div class="div-59">20</div>
+                  <div class="div-59">21</div>
                   <div class="div-60">
                     Related Learning Experience (RLE)
                   </div>

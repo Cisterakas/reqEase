@@ -5,8 +5,8 @@ import ApplicationNavigationBar from "./ApplicationNavigationBar.vue";
 import Footer from "./Footer.vue";
 
 const categories = ref([
-    { id: 1, docType: "Authentication", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 31 / 23", status: "To be approve" },
-    { id: 8, docType: "Certificate of Grades for Written Comprehensive Examination", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To be approve" },
+    { id: 4, docType: "Certificate of Enrollment", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 31 / 23", status: "To be approve" },
+    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To be approve" },
 
 
 
@@ -64,9 +64,9 @@ const categories = ref([
      
       </div>
       <div class="div-23">
-        <div class="div-24">SORT DATE</div>
-        <div class="div-25">PREVIOUS</div>
-        <div class="div-26">NEXT</div>
+        <button type="button" class="btn btn-warning" data-mdb-ripple-init>Sort Date</button>
+                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Previous</button>
+                <button type="button" class="btn btn-dark" data-mdb-ripple-init>next</button>
       </div>
     </div>
   </div>

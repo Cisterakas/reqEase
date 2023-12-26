@@ -1,946 +1,410 @@
+<script setup>
+import { ref } from 'vue';
+import newNavbar from "./newNavbar.vue";
+import ApplicationNavigationBar from "./ApplicationNavigationBar.vue";
+import Footer from "./Footer.vue";
+
+const categories = ref([
+    { id: 1, docType: "Authentication", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 31 / 23", status: "To be approve" },
+    { id: 8, docType: "Certificate of Grades for Written Comprehensive Examination", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To be approve" },
+
+
+
+  ]);
+</script>
 <template>
-    <div class="div">
-      <div class="div-2">
-        <div class="div-3">PROCESSING OF DOCUMENTS</div>
-        <div class="div-4">
-          <div class="div-5">All Request</div>
-          <div class="div-6">
+  <newNavbar/>
+  <ApplicationNavigationBar/>
+  <div class="div">
+    <div class="div-2">
+      <div class="div-3">PROCESSING OF DOCUMENTS</div>
+      <div class="div-4">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/d14ce1bb24f1782c40fc6cf9e8b95e32ae7ed36f6d810a66a600b410d7827721?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+          class="img"
+        />
+        <div class="div-5">
+          <div class="div-6">TRACK DOCUMENTS</div>
+          <div class="div-7">
             You can ONLY view the status and schedule to release the document
             request.
           </div>
         </div>
-        <div class="div-7">
-          <div class="div-8">
-            <div class="div-9">Transaction No.</div>
-            <div class="div-10">Requested Document</div>
-          </div>
-          <div class="div-11">
-            <div class="div-12">Date Requested</div>
-            <div class="div-13">Claiming Method</div>
-            <div class="div-14">Schedule to Release</div>
-            <div class="div-15">Status</div>
-          </div>
-        </div>
-        <div class="div-16">
-          <div class="div-17">
-            <div class="div-18">
-              <div class="div-19">DBQ12345</div>
-              <div class="div-20">DBQ12346</div>
-              <div class="div-21">DBQ12347</div>
-              <div class="div-22">DBQ12348</div>
-              <div class="div-23">DBQ12349</div>
-              <div class="div-24">DBQ12348</div>
-              <div class="div-25">DBQ12349</div>
-              <div class="div-26">DBQ12349</div>
-              <div class="div-27">DBQ12348</div>
-              <div class="div-28">DBQ12349</div>
-            </div>
-            <div class="div-29">
-              <div class="div-30">
-                Certificate of Enrollment, Certificate of Latin honor
-              </div>
-              <div class="div-31">Certificate of Grading System</div>
-              <div class="div-32">Certificate of Grades, Course Description</div>
-              <div class="div-33">
-                CAV or Certificate, Authentication, Verification (Local / DFA)
-              </div>
-              <div class="div-34">
-                Certificate of English as Medium of Instruction
-              </div>
-              <div class="div-35">
-                Certificate of Enrollment, Certificate of Latin honor
-              </div>
-              <div class="div-36">Certificate of Grading System</div>
-              <div class="div-37">Certificate of Grades, Course Description</div>
-              <div class="div-38">
-                CAV or Certificate, Authentication, Verification (Local / DFA)
-              </div>
-              <div class="div-39">
-                Certificate of English as Medium of Instruction
-              </div>
-            </div>
-            <div class="div-40">
-              <div class="div-41">11 / 03 / 23</div>
-              <div class="div-42">11 / 23 / 23</div>
-              <div class="div-43">12 / 01 / 23</div>
-              <div class="div-44">12 / 05 / 23</div>
-              <div class="div-45">12 / 16 / 23</div>
-              <div class="div-46">12 / 16 / 23</div>
-              <div class="div-47">12 / 17 / 23</div>
-              <div class="div-48">12 / 16 / 23</div>
-              <div class="div-49">12 / 16 / 23</div>
-              <div class="div-50">12 / 17 / 23</div>
-            </div>
-            <div class="div-51">
-              <div class="div-52">Pick-Up</div>
-              <div class="div-53">Representative</div>
-              <div class="div-54">Email</div>
-              <div class="div-55">Courier</div>
-              <div class="div-56">Courier</div>
-              <div class="div-57">Courier</div>
-              <div class="div-58">Courier</div>
-              <div class="div-59">Courier</div>
-              <div class="div-60">Courier</div>
-              <div class="div-61">Courier</div>
-            </div>
-            <div class="div-62">
-              <div class="div-63">dd / mm / yy</div>
-              <div class="div-64">dd / mm / yy</div>
-              <div class="div-65">dd / mm / yy</div>
-              <div class="div-66">dd / mm / yy</div>
-              <div class="div-67">dd / mm / yy</div>
-              <div class="div-68">dd / mm / yy</div>
-              <div class="div-69">dd / mm / yy</div>
-              <div class="div-70">dd / mm / yy</div>
-              <div class="div-71">dd / mm / yy</div>
-              <div class="div-72">dd / mm / yy</div>
-            </div>
-            <div class="div-73">
-              <div class="div-74">To be approve</div>
-              <div class="div-75">Failed</div>
-              <div class="div-76">Canceled</div>
-              <div class="div-77">To receive</div>
-              <div class="div-78">To be approve</div>
-              <div class="div-79">To process</div>
-              <div class="div-80">To process</div>
-              <div class="div-81">To receive</div>
-              <div class="div-82">To process</div>
-              <div class="div-83">To be approve</div>
-            </div>
-          </div>
-          <div class="div-84">
-            <div class="div-85">viewing 10 out of 26 requests</div>
-            <div class="div-86">
-              <div class="div-87">sort date</div>
-              <div class="div-88">Previous</div>
-              <div class="div-89">next</div>
-            </div>
-          </div>
-        </div>
+      </div>
+      <div class="div-8">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/09b68c18159010e63a8dd21d94ef4a7e94af1e535da9ee68fb42a85a26989cf6?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+          class="img"
+        />
+        <table class="div-8">
+          <thead>
+            <tr class="div-9">
+              <th>Transaction No.</th>
+              <th>Requested Document</th>
+              <th>Date Requested</th>
+              <th>Claiming Method</th>
+              <th>Schedule to Release</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="div-16" v-for="category in categories" :key="category.id">
+              <td class="div-17">{{ category.id }}</td>
+              <td class="div-18">{{ category.docType }}</td>
+              <td class="div-19">{{ category.dateReq }}</td>
+              <td class="div-20">{{ category.claim }}</td>
+              <td class="div-21">{{ category.sched }}</td>
+              <td class="div-22">{{ category.status }}</td>
+         
+            </tr>
+          </tbody>
+        </table>
+     
+      </div>
+      <div class="div-23">
+        <div class="div-24">SORT DATE</div>
+        <div class="div-25">PREVIOUS</div>
+        <div class="div-26">NEXT</div>
       </div>
     </div>
-  </template>
-  
-  
-  
-  <style scoped>
+  </div>
+  <Footer/>
+</template>
+
+
+
+<style scoped>
+.div {
+  background-color: var(--, #fff);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 43px 60px;
+}
+@media (max-width: 991px) {
   .div {
-    background-color: var(--, #fff);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 45px 60px;
+    padding: 0 20px;
   }
-  @media (max-width: 991px) {
-    .div {
-      padding: 0 20px;
-    }
-  }
+}
+.div-2 {
+  display: flex;
+  margin-top: 12px;
+  width: 100%;
+  max-width: 1321px;
+  flex-direction: column;
+}
+@media (max-width: 991px) {
   .div-2 {
-    display: flex;
-    width: 100%;
-    max-width: 1474px;
-    flex-direction: column;
+    max-width: 100%;
   }
-  @media (max-width: 991px) {
-    .div-2 {
-      max-width: 100%;
-    }
-  }
+}
+.div-3 {
+  color: #eff3f3;
+  text-align: center;
+  letter-spacing: 8.58px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 8px 3px 9px 0px rgba(0, 0, 0, 0.25);
+  background-color: #e54f70;
+  align-self: stretch;
+  padding: 14px 60px;
+  font: 700 22px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
   .div-3 {
-    color: #eff3f3;
-    text-align: center;
-    letter-spacing: 8.58px;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 8px 3px 9px 0px rgba(0, 0, 0, 0.25);
-    background-color: #e54f70;
-    padding: 14px 60px;
-    font: 700 22px Poppins, sans-serif;
+    max-width: 100%;
+    padding: 0 20px;
   }
-  @media (max-width: 991px) {
-    .div-3 {
-      max-width: 100%;
-      padding: 0 20px;
-    }
-  }
+}
+.div-4 {
+  flex-direction: column;
+  fill: #464646;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  overflow: hidden;
+  align-self: center;
+  position: relative;
+  display: flex;
+  min-height: 66px;
+  margin-top: 21px;
+  width: 100%;
+  justify-content: center;
+  align-items: start;
+  padding: 11px 60px;
+}
+@media (max-width: 991px) {
   .div-4 {
-    box-shadow: 8px 18px 23.3px 0px rgba(0, 0, 0, 0.25);
-    background-color: #2f3030;
-    display: flex;
-    margin-top: 22px;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 18px 46px;
+    max-width: 100%;
+    padding: 0 20px;
   }
-  @media (max-width: 991px) {
-    .div-4 {
-      max-width: 100%;
-      flex-wrap: wrap;
-      padding: 0 20px;
-    }
-  }
+}
+.img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.div-5 {
+  position: relative;
+  display: flex;
+  margin-left: 19px;
+  gap: 14px;
+  align-items: center;
+}
+@media (max-width: 991px) {
   .div-5 {
-    justify-content: center;
-    color: var(--, #fff);
-    font-feature-settings: "clig" off, "liga" off;
-    letter-spacing: -0.15px;
-    font: 500 20px Poppins, sans-serif;
+    max-width: 100%;
+    flex-wrap: wrap;
   }
+}
+.div-6 {
+  justify-content: center;
+  color:  #fff;
+  white-space: nowrap;
+  font: 700 20px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
   .div-6 {
-    color: var(--, #fff);
-    align-self: start;
-    flex-grow: 1;
-    flex-basis: auto;
-    font: 300 15px/127% Montserrat, sans-serif;
+    white-space: initial;
   }
-  @media (max-width: 991px) {
-    .div-6 {
-      max-width: 100%;
-    }
-  }
+}
+.div-7 {
+  justify-content: center;
+  color: #fff;
+  flex-grow: 1;
+  font: 400 15px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
   .div-7 {
-    border-right: 1px solid #464646;
-    border-bottom: 1px solid #464646;
-    border-left: 1px solid #464646;
-    background-color: #616161;
-    display: flex;
-    width: 100%;
-    align-items: start;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 9px 80px 9px 46px;
+    max-width: 100%;
   }
-  @media (max-width: 991px) {
-    .div-7 {
-      max-width: 100%;
-      flex-wrap: wrap;
-      padding: 0 20px;
-    }
-  }
+}
+.div-8 {
+
+  flex-direction: column;
+  fill:  #fff;
+  stroke-width: 1px;
+  stroke: #bdbdbd;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  overflow: hidden;
+  align-self: stretch;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 156px;
+  width: 100%;
+  padding: 28px 16px;
+}
+@media (max-width: 991px) {
   .div-8 {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    gap: 20px;
+    max-width: 100%;
   }
+}
+.div-9 {
+  position: relative;
+  border: 1px solid #464646;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #616161;
+  color:  #fff;
+  font: 700 15px Poppins, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 40px;
+}
+@media (max-width: 991px) {
   .div-9 {
-    color: var(--, #fff);
-    font: 700 15px Poppins, sans-serif;
+    max-width: 100%;
+    flex-wrap: wrap;
+    padding-right: 20px;
   }
+}
+.div-10 {
+  color:  #fff;
+  text-align: center;
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 700 15px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
   .div-10 {
-    color: var(--, #fff);
-    font: 700 15px Poppins, sans-serif;
+    white-space: initial;
   }
-  .div-11 {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  @media (max-width: 991px) {
-    .div-11 {
-      max-width: 100%;
-      flex-wrap: wrap;
-    }
-  }
-  .div-12 {
-    color: var(--, #fff);
-    flex-grow: 1;
-    white-space: nowrap;
-    font: 700 15px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-12 {
-      white-space: initial;
-    }
-  }
-  .div-13 {
-    color: var(--, #fff);
-    font: 700 15px Poppins, sans-serif;
-  }
-  .div-14 {
-    color: var(--, #fff);
-    font: 700 15px Poppins, sans-serif;
-  }
+}
+.div-11 {
+  color: var(--, #fff);
+  font: 700 15px Poppins, sans-serif;
+}
+.div-12 {
+  color: var(--, #fff);
+  text-align: center;
+  font: 700 15px Poppins, sans-serif;
+}
+.div-13 {
+  color: var(--, #fff);
+  text-align: center;
+  font: 700 15px Poppins, sans-serif;
+}
+.div-14 {
+  color: var(--, #fff);
+  text-align: center;
+  font: 700 15px Poppins, sans-serif;
+}
+.div-15 {
+  color: var(--, #fff);
+  text-align: center;
+  white-space: nowrap;
+  font: 700 15px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
   .div-15 {
-    color: var(--, #fff);
-    white-space: nowrap;
-    font: 700 15px Poppins, sans-serif;
+    white-space: initial;
   }
-  @media (max-width: 991px) {
-    .div-15 {
-      white-space: initial;
-    }
-  }
+}
+.div-16 {
+  align-items: flex-start;
+  align-self: stretch;
+  position: relative;
+  justify-content: space-between;
+  border: 1px solid #464646;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: var(--, #fff);
+  display: flex;
+  margin-top: 14px;
+  gap: 32px;
+  padding: 11px 10px;
+  font: 400 12px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
   .div-16 {
-    display: flex;
-    margin-top: 11px;
-    flex-direction: column;
-    padding: 0 26px;
+    max-width: 100%;
+    flex-wrap: wrap;
   }
-  @media (max-width: 991px) {
-    .div-16 {
-      max-width: 100%;
-      padding: 0 20px;
-    }
-  }
+}
+.div-17 {
+  color: #000;
+  text-align: center;
+
+  width: 180px;
+  white-space: nowrap;
+  font: 400 12px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
   .div-17 {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 20px;
+    white-space: initial;
   }
-  @media (max-width: 991px) {
-    .div-17 {
-      max-width: 100%;
-      flex-wrap: wrap;
-    }
-  }
-  .div-18 {
-    align-self: stretch;
-    display: flex;
-    flex-basis: 0%;
-    flex-direction: column;
-  }
-  .div-19 {
-    color: #000;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-20 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-21 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
-  }
+}
+.div-18 {
+  align-self: center;
+    width: 240px;
+  color: #000;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-19 {
+  align-self: center;
+    width: 150px;
+  color: #000;
+  text-align: center;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-20 {
+  align-self: center;
+    width: 222px;
+  color: #000;
+  text-align: center;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-21 {
+  align-self: center;
+    width: 200px;
+  color: #000;
+  text-align: center;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-22 {
+  align-self: center;
+    width: 100px;
+  color: #ffa842;
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 600 12px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
   .div-22 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
+    white-space: initial;
   }
+}
+.div-23 {
+  align-self: end;
+  display: flex;
+  margin-top: 110px;
+  gap: 17px;
+}
+@media (max-width: 991px) {
   .div-23 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
+    margin-top: 40px;
   }
+}
+.div-24 {
+  justify-content: center;
+  color: #2f3030;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 2px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #fecb00;
+  flex-grow: 1;
+  padding: 6px 28px;
+  font: 500 12px Poppins, sans-serif;
+  align-self: center;
+}
+@media (max-width: 991px) {
   .div-24 {
-    color: #000;
-    margin-top: 24px;
-    font: 400 12px Poppins, sans-serif;
+    white-space: initial;
+    padding: 0 20px;
   }
+}
+.div-25 {
+  align-self: center;
+  justify-content: center;
+  color:  #fff;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 2px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #2f3030;
+  flex-grow: 1;
+  padding: 6px 28px;
+  font: 500 12px Poppins, sans-serif;
+  align-self: center;
+}
+@media (max-width: 991px) {
   .div-25 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
+    white-space: initial;
+    padding: 0 20px;
   }
+}
+.div-26 {
+  justify-content: center;
+  color:  #fff;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 2px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: #2f3030;
+  flex-grow: 1;
+  padding: 6px 28px;
+  font: 500 12px Poppins, sans-serif;
+  align-self: center;
+}
+@media (max-width: 991px) {
   .div-26 {
-    color: #000;
-    margin-top: 24px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-27 {
-    color: #000;
-    margin-top: 24px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-28 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-29 {
-    align-self: start;
-    display: flex;
-    flex-grow: 1;
-    flex-basis: 0%;
-    flex-direction: column;
-  }
-  .div-30 {
-    color: #000;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-31 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-32 {
-    color: #000;
-    margin-top: 22px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-33 {
-    color: #000;
-    margin-top: 20px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-34 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-35 {
-    color: #000;
-    margin-top: 22px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-36 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-37 {
-    color: #000;
-    margin-top: 22px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-38 {
-    color: #000;
-    margin-top: 20px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-39 {
-    color: #000;
-    margin-top: 23px;
-    font: 400 12px Poppins, sans-serif;
-  }
-  .div-40 {
-    align-self: stretch;
-    display: flex;
-    flex-basis: 0%;
-    flex-direction: column;
-  }
-  .div-41 {
-    color: #000;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-41 {
-      white-space: initial;
-    }
-  }
-  .div-42 {
-    color: #000;
-    margin-top: 21px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-42 {
-      white-space: initial;
-    }
-  }
-  .div-43 {
-    color: #000;
-    margin-top: 21px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-43 {
-      white-space: initial;
-    }
-  }
-  .div-44 {
-    color: #000;
-    margin-top: 21px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-44 {
-      white-space: initial;
-    }
-  }
-  .div-45 {
-    color: #000;
-    margin-top: 21px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-45 {
-      white-space: initial;
-    }
-  }
-  .div-46 {
-    color: #000;
-    margin-top: 22px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-46 {
-      white-space: initial;
-    }
-  }
-  .div-47 {
-    color: #000;
-    margin-top: 21px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-47 {
-      white-space: initial;
-    }
-  }
-  .div-48 {
-    color: #000;
-    margin-top: 22px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-48 {
-      white-space: initial;
-    }
-  }
-  .div-49 {
-    color: #000;
-    margin-top: 22px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-49 {
-      white-space: initial;
-    }
-  }
-  .div-50 {
-    color: #000;
-    margin-top: 21px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-50 {
-      white-space: initial;
-    }
-  }
-  .div-51 {
-    justify-content: center;
-    align-self: stretch;
-    display: flex;
-    flex-basis: 0%;
-    flex-direction: column;
-  }
-  .div-52 {
-    color: #000;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-52 {
-      white-space: initial;
-    }
-  }
-  .div-53 {
-    color: #000;
-    margin-top: 16px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-53 {
-      white-space: initial;
-    }
-  }
-  .div-54 {
-    color: #000;
-    margin-top: 16px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-54 {
-      white-space: initial;
-    }
-  }
-  .div-55 {
-    color: #000;
-    margin-top: 16px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-55 {
-      white-space: initial;
-    }
-  }
-  .div-56 {
-    color: #000;
-    margin-top: 16px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-56 {
-      white-space: initial;
-    }
-  }
-  .div-57 {
-    color: #000;
-    margin-top: 16px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-57 {
-      white-space: initial;
-    }
-  }
-  .div-58 {
-    color: #000;
-    margin-top: 16px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-58 {
-      white-space: initial;
-    }
-  }
-  .div-59 {
-    color: #000;
-    margin-top: 16px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-59 {
-      white-space: initial;
-    }
-  }
-  .div-60 {
-    color: #000;
-    margin-top: 16px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-60 {
-      white-space: initial;
-    }
-  }
-  .div-61 {
-    color: #000;
-    margin-top: 16px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-61 {
-      white-space: initial;
-    }
-  }
-  .div-62 {
-    align-self: stretch;
-    display: flex;
-    flex-basis: 0%;
-    flex-direction: column;
-  }
-  .div-63 {
-    color: #000;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-63 {
-      white-space: initial;
-    }
-  }
-  .div-64 {
-    color: #000;
-    margin-top: 20px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-64 {
-      white-space: initial;
-    }
-  }
-  .div-65 {
-    color: #000;
-    margin-top: 20px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-65 {
-      white-space: initial;
-    }
-  }
-  .div-66 {
-    color: #000;
-    margin-top: 20px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-66 {
-      white-space: initial;
-    }
-  }
-  .div-67 {
-    color: #000;
-    margin-top: 20px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-67 {
-      white-space: initial;
-    }
-  }
-  .div-68 {
-    color: #000;
-    margin-top: 21px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-68 {
-      white-space: initial;
-    }
-  }
-  .div-69 {
-    color: #000;
-    margin-top: 20px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-69 {
-      white-space: initial;
-    }
-  }
-  .div-70 {
-    color: #000;
-    margin-top: 21px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-70 {
-      white-space: initial;
-    }
-  }
-  .div-71 {
-    color: #000;
-    margin-top: 21px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-71 {
-      white-space: initial;
-    }
-  }
-  .div-72 {
-    color: #000;
-    margin-top: 20px;
-    white-space: nowrap;
-    font: 400 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-72 {
-      white-space: initial;
-    }
-  }
-  .div-73 {
-    align-self: stretch;
-    display: flex;
-    flex-basis: 0%;
-    flex-direction: column;
-  }
-  .div-74 {
-    color: #ffa842;
-    white-space: nowrap;
-    font: 600 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-74 {
-      white-space: initial;
-    }
-  }
-  .div-75 {
-    color: #d73333;
-    margin-top: 22px;
-    font: 600 12px Poppins, sans-serif;
-  }
-  .div-76 {
-    color: #3339d7;
-    margin-top: 26px;
-    font: 600 12px Poppins, sans-serif;
-  }
-  .div-77 {
-    color: #ffa842;
-    margin-top: 24px;
-    white-space: nowrap;
-    font: 600 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-77 {
-      white-space: initial;
-    }
-  }
-  .div-78 {
-    color: #ffa842;
-    margin-top: 25px;
-    white-space: nowrap;
-    font: 600 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-78 {
-      white-space: initial;
-    }
-  }
-  .div-79 {
-    color: #ffa842;
-    margin-top: 24px;
-    white-space: nowrap;
-    font: 600 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-79 {
-      white-space: initial;
-    }
-  }
-  .div-80 {
-    color: #ffa842;
-    margin-top: 24px;
-    white-space: nowrap;
-    font: 600 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-80 {
-      white-space: initial;
-    }
-  }
-  .div-81 {
-    color: #ffa842;
-    margin-top: 22px;
-    white-space: nowrap;
-    font: 600 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-81 {
-      white-space: initial;
-    }
-  }
-  .div-82 {
-    color: #ffa842;
-    margin-top: 27px;
-    white-space: nowrap;
-    font: 600 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-82 {
-      white-space: initial;
-    }
-  }
-  .div-83 {
-    color: #ffa842;
-    margin-top: 23px;
-    white-space: nowrap;
-    font: 600 12px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-83 {
-      white-space: initial;
-    }
-  }
-  .div-84 {
-    display: flex;
-    margin-top: 42px;
-    width: 100%;
-    padding-right: 6px;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  @media (max-width: 991px) {
-    .div-84 {
-      max-width: 100%;
-      flex-wrap: wrap;
-      margin-top: 40px;
-    }
-  }
-  .div-85 {
-    color: #6c6c6c;
-    margin: auto 0;
-    font: italic 300 13px/146% Poppins, -apple-system, Roboto, Helvetica,
-      sans-serif;
-  }
-  .div-86 {
-    align-self: stretch;
-    display: flex;
-    justify-content: space-between;
-    gap: 17px;
-  }
-  .div-87 {
-    justify-content: center;
-    color: #2f3030;
-    text-align: center;
-    white-space: nowrap;
-    border-radius: 2px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    background-color: #fecb00;
-    flex-grow: 1;
-    padding: 6px 28px;
-    font: all-small-caps 500 12px/300% Montserrat, -apple-system, Roboto,
-      Helvetica, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-87 {
-      white-space: initial;
-      padding: 0 20px;
-    }
-  }
-  .div-88 {
-    justify-content: center;
-    color: var(--, #fff);
-    text-align: center;
-    white-space: nowrap;
-    border-radius: 2px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    background-color: #2f3030;
-    flex-grow: 1;
-    padding: 6px 28px;
-    font: all-small-caps 500 12px/300% Montserrat, -apple-system, Roboto,
-      Helvetica, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-88 {
-      white-space: initial;
-      padding: 0 20px;
-    }
-  }
-  .div-89 {
-    justify-content: center;
-    color: var(--, #fff);
-    text-align: center;
-    white-space: nowrap;
-    border-radius: 2px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    background-color: #2f3030;
-    flex-grow: 1;
-    padding: 6px 28px;
-    font: all-small-caps 500 12px/300% Montserrat, -apple-system, Roboto,
-      Helvetica, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-89 {
-      white-space: initial;
-      padding: 0 20px;
-    }
-  }
-  </style>
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+</style>

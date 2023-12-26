@@ -86,6 +86,10 @@ const toggleVisibility = () => {
                   </div>
                   <div class="material-textfield1">
       <input placeholder=" " type="text">
+      <label>School ID</label>
+    </div>
+                  <div class="material-textfield">
+      <input placeholder=" " type="text">
       <label>First Name</label>
     </div>
     <div class="material-textfield">

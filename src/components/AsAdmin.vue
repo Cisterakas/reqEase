@@ -85,6 +85,7 @@ const toggleVisibility = () => {
                       </ul>
                     </div>
                   </div>
+                 
                   <div class="material-textfield1">
       <input placeholder=" " type="text">
       <label>First Name</label>
@@ -115,6 +116,10 @@ const toggleVisibility = () => {
     <div class="div-16-">
       <input @click="toggleVisibility" type="checkbox" class="div-17-" >{{ showPassword ? 'Hide' : 'Show' }} Password 
     </div>  
+    <div class="material-textfield">
+      <input placeholder=" " type="text">
+      <label>Role</label>
+    </div>
 
                   <div class="div-33">
                     <router-link to="/login" type="button" class="div-34">Back</router-link>

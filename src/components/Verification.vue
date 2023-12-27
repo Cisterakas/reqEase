@@ -189,9 +189,6 @@ const decrement = (index) => {
    
     </div>
     </div>
-
-    
-  
 </div>
 
 

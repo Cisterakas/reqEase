@@ -691,8 +691,9 @@ appropriate disposition.
                 </div>
 
      
+             
                 <div class="div-196">Purposes</div>
-              
+                
                 <textarea class="div-197">
 
 </textarea>
@@ -749,6 +750,86 @@ appropriate disposition.
   
   
   <style scoped>
+    .div-197 {
+    
+    font: 275 15px Poppins, sans-serif;
+    border-radius: 10px;
+    border: 1px solid #464646;
+    background-color: var(--, #fff);
+    align-self: stretch;
+    display: flex;
+    height: 106px;
+    flex-direction: column;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.25);
+  }
+  @media (max-width: 991px) {
+    .div-197 {
+      max-width: 100%;
+    }
+  }
+
+
+.material-textfield1 {
+  position: relative;  
+  margin-top: 50px;
+}
+
+.material-textfield {
+  position: relative;  
+  margin-top: 18px;
+}
+
+label {
+  position: absolute;
+  font-size: 1rem;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+
+
+  transition: .1s ease-out;
+  transform-origin: left top;
+  pointer-events: none;
+
+  color: #000;
+  white-space: nowrap;
+  justify-content: center;
+  align-self: start;
+  z-index: 1;
+  margin: 0 27px  0 25px;
+  padding: 0 10px;
+  font: 275 15px Poppins, sans-serif;
+}
+input {
+  font: 275 22px Poppins, sans-serif;
+  outline: none;
+  
+
+  color: #000;
+  transition: 0.1s ease-out;
+
+  border-radius: 10px;
+  border: 2px solid #2f3030;
+  align-self: stretch;
+  display: flex;
+  height: 68px;
+  flex-direction: column;
+  width: 671px;
+}
+input:focus {
+  border-color: #e54f70;  
+}
+input:focus + label {
+  color: #e54f70;
+  top: 0;
+  transform: translateY(-50%) scale(.9);
+}
+input:not(:placeholder-shown) + label {
+  top: 0;
+  transform: translateY(-50%) scale(.9);
+}
+
   .div-391:hover{
   background-color: #084f06;
 }
@@ -3044,22 +3125,7 @@ appropriate disposition.
       margin-left: 10px;
     }
   }
-  .div-197 {
-    font: 275 15px Poppins, sans-serif;
-    border-radius: 10px;
-    border: 1px solid #464646;
-    background-color: var(--, #fff);
-    align-self: stretch;
-    display: flex;
-    height: 106px;
-    flex-direction: column;
-    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.25);
-  }
-  @media (max-width: 991px) {
-    .div-197 {
-      max-width: 100%;
-    }
-  }
+
   .div-198 {
     border-left: 1px solid #000;
     align-self: stretch;

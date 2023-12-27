@@ -6,9 +6,10 @@ import Footer from "./Footer.vue";
 
 const categories = ref([
     { id: 4, docType: "Certificate of Enrollment", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 31 / 23", status: "To be approve" },
-    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To be approve" },
-
-
+    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To pay" },
+    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To process" },
+    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To receive" },
+    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "Received" },
 
   ]);
 </script>
@@ -33,40 +34,54 @@ const categories = ref([
         </div>
       </div>
       <div class="div-8">
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/09b68c18159010e63a8dd21d94ef4a7e94af1e535da9ee68fb42a85a26989cf6?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-          class="img"
-        />
-        <table class="div-8">
+        
+        <table class="table table-striped"  >
           <thead>
-            <tr class="div-9">
+            <tr>
               <th>Transaction No.</th>
               <th>Requested Document</th>
               <th>Date Requested</th>
               <th>Claiming Method</th>
               <th>Schedule to Release</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="div-16" v-for="category in categories" :key="category.id">
-              <td class="div-17">{{ category.id }}</td>
-              <td class="div-18">{{ category.docType }}</td>
-              <td class="div-19">{{ category.dateReq }}</td>
-              <td class="div-20">{{ category.claim }}</td>
-              <td class="div-21">{{ category.sched }}</td>
-              <td class="div-22">{{ category.status }}</td>
+            <tr v-for="category in categories" :key="category.id">
+              <td >{{ category.id }}</td>
+              <td >{{ category.docType }}</td>
+              <td >{{ category.dateReq }}</td>
+              <td >{{ category.claim }}</td>
+              <td >{{ category.sched }}</td>
+              <td ><span v-if="category.status === 'To be approve'" class="badge rounded-pill badge-primary">{{ category.status }}</span>
+                <span v-else-if="category.status === 'To pay'" class="badge rounded-pill badge-danger">{{ category.status }}</span>
+                <span v-else-if="category.status === 'To process'" class="badge rounded-pill badge-warning">{{ category.status }}</span>
+                <span v-else-if="category.status === 'To receive'" class="badge rounded-pill badge-dark">{{ category.status }}</span>
+                <span v-else-if="category.status === 'Received'" class="badge rounded-pill badge-success">{{ category.status }}</span>
+                </td>
+              <td >
+                
+                <button v-if="category.status === 'To be approve'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <button v-else-if="category.status === 'To pay'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <button v-else-if="category.status === 'To process'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <button v-else-if="category.status === 'To receive'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <button v-else-if="category.status === 'Received'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <button v-else type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+              
+              
+              </td>
          
             </tr>
           </tbody>
         </table>
+        
      
       </div>
+     
       <div class="div-23">
         <button type="button" class="btn btn-warning" data-mdb-ripple-init>Sort Date</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Previous</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>next</button>
+               
       </div>
     </div>
   </div>
@@ -76,8 +91,38 @@ const categories = ref([
 
 
 <style scoped>
+table{
+  margin-top: 0px;
+ 
+}
+ tbody{
+    background-color: #fff;
+    font: 400 12px Poppins, sans-serif;
+    border: 1px solid #2f3030;
+  }
+  thead{
+   
+    border-right: 1px solid #464646;
+    border-bottom: 1px solid #464646;
+    border-left: 1px solid #464646;
+    
+   
+
+    background-color: #616161;
+   color:  #fff;
+
+    font: 400 14px Poppins, sans-serif;
+  }
+
+
+
+
+
+
+
+
 .div {
-  background-color: var(--, #fff);
+  background-color:  #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -186,21 +231,22 @@ const categories = ref([
 .div-8 {
 
   flex-direction: column;
-  fill:  #fff;
+
   stroke-width: 1px;
   stroke: #bdbdbd;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  overflow: hidden;
+  
   align-self: stretch;
   position: relative;
   z-index: 1;
   display: flex;
-  min-height: 156px;
+  min-height: auto;
   width: 100%;
-  padding: 28px 16px;
 }
 @media (max-width: 991px) {
   .div-8 {
+    overflow: scroll;
+  overflow-y: hidden;
     max-width: 100%;
   }
 }
@@ -326,11 +372,11 @@ const categories = ref([
   font: 400 12px Poppins, sans-serif;
 }
 .div-22 {
-  align-self: center;
-    width: 100px;
+  
+    
   color: #ffa842;
-  flex-grow: 1;
-  white-space: nowrap;
+  
+  
   font: 600 12px Poppins, sans-serif;
 }
 @media (max-width: 991px) {

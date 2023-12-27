@@ -7,6 +7,7 @@ import Footer from "./Footer.vue";
 const categories = ref([
     { id: 4, studentNum: "22000000123", studentName: "Kim Namjoon", degree: "BSIT", contactNum: "09123456789", email: "reqease_22000000123@u..." , dateReq: "11 / 03 / 23", claim: "Pick-Up", release: "11 / 06 / 23", status: "To be approve" },
     { id: 4, studentNum: "22000000123", studentName: "Kim Namjoon", degree: "BSIT", contactNum: "09123456789", email: "reqease_22000000123@u..." , dateReq: "11 / 03 / 23", claim: "Pick-Up", release: "11 / 06 / 23", status: "To be approve" },
+    { id: 4, studentNum: "22000000123", studentName: "Kim Namjoon", degree: "BSIT", contactNum: "09123456789", email: "reqease_22000000123@u..." , dateReq: "11 / 03 / 23", claim: "Pick-Up", release: "11 / 06 / 23", status: "To be approve" },
 
 
 
@@ -266,7 +267,7 @@ const categories = ref([
               <div class="div-73">To be approve</div>
             </div> -->
 
-
+<div class="arrangement">
             <table class="table table-striped">
           <thead>
             <tr>
@@ -303,6 +304,8 @@ const categories = ref([
             </tr>
           </tbody>
         </table>
+      </div>
+        
          
         
             <div class="div-98">
@@ -321,9 +324,26 @@ const categories = ref([
   
   
   <style scoped>
-   
+  .arrangement{
+    flex-direction: column;
+
+  stroke-width: 1px;
+  stroke: #bdbdbd;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  overflow: scroll;
+  overflow-y: hidden;
+  align-self: stretch;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: auto;
+  width: 100%;
+  }
+ 
+  
 
   tbody{
+    width: auto;
     background-color: #fff;
     font: 400 12px Poppins, sans-serif;
     border: 1px solid #2f3030;

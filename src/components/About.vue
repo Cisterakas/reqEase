@@ -43,36 +43,22 @@ import { ref } from 'vue';
 
 
                 <div class="div-11">
+                  <a class="btn text-white" data-mdb-ripple-init style="background-color: #333333;" href="https://github.com/Cisterakas" target="_blank">
+  <i class="fab fa-github"></i>
+</a>
+                  <a class="btn text-white" data-mdb-ripple-init style="background-color: #3b5998;" href="https://www.facebook.com/joshua.cister.7" target="_blank" role="button">
+  <i class="fab fa-facebook-f"></i>
+</a>
+
+<a class="btn text-white" data-mdb-ripple-init style="background-color: #0082ca;" href="https://www.linkedin.com/in/joshuacister/" target="_blank" role="button">
+  <i class="fab fa-linkedin-in"></i>
+</a>
+
+<a class="btn text-white" data-mdb-ripple-init style="background-color: #ffac44;" href="https://cisterakas.github.io/" target="_blank" role="button">
+  <i class="fab fa-stack-overflow"></i>
+</a>
               
-                    <a href="https://github.com/Cisterakas" target="_blank" type="button">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7fff1a7fffd7a16d0d55e9cc1ccfdc4d0ad6aeb37cf4da207ab97ad7840a925?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-3"
-                  />
-                </a>
-                <a href="https://www.facebook.com/joshua.cister.7" target="_blank" type="button">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8c74ef1cec84355717e0f36fb4c606376e9e30af18ea58d1c688fca8e5d719f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-4"
-                  />
-                </a>
-               
-                <a href="https://www.linkedin.com/in/joshuacister/" target="_blank" type="button">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fb776c2e1d549f56ef24b23aff3de77cdf88fa0d27f469ce352baeaff615385?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-5"
-                  />
-                </a>
-                <a href="https://cisterakas.github.io/" target="_blank" type="button">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/400808a63aeb3a06cdadd35eee38512fe7467d42b1dce7a14e2d6d14b4d19ac1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-6"
-                  />
-                </a>
+                    
                 </div>
               </div>
             </div>
@@ -89,35 +75,25 @@ import { ref } from 'vue';
 
               </div>
                 <div class="div-11">
-                  <a href="https://github.com/Christevuj" target="_blank" type="button">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7fff1a7fffd7a16d0d55e9cc1ccfdc4d0ad6aeb37cf4da207ab97ad7840a925?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-3"
-                  />
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=100082034745799" target="_blank" type="button">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8c74ef1cec84355717e0f36fb4c606376e9e30af18ea58d1c688fca8e5d719f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-4"
-                  />
-                </a>
+
+                  <a class="btn text-white" data-mdb-ripple-init style="background-color: #333333;" href="https://github.com/Christevuj" target="_blank">
+  <i class="fab fa-github"></i>
+</a>
+                  <a class="btn text-white" data-mdb-ripple-init style="background-color: #3b5998;" href="https://www.facebook.com/profile.php?id=100082034745799" target="_blank" role="button">
+  <i class="fab fa-facebook-f"></i>
+</a>
+
+<a class="btn text-white" data-mdb-ripple-init style="background-color: #0082ca;" href="https://www.linkedin.com/in/christevuj/" target="_blank" role="button">
+  <i class="fab fa-linkedin-in"></i>
+</a>
+
+<a class="btn text-white" data-mdb-ripple-init style="background-color: #ffac44;" href="https://christevuj.github.io/" target="_blank" role="button">
+  <i class="fab fa-stack-overflow"></i>
+</a>
+                  
+           
                
-                <a href="https://www.linkedin.com/in/christevuj/" target="_blank" type="button">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fb776c2e1d549f56ef24b23aff3de77cdf88fa0d27f469ce352baeaff615385?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-5"
-                  />
-                </a>
-                <a href="https://christevuj.github.io/" target="_blank" type="button">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/400808a63aeb3a06cdadd35eee38512fe7467d42b1dce7a14e2d6d14b4d19ac1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-6"
-                  />
-                </a>
+                
                 </div>
               </div>
             </div>
@@ -133,35 +109,22 @@ import { ref } from 'vue';
                 <div class="div-18">Documenter</div>
               </div>
               <div class="div-11">
-                  <a href="https://github.com/chrstianjdplaza" target="_blank" type="button">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7fff1a7fffd7a16d0d55e9cc1ccfdc4d0ad6aeb37cf4da207ab97ad7840a925?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-3"
-                  />
-                </a>
-                <a href="https://www.facebook.com/chrstianjdluyplaza" target="_blank" type="button">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8c74ef1cec84355717e0f36fb4c606376e9e30af18ea58d1c688fca8e5d719f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-4"
-                  />
-                </a>
-               
-                <a href="https://www.linkedin.com/in/christian-jade-plaza-79652426b/" target="_blank" type="button">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fb776c2e1d549f56ef24b23aff3de77cdf88fa0d27f469ce352baeaff615385?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-5"
-                  />
-                </a>
-                <a href="https://chrstianjdplaza.github.io/" target="_blank" type="button">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/400808a63aeb3a06cdadd35eee38512fe7467d42b1dce7a14e2d6d14b4d19ac1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-6"
-                  />
-                </a>
+                <a class="btn text-white" data-mdb-ripple-init style="background-color: #333333;" href="https://github.com/chrstianjdplaza" target="_blank">
+  <i class="fab fa-github"></i>
+</a>
+                  <a class="btn text-white" data-mdb-ripple-init style="background-color: #3b5998;" href="https://www.facebook.com/chrstianjdluyplaza" target="_blank" role="button">
+  <i class="fab fa-facebook-f"></i>
+</a>
+
+<a class="btn text-white" data-mdb-ripple-init style="background-color: #0082ca;" href="https://www.linkedin.com/in/christian-jade-plaza-79652426b/" target="_blank" role="button">
+  <i class="fab fa-linkedin-in"></i>
+</a>
+
+<a class="btn text-white" data-mdb-ripple-init style="background-color: #ffac44;" href="https://chrstianjdplaza.github.io/" target="_blank" role="button">
+  <i class="fab fa-stack-overflow"></i>
+</a>
+                 
+                
                 </div>
               </div>
             </div>
@@ -177,35 +140,24 @@ import { ref } from 'vue';
                 <div class="div-22">UI / UX Designer</div>
               </div>
               <div class="div-11">
-                  <a href="https://github.com/HiroG0" target="_blank" type="button">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7fff1a7fffd7a16d0d55e9cc1ccfdc4d0ad6aeb37cf4da207ab97ad7840a925?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-3"
-                  />
-                </a>
-                <a href="https://www.facebook.com/y.gamale26/" target="_blank" type="button">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8c74ef1cec84355717e0f36fb4c606376e9e30af18ea58d1c688fca8e5d719f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-4"
-                  />
-                </a>
+                <a class="btn text-white" data-mdb-ripple-init style="background-color: #333333;" href="https://github.com/HiroG0" target="_blank">
+  <i class="fab fa-github"></i>
+</a>
+                  <a class="btn text-white" data-mdb-ripple-init style="background-color: #3b5998;" href="https://www.facebook.com/y.gamale26/" target="_blank" role="button">
+  <i class="fab fa-facebook-f"></i>
+</a>
+
+<a class="btn text-white" data-mdb-ripple-init style="background-color: #0082ca;" href="https://www.linkedin.com/in/christian-jade-plaza-79652426b/" target="_blank" role="button">
+  <i class="fab fa-linkedin-in"></i>
+</a>
+
+<a class="btn text-white" data-mdb-ripple-init style="background-color: #ffac44;" href="https://hirog0.github.io/Portfolio/" target="_blank" role="button">
+  <i class="fab fa-stack-overflow"></i>
+</a>
                
-                <a href="https://www.linkedin.com/in/christian-jade-plaza-79652426b/" target="_blank" type="button">
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/6fb776c2e1d549f56ef24b23aff3de77cdf88fa0d27f469ce352baeaff615385?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-5"
-                  />
-                </a>
-                <a href="https://hirog0.github.io/Portfolio/" target="_blank" type="button">
-                <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/400808a63aeb3a06cdadd35eee38512fe7467d42b1dce7a14e2d6d14b4d19ac1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-6"
-                  />
-                </a>
+               
+               
+             
                 </div>
               </div>
             </div>

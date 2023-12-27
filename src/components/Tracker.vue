@@ -4,14 +4,30 @@ import newNavbar from "./newNavbar.vue";
 import ApplicationNavigationBar from "./ApplicationNavigationBar.vue";
 import Footer from "./Footer.vue";
 
+
+const selectedCategories = ref([]);
+
+const handleButtonClick = (category) => {
+  // Add the selected category to the second table
+  selectedCategories.value.push(category);
+ 
+
+  
+};
+
 const categories = ref([
-    { id: 4, docType: "Certificate of Enrollment", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 31 / 23", status: "To be approve" },
-    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To pay" },
-    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To process" },
-    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To receive" },
-    { id: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "Received" },
+    { id: 1, docNum: 4, docType: "Certificate of Enrollment", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 31 / 23", status: "To be approve", qty: 1, fee: 60.00, unit: "/ copy" },
+    { id: 2, docNum: 11, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To pay", qty: 2, fee: 60.00, unit: "/ copy" },
+    { id: 3, docNum: 4, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To process", qty: 3, fee: 60.00, unit: "/ copy" },
+    { id: 4, docNum: 4, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To receive", qty: 4, fee: 60.00, unit: "/ copy" },
+    { id: 5, docNum: 4, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "Received", qty: 5, fee: 60.00, unit: "/ copy" },
+    { id: 6, docNum: 4, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To rate", qty: 1, fee: 60.00, unit: "/ copy" },
 
   ]);
+
+
+
+
 </script>
 <template>
   <newNavbar/>
@@ -59,15 +75,17 @@ const categories = ref([
                 <span v-else-if="category.status === 'To process'" class="badge rounded-pill badge-warning">{{ category.status }}</span>
                 <span v-else-if="category.status === 'To receive'" class="badge rounded-pill badge-dark">{{ category.status }}</span>
                 <span v-else-if="category.status === 'Received'" class="badge rounded-pill badge-success">{{ category.status }}</span>
+                <span v-else-if="category.status === 'To rate'" class="badge rounded-pill badge-secondary">{{ category.status }}</span>
                 </td>
               <td >
                 
-                <button v-if="category.status === 'To be approve'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-        <button v-else-if="category.status === 'To pay'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-        <button v-else-if="category.status === 'To process'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-        <button v-else-if="category.status === 'To receive'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-        <button v-else-if="category.status === 'Received'" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-        <button v-else type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+                <a v-if="category.status === 'To be approve'"  @click="handleButtonClick(category)" href="#open-modal" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</a>
+        <a v-else-if="category.status === 'To pay'" @click="handleButtonClick(category)" type="button" href="#open-modal" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</a>
+        <button v-else-if="category.status === 'To process'" @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <button v-else-if="category.status === 'To receive'"  @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <button v-else-if="category.status === 'Received'" @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <button v-else-if="category.status === 'To rate'" @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <button v-else @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
               
               
               </td>
@@ -81,16 +99,511 @@ const categories = ref([
      
       <div class="div-23">
         <button type="button" class="btn btn-warning" data-mdb-ripple-init>Sort Date</button>
+        <button type="button" class="btn btn-dark" data-mdb-ripple-init>Previous</button>
+                <button type="button" class="btn btn-dark" data-mdb-ripple-init>next</button>
                
       </div>
     </div>
   </div>
+  <div id="open-modal" class="modal-window">
+    
+  <!-- Your Modal Content Goes Here -->
+
+  <div class="div-">
+    <div class="div-2-">Document Request Summary</div>
+    <div class="div-3-">
+      <div class="div-4-">
+        <div class="div-5-">STUDENT INFORMATION</div>
+        <div class="div-6-">
+          <div class="div-7-">Status:</div>
+          <div class="div-8-">To be Approve</div>
+        </div>
+      </div>
+      
+
+      <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Document Code</th>
+          <th>Document Name</th>
+          <th>Document Fee </th>
+          <th>No. of Copies</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="selectedCategory in selectedCategories" :key="selectedCategory.id">
+          <td>{{ selectedCategory.docNum }}</td>
+          <td>{{ selectedCategory.docType }}</td>
+          <td>{{ selectedCategory.fee }} {{ selectedCategory.unit }}</td>
+          <td>{{ selectedCategory.qty }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+      <div class="div-22-">
+        <span
+          style="
+            font-family: Poppins, sans-serif;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 1);
+          "
+          >Claiming Method: </span
+        ><span
+          style="
+            font-family: Poppins, sans-serif;
+            font-size: 15px;
+          "
+          >Courier</span
+        >
+      </div>
+      <div class="div-23-">
+        <span
+          style="
+            font-family: Poppins, sans-serif;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 1);
+          "
+          >Date Requested: </span
+        ><span
+          style="
+            font-family: Poppins, sans-serif;
+            font-size: 15px;
+          "
+          >11 / 03 / 23</span
+        >
+      </div>
+    </div>
+    <div class="div-24-">
+   
+
+      <router-link to="/track"  type="button" class="div-25-">Go back</router-link>
+      <div class="div-26-">
+        <div class="div-27-">
+          <span style="font-weight: 400; color: rgba(255, 0, 0, 1)">*</span
+          ><span style="font-weight: 400">
+            If you wish to cancel the request, please select </span
+          >Cancel<span style="font-weight: 400">.</span><br />
+        </div>
+        <div class="div-28-">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d90ac373567c111b73c7c2bd6e1db95b969a0e6a737c6711d702b7407d3c9d34?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+            class="img-"
+          />Cancel
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
   <Footer/>
+
+
+
+
+  
 </template>
 
 
 
 <style scoped>
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(59, 59, 59, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  
+}
+.modal-window:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window > .div- {
+
+  
+  max-width: 989px;
+  width: 989px;
+height: auto;
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  
+  background: #ffffff;
+border-radius: 10px;
+
+display: flex;
+flex-direction: column;
+  
+}
+.modal-window header {
+  font-weight: bold;
+}
+.modal-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+}
+
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+.modal-close:hover {
+  color: black;
+}
+
+
+
+
+
+
+
+
+
+.div- {
+  border-radius: 10px;
+  background-color:  #fff;
+  display: flex;
+  max-width: 989px;
+  flex-direction: column;
+}
+.div-2- {
+  justify-content: center;
+  color: var(--, #fff);
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  letter-spacing: -0.15px;
+  white-space: nowrap;
+  align-items: center;
+  border-radius: 10px 10px 0px 0px;
+  background-color: #2f3030;
+  width: 100%;
+  padding: 21px 60px;
+  font: 500 20px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-2- {
+    white-space: initial;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+.div-3- {
+  display: flex;
+  margin-top: 9px;
+  width: 100%;
+  flex-direction: column;
+  padding: 0 34px;
+}
+@media (max-width: 991px) {
+  .div-3- {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+.div-4- {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (max-width: 991px) {
+  .div-4- {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.div-5- {
+  color: #000;
+  letter-spacing: 7.8px;
+  flex-grow: 1;
+  flex-basis: auto;
+  margin: auto 0;
+  font: 800 20px Poppins, sans-serif;
+}
+.div-6- {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.div-7- {
+  color: #000;
+  text-transform: capitalize;
+  margin: auto 0;
+  font: 400 18px Montserrat, sans-serif;
+}
+.div-8- {
+  color: #2f3030;
+  text-align: center;
+  text-transform: capitalize;
+  white-space: nowrap;
+  border-radius: 5px;
+  background-color: #fecb00;
+  align-self: stretch;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 10px 9px;
+  font: 600 18px Montserrat, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-8- {
+    white-space: initial;
+  }
+}
+.div-9- {
+  color: var(--, #fff);
+  border: 1px solid #464646;
+  background-color: #616161;
+  margin-top: 26px;
+  justify-content: center;
+  padding: 16px 60px 16px 31px;
+  font: 700 15px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-9- {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+.div-10- {
+  border: 1px solid #464646;
+  backdrop-filter: blur(11.649999618530273px);
+  background-color: var(--, #fff);
+  display: flex;
+  margin-top: 8px;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 15px;
+}
+@media (max-width: 991px) {
+  .div-10- {
+    max-width: 100%;
+    flex-wrap: wrap;
+    padding-right: 20px;
+  }
+}
+.div-11- {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (max-width: 991px) {
+  .div-11 {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.div-12- {
+  color: #000;
+  align-self: center;
+  margin: auto 0;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-13- {
+  color: #000;
+  margin: auto 0;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-14- {
+  color: #000;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-15- {
+  color: #000;
+  align-self: start;
+  font: 400 15px Poppins, sans-serif;
+}
+.div-16- {
+  border: 1px solid #464646;
+  backdrop-filter: blur(11.649999618530273px);
+  background-color: var(--, #fff);
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px;
+}
+@media (max-width: 991px) {
+  .div-16- {
+    max-width: 100%;
+    flex-wrap: wrap;
+    padding-right: 20px;
+  }
+}
+.div-17- {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (max-width: 991px) {
+  .div-17- {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.div-18- {
+  color: #000;
+  align-self: center;
+  margin: auto 0;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-19- {
+  color: #000;
+  align-self: center;
+  width: 324px;
+  margin: auto 0;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-20- {
+  color: #000;
+  font: 400 12px Poppins, sans-serif;
+}
+.div-21- {
+  color: #000;
+  text-align: center;
+  align-self: start;
+  font: 400 15px Poppins, sans-serif;
+}
+.div-22- {
+  color: var(--black, #383838);
+  text-transform: capitalize;
+  margin-top: 21px;
+  font: 400 16px Montserrat, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-22- {
+    max-width: 100%;
+  }
+}
+.div-23- {
+  color: var(--black, #383838);
+  text-transform: capitalize;
+  margin-top: 10px;
+  font: 400 16px Montserrat, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-23- {
+    max-width: 100%;
+  }
+}
+.div-24- {
+  border-radius: 0px 0px 10px 10px;
+  background-color: #ededed;
+  display: flex;
+  margin-top: 23px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 42px 22px 34px;
+}
+@media (max-width: 991px) {
+  .div-24- {
+    max-width: 100%;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+}
+.div-25- {
+  color: #e54f70;
+  margin: auto 0;
+  font: 400 16px Poppins, sans-serif;
+}
+.div-26- {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (max-width: 991px) {
+  .div-26- {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.div-27- {
+  color: #000;
+  flex-grow: 1;
+  flex-basis: auto;
+  margin: auto 0;
+  font: 700 15px Poppins, sans-serif;
+}
+.div-28- {
+  disply: flex;
+  flex-direction: column;
+  color: var(--, #fff);
+  text-align: center;
+  position: relative;
+  white-space: nowrap;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  overflow: hidden;
+  align-self: stretch;
+  aspect-ratio: 2.7567567567567566;
+  justify-content: center;
+  padding: 14px 28px;
+  font: 500 14px/257% Montserrat, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-28- {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.img- {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.div-29- {
+  position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 table{
   margin-top: 0px;
  

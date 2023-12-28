@@ -16,8 +16,8 @@
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <router-link to="/reqDoc" class="div-51">Request Now</router-link>
-      <router-link to="/track" class="div-51">Track Document</router-link>
+      <router-link to="/login" class="div-51">Request Now</router-link>
+      <router-link to="/login" class="div-51">Track Document</router-link>
     
     </div>
   </div>

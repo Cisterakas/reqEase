@@ -167,7 +167,7 @@ const decrement = (index) => {
             color: rgba(68, 75, 89, 1);
           "
           >Please allow maximum of <b>3 working days  </b> to verify your request and 
-          you will receive a <b>Registrar’s confirmation</b> email before moving on to the payment. 
+          you will receive a <b>Registrar’s confirmation</b> with a <b>Total Amount of Payment.</b>
           While waiting, you can check your status at the official website by going to </span
         ><span
           style="

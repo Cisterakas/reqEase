@@ -16,12 +16,12 @@ const handleButtonClick = (category) => {
 };
 
 const categories = ref([
-    { id: 1, docNum: 4, docType: "Certificate of Enrollment", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 31 / 23", status: "To be approve", qty: 1, fee: 60.00, unit: "/ copy" },
-    { id: 2, docNum: 11, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To pay", qty: 2, fee: 60.00, unit: "/ copy" },
-    { id: 3, docNum: 4, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To process", qty: 3, fee: 60.00, unit: "/ copy" },
-    { id: 4, docNum: 4, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To receive", qty: 4, fee: 60.00, unit: "/ copy" },
-    { id: 5, docNum: 4, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "Received", qty: 5, fee: 60.00, unit: "/ copy" },
-    { id: 6, docNum: 4, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To rate", qty: 1, fee: 60.00, unit: "/ copy" },
+    { id: 1, docNum: 4, docType: "Certificate of Enrollment", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 21/ 23", status: "To be approve", qty: 1, fee: 60.00, unit: "/ copy" },
+    { id: 2, docNum: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 22 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To pay", qty: 2, fee: 60.00, unit: "/ copy" },
+    { id: 3, docNum: 1, docType: "Authentication", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 28 / 23", status: "To process", qty: 3, fee: 60.00, unit: "/ copy" },
+    { id: 4, docNum: 11, docType: "Certificate of Latin Honor", dateReq: "12 / 27 / 23", claim: "Through Representative", sched: "12 / 28 / 23", status: "To receive", qty: 4, fee: 60.00, unit: "/ copy" },
+    { id: 5, docNum: 16, docType: "Diploma", dateReq: "12 / 27 / 23", claim: "Email", sched: "12 / 29 / 23", status: "Received", qty: 5, fee: 400.00, unit: "/ copy" },
+    { id: 6, docNum: 20, docType: "Official Transcript of Records", dateReq: "12 / 27 / 23", claim: "Pick-up", sched: "12 / 31 / 23", status: "To rate", qty: 1, fee: 250.00, unit: "/ set" },
 
   ]);
 
@@ -187,12 +187,8 @@ const categories = ref([
             If you wish to cancel the request, please select </span
           >Cancel<span style="font-weight: 400">.</span><br />
         </div>
-        <div class="div-28-">
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d90ac373567c111b73c7c2bd6e1db95b969a0e6a737c6711d702b7407d3c9d34?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-            class="img-"
-          />Cancel
+        <div class="div-28-" type="button">
+          Cancel
         </div>
       </div>
     </div>
@@ -555,9 +551,11 @@ flex-direction: column;
   font: 700 15px Poppins, sans-serif;
 }
 .div-28- {
-  disply: flex;
+  display: flex;
   flex-direction: column;
-  color: var(--, #fff);
+  background-color: #e54f70;
+  border-radius: 5px;
+  color:  #fff;
   text-align: center;
   position: relative;
   white-space: nowrap;
@@ -567,7 +565,7 @@ flex-direction: column;
   aspect-ratio: 2.7567567567567566;
   justify-content: center;
   padding: 14px 28px;
-  font: 500 14px/257% Montserrat, sans-serif;
+  font: 700 15px Poppins, sans-serif;
 }
 @media (max-width: 991px) {
   .div-28- {

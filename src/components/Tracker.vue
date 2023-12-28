@@ -92,7 +92,7 @@ const categories = ref([
          
             </tr>
           </tbody>
-        </table>
+        </table>  
         
      
       </div>
@@ -290,7 +290,7 @@ flex-direction: column;
 }
 .div-2- {
   justify-content: center;
-  color: var(--, #fff);
+  color:  #fff;
   text-align: center;
   font-feature-settings: "clig" off, "liga" off;
   letter-spacing: -0.15px;

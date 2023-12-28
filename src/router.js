@@ -14,6 +14,11 @@ import ReqDoc from './components/ReqDoc.vue';
 import Verify from './components/Verification.vue';
 import Track from './components/Tracker.vue';
 import AdminHome from './components/AdminHome.vue';
+import AdminPayment from './components/AdminPayment.vue';
+import AdminConfirm from './components/AdminConfirm.vue';
+import AdminAcc from './components/AdminAccount.vue';
+import AdminHistory from './components/AdminHistory.vue';
+import AdminFeed from './components/AdminFeedback.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -31,6 +36,11 @@ const routes = [
     { path: '/verify', component: Verify },
     { path: '/track', component: Track },
     { path: '/adminH', component: AdminHome },
+    { path: '/adminP', component: AdminPayment },
+    { path: '/adminC', component: AdminConfirm },
+    { path: '/adminA', component: AdminAcc },
+    { path: '/adminHy', component: AdminHistory },
+    { path: '/adminF', component: AdminFeed },
 ];
 
 const router = createRouter({

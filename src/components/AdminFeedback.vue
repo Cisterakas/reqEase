@@ -4,10 +4,12 @@ import { ref } from 'vue';
 import newNavbar from "./newNavbar.vue";
 import Footer from "./Footer.vue";
 
+
+
 const categories = ref([
-    { id: 1, studentNum: "22000000123", studentName: "Kim Namjoon", degree: "BSIT", requestedDocument: "Certificate of Enrollment, Certifica", dateReq: "11 / 03 / 23", claim: "Pick-Up", release: "11 / 06 / 23", status: "To be approve" },
-    { id: 5, studentNum: "22000000123", studentName: "Kim Namjoon", degree: "BSIT", requestedDocument: "Certificate of Enrollment, Certifica", dateReq: "11 / 03 / 23", claim: "Pick-Up", release: "11 / 06 / 23", status: "To be approve" },
-    { id: 4, studentNum: "22000000123", studentName: "Kim Namjoon", degree: "BSIT", requestedDocument: "Certificate of Enrollment, Certifica", dateReq: "11 / 03 / 23", claim: "Pick-Up", release: "11 / 06 / 23", status: "To be approve" },
+    { id: 1, studentNum: "22000000123", studentName: "Kim Namjoon", comments: "I wanted to share my feedback on the online request document process. Overall, I appreciate the convenience and efficiency of the system. The u...", receipt:  "https://drive.google.com/file" , paymentDate: "11 / 03 / 23", amount: "180.00", release: "11 / 06 / 23", status: "To be approve" },
+    { id: 5, studentNum: "22000000123", studentName: "Kim Namjoon", comments: "I wanted to share my feedback on the online request document process. Overall, I appreciate the convenience and efficiency of the system. The u...", receipt:  "https://drive.google.com/file" , paymentDate: "11 / 03 / 23", amount: "180.00", release: "11 / 06 / 23", status: "To be approve" },
+    { id: 4, studentNum: "22000000123", studentName: "Kim Namjoon", comments: "I wanted to share my feedback on the online request document process. Overall, I appreciate the convenience and efficiency of the system. The u...", receipt:  "https://drive.google.com/file" , paymentDate: "11 / 03 / 23", amount: "180.00", release: "11 / 06 / 23", status: "To be approve" },
 
 
 
@@ -17,12 +19,13 @@ const categories = ref([
 </script>
 
 <template>
+  
     <div class="div">
       <div class="div-2">
         <div class="column">
           <div class="div-3">
             <div class="div-4">
-              <router-link to="/" type="button">
+                <router-link to="/" type="button">
               <img
                 loading="lazy"
                 srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -97,8 +100,13 @@ const categories = ref([
           <div class="div-17">
             <div class="div-18">
               <div class="div-19">
-                <div class="div-20">Primary</div>
-                <div class="div-21">DASHBOARD</div>
+                
+                <div class="div-21">FEEDBACKS</div>
+                
+                <div class="div-48-">
+                You can view the feedback of each student per transaction.
+              </div>
+
               </div>
               <div class="div-22">
                 <img
@@ -116,135 +124,23 @@ const categories = ref([
                 </div>
               </div>
             </div>
-            <div class="div-25">
-              <div class="div-26">
-                <div class="column-3">
-                  <div class="div-27">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/f13e7b110d3e68a9198f94cc62908e92d71903440f9059f245f49ec915f061dc?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-10"
-                    />
-                    <div class="div-28">Announcement</div>
-                    <div class="div-29"> <div class="div-36">
-                        1. Please allow maximum of
-                        <span style="font-weight: 700">3 working days</span> to
-                        verify your request. You will receive an
-                        <span style="font-weight: 700"
-                          >email or SMS for the costs</span
-                        >, and the manner of payment and confirmation. If you
-                        haven’t received a confirmation that your request has been
-                        attended to after 3 working days, please send us an email
-                        at for assistance.<br />2.
-                        <span style="font-weight: 700">Only the owner </span>of
-                        the records is allowed to request for documents in
-                        connection with his/her records.<br />3. This University
-                        reserves the right to withhold, deny or cancel any request
-                        for document due to pending accountabilities (bank
-                        accounts, incomplete credentials on file, etc.)<br />4.
-                        Processing time of request commences only upon receipt of
-                        payment and confirmation from the Cashier.<br />5.
-                        Request
-                        <span style="font-weight: 700"
-                          >not claimed after 60 days</span
-                        >
-                        from the date of request will be discarded. Therefore,
-                        another request will be charged.
-                      </div></div>
-                    <div class="div-30">
-                        
-                      
-                      <button type="button" class="btn btn-warning btn-rounded" data-mdb-ripple-init>Edit</button>
-                      <button type="button" class="btn btn-danger btn-rounded" data-mdb-ripple-init>Publish</button>
-                      
-                    </div>
-                  </div>
-                </div>
-                <div class="column-3">
-                  <div class="div-33">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/598b10c01e63a5f391e75b78de13697483ce806ac84053477e5df95e7eb796e7?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-11"
-                    />
-                    <div class="div-34">Reminders</div>
-                    <div class="div-35">
-                      <div class="div-36">
-                        1. Please allow maximum of
-                        <span style="font-weight: 700">3 working days</span> to
-                        verify your request. You will receive an
-                        <span style="font-weight: 700"
-                          >email or SMS for the costs</span
-                        >, and the manner of payment and confirmation. If you
-                        haven’t received a confirmation that your request has been
-                        attended to after 3 working days, please send us an email
-                        at for assistance.<br />2.
-                        <span style="font-weight: 700">Only the owner </span>of
-                        the records is allowed to request for documents in
-                        connection with his/her records.<br />3. This University
-                        reserves the right to withhold, deny or cancel any request
-                        for document due to pending accountabilities (bank
-                        accounts, incomplete credentials on file, etc.)<br />4.
-                        Processing time of request commences only upon receipt of
-                        payment and confirmation from the Cashier.<br />5.
-                        Request
-                        <span style="font-weight: 700"
-                          >not claimed after 60 days</span
-                        >
-                        from the date of request will be discarded. Therefore,
-                        another request will be charged.
-                      </div>
-                      <div class="div-37">
-                        <button type="button" class="btn btn-warning btn-rounded" data-mdb-ripple-init>Edit</button>
-                      <button type="button" class="btn btn-danger btn-rounded" data-mdb-ripple-init>Publish</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="column-3">
-                  <div class="div-40">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/2505edc742d3582db1c015d9e1516424e20babe97f7bf37e739007ff8cb746e3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-12"
-                    />
-                    <div class="div-41">Privacy Consent</div>
-                    <div class="div-42">
-                      I hereby agree and consent the University of the Immaculate
-                      Conception may collect, use, disclose and process my
-                      personal information set out in <br />this form and/or
-                      otherwise provided by me for the purpose of requesting
-                      school documents as stated in the R.A. 10173, otherwise
-                      known as the Data Privacy Act of 2012 and other related data
-                      privacy policies. <br /> <br>The information will only be
-                      accessed by authorized university staff. I understand that
-                      my data will be held securely and will not be disclosed to
-                      third parties without my permission. When this information
-                      is no longer required, official university procedure will be
-                      followed to dispose my data. <br /> <br>By clicking the
-                      <span style="font-weight: 700"
-                        >“REQUEST FOR OFFICIAL DOCUMENT ” </span
-                      >option I represent and warrant that I am the data subject
-                      and that I have read and understood all the conditions and
-                      reminders in connection with this request and agree to
-                      comply with them. By clicking selecting an option, I also
-                      certify that the information given are true to the best of
-                      my knowledge and belief.
-                    </div>
-                    <div class="div-43">
-                        <button type="button" class="btn btn-warning btn-rounded" data-mdb-ripple-init>Edit</button>
-                      <button type="button" class="btn btn-danger btn-rounded" data-mdb-ripple-init>Publish</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        
             <div class="div-46">
-              <div class="div-47">Pending Request</div>
+      
               <div class="div-48">
-                You can view and update the status and schedule to release the
-                document request.
+                <div class="input-group">
+  <div class="form-outline" data-mdb-input-init>
+    <input type="search" id="form1" class="form-control" />
+    <label class="form-label" for="form1">Search</label>
+  </div>
+  <button type="button" class="btn btn-warning" data-mdb-ripple-init>
+    <i class="fas fa-search"></i>
+  </button>
+</div>
+
               </div>
+              <button type="button" class="btn btn-warning" data-mdb-ripple-init>
+                <i class="fas fa-download"></i>  Download Report</button>
             </div>
 
 <div class="arrangement">
@@ -252,13 +148,10 @@ const categories = ref([
           <thead>
             <tr>
               <th>Transaction No.</th>
-              <th>Student No.</th>
               <th>Student Name</th>
-              <th>Requested Document</th>
-              <th>Date Requested</th>
-              <th>Claiming Method</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th>Comments/ Suggestions</th>
+              <th>Action</th>
+              
 
             </tr>
           </thead>
@@ -266,23 +159,12 @@ const categories = ref([
            
             <tr v-for="category in categories" :key="category.id">
               <td class="">{{ category.id }}</td>
-              <td class="">{{ category.studentNum}}</td>
               <td class="">{{ category.studentName }}</td>
-          
-              <td class="">{{ category.requestedDocument }}</td>
-         
-              <td class="">{{ category.dateReq }}</td>
+              <td class="">{{ category.comments}}</td>
+        
               <td class="">
-                {{ category.claim }}</td>
-              <td class="">
-                <span v-if="category.status === 'To be approve'" class="badge rounded-pill badge-warning">{{ category.status }}</span></td>
-              
-              <td class="">
-                
                 <button type="button" class="btn btn-outline-dark" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Approve</button>
-             
-                </td>
+            </td>
          
             </tr>
           </tbody>
@@ -307,8 +189,6 @@ const categories = ref([
   
   
   <style scoped>
-
-  
   .arrangement{
     flex-direction: column;
 
@@ -349,6 +229,8 @@ const categories = ref([
   .div {
     background-color: #eeeaeb;
     padding-right: 42px;
+    width: auto;
+    max-height: 100%;
   }
   @media (max-width: 991px) {
     .div {
@@ -595,7 +477,7 @@ const categories = ref([
     font: 500 18px Poppins, sans-serif;
   }
   .column-2 {
-    
+   
     flex-direction: column;
     line-height: normal;
     width: 80%;
@@ -639,7 +521,10 @@ const categories = ref([
   }
   .div-19 {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-self: center;
+    gap: 20px;
+    padding: 18px 46px;
   }
   .div-20 {
     justify-content: center;
@@ -1078,8 +963,20 @@ const categories = ref([
     letter-spacing: -0.15px;
     font: 500 20px Poppins, sans-serif;
   }
+
+  .div-48- {
+   color:  #fff;
+    align-self: center;
+    flex-grow: 1;
+    font: 300 15px/127% Montserrat, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .div-48 {
+      max-width: 100%;
+    }
+  }
   .div-48 {
-    color:  #fff;
+    background-color:  #fff;
     align-self: center;
     flex-grow: 1;
     font: 300 15px/127% Montserrat, sans-serif;

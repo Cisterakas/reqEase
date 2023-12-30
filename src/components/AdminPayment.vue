@@ -174,7 +174,7 @@ const categories = ref([
                 <td class="">{{ category.amount }}</td>
               <td class="">
                 <button type="button" class="btn btn-outline-dark" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Approve</button>
+                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Paid</button>
             </td>
          
             </tr>

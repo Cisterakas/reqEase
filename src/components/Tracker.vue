@@ -24,6 +24,15 @@ const categories = ref([
     { id: 6, docNum: 20, docType: "Official Transcript of Records", dateReq: "12 / 27 / 23", claim: "Pick-up", sched: "12 / 31 / 23", status: "To rate", qty: 1, fee: 250.00, unit: "/ set" },
 
   ]);
+  const closeModalAndReset = () => {
+  // Your logic to close the modal
+  // ...
+
+  // Reset selectedCategories
+  selectedCategories.value = [];
+
+
+};
 
 
 
@@ -81,11 +90,11 @@ const categories = ref([
                 
                 <a v-if="category.status === 'To be approve'"  @click="handleButtonClick(category)" href="#open-modal" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</a>
         <a v-else-if="category.status === 'To pay'" @click="handleButtonClick(category)" type="button" href="#open-modal" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</a>
-        <button v-else-if="category.status === 'To process'" @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-        <button v-else-if="category.status === 'To receive'"  @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-        <button v-else-if="category.status === 'Received'" @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-        <button v-else-if="category.status === 'To rate'" @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-        <button v-else @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
+        <a v-else-if="category.status === 'To process'" @click="handleButtonClick(category)" href="#open-modal" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</a>
+        <a v-else-if="category.status === 'To receive'"  @click="handleButtonClick(category)"  href="#open-modal" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</a>
+        <a v-else-if="category.status === 'Received'" @click="handleButtonClick(category)"  href="#open-modal" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</a>
+        <a v-else-if="category.status === 'To rate'" @click="handleButtonClick(category)"  href="#open-modal" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</a>
+        <a v-else @click="handleButtonClick(category)" type="button" class="btn btn-outline-dark btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark">View</a>
               
               
               </td>
@@ -177,9 +186,8 @@ const categories = ref([
       </div>
     </div>
     <div class="div-24-">
-   
+      <a href="#" title="Close" class="div-25-"  @click="closeModalAndReset" >Go Back  </a>
 
-      <router-link to="/track"  type="button" class="div-25-">Go back</router-link>
       <div class="div-26-">
         <div class="div-27-">
           <span style="font-weight: 400; color: rgba(255, 0, 0, 1)">*</span
@@ -187,9 +195,8 @@ const categories = ref([
             If you wish to cancel the request, please select </span
           >Cancel<span style="font-weight: 400">.</span><br />
         </div>
-        <div class="div-28-" type="button">
-          Cancel
-        </div>
+           <a href="#" title="Close" class="div-28-"  @click="closeModalAndReset" >Cancel  </a>
+       
       </div>
     </div>
   </div>

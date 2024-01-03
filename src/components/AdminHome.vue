@@ -12,7 +12,121 @@ const categories = ref([
 
 
   ]);
+const columns = ref([
+  {
+    image:
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/f13e7b110d3e68a9198f94cc62908e92d71903440f9059f245f49ec915f061dc?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&',
+    alt: 'Announcement Image',
+    title: 'Announcement',
+    content: `Please be advised that the Office of the University Registrar will be conducting the 
+              Year-End Strategic Planning on M-Date-Date-Year. Hence, the in-person transaction of 
+              our clients on the said dates can be accommodated from <b>7:00 a.m. to 11:30 a.m.</b><br>
 
+              <br>Furthermore, there will be limited and no in-person transaction on dates listed 
+              below to allow for the preparation of the office year end reports. <br>
+
+              <br>For TRANSACTION DAYS: <br>
+              <b>12/13/23 - no transaction</b> <br>
+              <b>12/18/23 - 7:00 a.m. to 11:50 a.m. </b><br>      
+              <b>12/25/23 - no in-person transaction </b><br>
+
+              <br>In-person transactions will resume on m-d-y. <br>
+
+              <br><b>Thank you.</b>`,
+    editable: false,
+  },
+  {
+    image:
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/598b10c01e63a5f391e75b78de13697483ce806ac84053477e5df95e7eb796e7?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&',
+    alt: 'Reminders Image',
+    title: 'Reminders',
+    content: `1. Please allow a maximum of
+              <b>3 working days</b> to
+              verify your request. You will receive an
+              <b>email or SMS for the costs</b>, and the manner of payment and confirmation. If you
+              haven’t received a confirmation that your request has been
+              attended to after 3 working days, please send us an email
+              at for assistance.<br />2.
+              <b>Only the owner </b>of
+              the records is allowed to request for documents in
+              connection with his/her records.<br />3. This University
+              reserves the right to withhold, deny or cancel any request
+              for a document due to pending accountabilities (bank
+              accounts, incomplete credentials on file, etc.)<br />4.
+              Processing time of the request commences only upon receipt of
+              payment and confirmation from the Cashier.<br />5.
+              Request
+              <b>not claimed after 60 days</b
+              >
+              from the date of the request will be discarded. Therefore,
+              another request will be charged.`,
+    editable: false,
+  },
+  {
+    image:
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/2505edc742d3582db1c015d9e1516424e20babe97f7bf37e739007ff8cb746e3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&',
+    alt: 'Privacy Consent Image',
+    title: 'Privacy Consent',
+    content: `I hereby agree and consent that the University of the Immaculate
+              Conception may collect, use, disclose and process my
+              personal information set out in <br />this form and/or
+              otherwise provided by me for the purpose of requesting
+              school documents as stated in the R.A. 10173, otherwise
+              known as the Data Privacy Act of 2012 and other related data
+              privacy policies. <br /> <br>The information will only be
+              accessed by authorized university staff. I understand that
+              my data will be held securely and will not be disclosed to
+              third parties without my permission. When this information
+              is no longer required, the official university procedure will be
+              followed to dispose of my data. <br /> <br>By clicking the
+              <b>“REQUEST FOR OFFICIAL DOCUMENT ” </b
+              >option I represent and warrant that I am the data subject
+              and that I have read and understood all the conditions and
+              reminders in connection with this request and agree to
+              comply with them. By clicking selecting an option, I also
+              certify that the information given is true to the best of
+              my knowledge and belief.`,
+    editable: false,
+  },
+]);
+
+
+const editContent = (index) => {
+  columns.value.forEach((column, i) => {
+    column.editable = i === index;
+  });
+  // Focus on the editable content after setting it to editable
+  if (columns.value[index].editable) {
+    const editableContent = this.$refs.editableContent;
+    if (editableContent) {
+      editableContent.focus();
+      // Place the cursor at the end of the content
+      const range = document.createRange();
+      range.selectNodeContents(editableContent);
+      range.collapse(false);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  }
+};
+
+const publishContent = (index) => {
+  columns.value[index].editable = false;
+  // You can perform any additional logic here to handle the published content
+};
+
+const updateContent = (index, event) => {
+  columns.value[index].content = event.target.innerHTML;
+};
+
+const finishEditing = (index) => {
+  columns.value[index].editable = false;
+};
+
+const clearContent = (index) => {
+  columns.value[index].content = '';
+};
 
 </script>
 
@@ -116,7 +230,7 @@ const categories = ref([
                 </div>
               </div>
             </div>
-            <div class="div-25">
+            <!-- <div class="div-25">
               <div class="div-26">
                 <div class="column-3">
                   <div class="div-27">
@@ -127,29 +241,21 @@ const categories = ref([
                     />
                     <div class="div-28">Announcement</div>
                     <div class="div-29"> <div class="div-36">
-                        1. Please allow maximum of
-                        <span style="font-weight: 700">3 working days</span> to
-                        verify your request. You will receive an
-                        <span style="font-weight: 700"
-                          >email or SMS for the costs</span
-                        >, and the manner of payment and confirmation. If you
-                        haven’t received a confirmation that your request has been
-                        attended to after 3 working days, please send us an email
-                        at for assistance.<br />2.
-                        <span style="font-weight: 700">Only the owner </span>of
-                        the records is allowed to request for documents in
-                        connection with his/her records.<br />3. This University
-                        reserves the right to withhold, deny or cancel any request
-                        for document due to pending accountabilities (bank
-                        accounts, incomplete credentials on file, etc.)<br />4.
-                        Processing time of request commences only upon receipt of
-                        payment and confirmation from the Cashier.<br />5.
-                        Request
-                        <span style="font-weight: 700"
-                          >not claimed after 60 days</span
-                        >
-                        from the date of request will be discarded. Therefore,
-                        another request will be charged.
+                      Please be advised that the Office of the University Registrar will be conducting the 
+                      Year-End Strategic Planning on M-Date-Date-Year. Hence, the in-person transaction of 
+                      our clients on the said dates can be accommodated from <b>7:00 a.m. to 11:30 a.m.</b><br>
+
+                      <br>Furthermore, there will be limited and no in-person transaction on dates listed 
+                      below to allow for the preparation of the office year end reports. <br>
+
+                      <br>For TRANSACTION DAYS: <br>
+                      <b>12/13/23 - no transaction</b> <br>
+                      <b>12/18/23 - 7:00 a.m. to 11:50 a.m. </b><br>      
+                      <b>12/25/23 - no in-person transaction </b><br>
+
+                      <br>In-person transactions will resume on m-d-y. <br>
+
+                      <br><b>Thank you.</b>
                       </div></div>
                     <div class="div-30">
                         
@@ -171,15 +277,13 @@ const categories = ref([
                     <div class="div-35">
                       <div class="div-36">
                         1. Please allow maximum of
-                        <span style="font-weight: 700">3 working days</span> to
+                        <b>3 working days</b> to
                         verify your request. You will receive an
-                        <span style="font-weight: 700"
-                          >email or SMS for the costs</span
-                        >, and the manner of payment and confirmation. If you
+                        <b>email or SMS for the costs</b>, and the manner of payment and confirmation. If you
                         haven’t received a confirmation that your request has been
                         attended to after 3 working days, please send us an email
                         at for assistance.<br />2.
-                        <span style="font-weight: 700">Only the owner </span>of
+                        <b>Only the owner </b>of
                         the records is allowed to request for documents in
                         connection with his/her records.<br />3. This University
                         reserves the right to withhold, deny or cancel any request
@@ -188,8 +292,7 @@ const categories = ref([
                         Processing time of request commences only upon receipt of
                         payment and confirmation from the Cashier.<br />5.
                         Request
-                        <span style="font-weight: 700"
-                          >not claimed after 60 days</span
+                        <b>not claimed after 60 days</b
                         >
                         from the date of request will be discarded. Therefore,
                         another request will be charged.
@@ -222,8 +325,7 @@ const categories = ref([
                       third parties without my permission. When this information
                       is no longer required, official university procedure will be
                       followed to dispose my data. <br /> <br>By clicking the
-                      <span style="font-weight: 700"
-                        >“REQUEST FOR OFFICIAL DOCUMENT ” </span
+                      <b>“REQUEST FOR OFFICIAL DOCUMENT ” </b
                       >option I represent and warrant that I am the data subject
                       and that I have read and understood all the conditions and
                       reminders in connection with this request and agree to
@@ -238,7 +340,59 @@ const categories = ref([
                   </div>
                 </div>
               </div>
-            </div>
+              
+            </div> -->
+            
+            <div class="div-25">
+    <div class="div-26">
+      <div v-for="(column, index) in columns" :key="index" class="column-3">
+        <div class="div-27">
+          <img :src="column.image" :alt="column.alt" class="img-10" />
+          <div class="div-28">{{ column.title }}</div>
+          <div class="div-29">
+            <div
+              v-if="!column.editable"
+              class="div-36"
+              v-html="column.content"
+            ></div>
+            <div
+              v-if="column.editable"
+              ref="editableContent"
+              class="div-36 editable"
+              contenteditable="true"
+              @input="updateContent(index, $event)"
+              @blur="finishEditing(index)"
+            ></div>
+          </div>
+          <div class="div-30">
+            <button
+              @click="editContent(index)"
+              class="btn btn-warning btn-rounded"
+              data-mdb-ripple-init
+            >
+              Edit
+            </button>
+            <button
+              @click="publishContent(index)"
+              class="btn btn-danger btn-rounded"
+              data-mdb-ripple-init
+            >
+              Publish
+            </button>
+            <button
+              v-if="!column.editable"
+              @click="clearContent(index)"
+              class="btn btn-secondary btn-rounded"
+              data-mdb-ripple-init
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
             <div class="div-46">
               <div class="div-47">Pending Request</div>
               <div class="div-48">
@@ -307,6 +461,10 @@ const categories = ref([
   
   
   <style scoped>
+ .editable {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
 
   
   .arrangement{

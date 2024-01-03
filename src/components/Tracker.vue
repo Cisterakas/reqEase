@@ -17,11 +17,12 @@ const handleButtonClick = (category) => {
 
 const categories = ref([
     { id: 1, docNum: 4, docType: "Certificate of Enrollment", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 21/ 23", status: "To be approve", qty: 1, fee: 60.00, unit: "/ copy" },
+    { id: 1, docNum: 4, docType: "Official Transcript of Records", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 21/ 23", status: "To be approve", qty: 1, fee: 60.00, unit: "/ copy" },
     { id: 2, docNum: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 22 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To pay", qty: 2, fee: 60.00, unit: "/ copy" },
     { id: 3, docNum: 1, docType: "Authentication", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 28 / 23", status: "To process", qty: 3, fee: 60.00, unit: "/ copy" },
-    { id: 4, docNum: 11, docType: "Certificate of Latin Honor", dateReq: "12 / 27 / 23", claim: "Through Representative", sched: "12 / 28 / 23", status: "To receive", qty: 4, fee: 60.00, unit: "/ copy" },
-    { id: 5, docNum: 16, docType: "Diploma", dateReq: "12 / 27 / 23", claim: "Email", sched: "12 / 29 / 23", status: "Received", qty: 5, fee: 400.00, unit: "/ copy" },
-    { id: 6, docNum: 20, docType: "Official Transcript of Records", dateReq: "12 / 27 / 23", claim: "Pick-up", sched: "12 / 31 / 23", status: "To rate", qty: 1, fee: 250.00, unit: "/ set" },
+    { id: 4, docNum: 11, docType: "Certificate of Latin Honor", dateReq: "12 / 31 / 23", claim: "Through Representative", sched: "12 / 28 / 23", status: "To receive", qty: 4, fee: 60.00, unit: "/ copy" },
+    { id: 5, docNum: 16, docType: "Diploma", dateReq: "12 / 28 / 23", claim: "Email", sched: "12 / 29 / 23", status: "Received", qty: 5, fee: 400.00, unit: "/ copy" },
+    { id: 6, docNum: 20, docType: "Official Transcript of Records", dateReq: "12 / 24 / 23", claim: "Pick-up", sched: "12 / 31 / 23", status: "To rate", qty: 1, fee: 250.00, unit: "/ set" },
 
   ]);
   const closeModalAndReset = () => {
@@ -114,7 +115,7 @@ const categories = ref([
       </div>
     </div>
   </div>
-  <div id="open-modal" class="modal-window">
+  <div  v-for="selectedCategory in selectedCategories" :key="selectedCategory.id" id="open-modal" class="modal-window">
     
   <!-- Your Modal Content Goes Here -->
 
@@ -165,7 +166,7 @@ const categories = ref([
             font-family: Poppins, sans-serif;
             font-size: 15px;
           "
-          >Courier</span
+          >{{selectedCategory.claim}}</span
         >
       </div>
       <div class="div-23-">
@@ -181,9 +182,10 @@ const categories = ref([
             font-family: Poppins, sans-serif;
             font-size: 15px;
           "
-          >11 / 03 / 23</span
+          >{{selectedCategory.dateReq}}</span
         >
       </div>
+  
     </div>
     <div class="div-24-">
       <a href="#" title="Close" class="div-25-"  @click="closeModalAndReset" >Go Back  </a>

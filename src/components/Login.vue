@@ -2,12 +2,37 @@
 import NavigationBar from './NavigationBar.vue';
 
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const email = ref('');
 const password = ref('');
 const showPassword = ref(false);
+const rememberMe = ref(false);
+const router = useRouter();
+
 
 const toggleVisibility = () => {
   showPassword.value = !showPassword.value;
+};
+
+const login = () => {
+  // Check if email and password are not empty
+  if (!email.value || !password.value) {
+    alert('Please enter both email and password');
+    return;
+  }
+
+  // Check credentials and redirect accordingly
+  if (email.value === 'student@example.com' && password.value === '12345') {
+    router.push('/');
+    alert('Student successfully logged in!');
+  } else if (email.value === 'admin@example.com' && password.value === '12345') {
+    router.push('/adminH');
+    alert('Admin successfully logged in!');
+  } else {
+    // Handle invalid credentials
+    alert('Invalid email or password');
+  }
 };
 </script>
 
@@ -54,32 +79,28 @@ const toggleVisibility = () => {
                 </div>
                 <div class="div-11">Please login to your Account</div>
 
+<div class="material-textfield">
+  <input placeholder=" " v-model="email" type="text">
+  <label>Email</label>
+</div>
 
-                
-              
-    <div class="material-textfield">
-      <input placeholder=" " type="text">
-      <label>Email</label>
-    </div>
+<div class="material-textfield">
+  <input
+    placeholder=" "
+    v-model="password"
+    :type="showPassword ? 'text' : 'password'"
+    id="password"
+  >
+  <label for="password">Password</label>
+</div>
 
+<div class="div-16">
+  <input @click="toggleVisibility" type="checkbox" class="div-17">{{ showPassword ? 'Hide' : 'Show' }} Password
+  <input type="checkbox" class="div-17" v-model="rememberMe">Remember Me
+</div>
 
-               
+<button type="button" class="div-19" @click="login">Log In</button>
 
-
-                
-    <div class="material-textfield">
-      <input placeholder=" " 
-      v-model="password"
-      :type="showPassword ? 'text' : 'password'"
-      id="password">
-      <label for="password">Password</label>
-    </div>
-                <div class="div-16">
-                  <input @click="toggleVisibility" type="checkbox" class="div-17" >{{ showPassword ? 'Hide' : 'Show' }} Password
-                  <input type="checkbox" class="div-17" >Remember Me
-               
-                </div>
-                <router-link to="/" type="button" class="div-19">Log In</router-link>
                 
                 <a class="div-20" href="#open-modal">Create a New Account</a>
 

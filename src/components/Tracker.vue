@@ -17,7 +17,7 @@ const handleButtonClick = (category) => {
 
 const categories = ref([
     { id: 1, docNum: 4, docType: "Certificate of Enrollment", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 21/ 23", status: "To be approve", qty: 1, fee: 60.00, unit: "/ copy" },
-    { id: 1, docNum: 4, docType: "Official Transcript of Records", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 21/ 23", status: "To be approve", qty: 1, fee: 60.00, unit: "/ copy" },
+    { id: 1, docNum: 20, docType: "Official Transcript of Records", dateReq: "12 / 27 / 23", claim: "Pick-Up", sched: "12 / 21/ 23", status: "To be approve", qty: 1, fee: 60.00, unit: "/ copy" },
     { id: 2, docNum: 6, docType: "Certificate of Government Recognition of the Program", dateReq: "12 / 22 / 23", claim: "Courier", sched: "12 / 31 / 23", status: "To pay", qty: 2, fee: 60.00, unit: "/ copy" },
     { id: 3, docNum: 1, docType: "Authentication", dateReq: "12 / 27 / 23", claim: "Courier", sched: "12 / 28 / 23", status: "To process", qty: 3, fee: 60.00, unit: "/ copy" },
     { id: 4, docNum: 11, docType: "Certificate of Latin Honor", dateReq: "12 / 31 / 23", claim: "Through Representative", sched: "12 / 28 / 23", status: "To receive", qty: 4, fee: 60.00, unit: "/ copy" },

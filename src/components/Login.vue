@@ -1,6 +1,4 @@
 <script setup>
-import NavigationBar from './NavigationBar.vue';
-
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -9,16 +7,22 @@ const password = ref('');
 const showPassword = ref(false);
 const rememberMe = ref(false);
 const router = useRouter();
-
+const errorMessage = ref('');
+let errorTimeout = null;
 
 const toggleVisibility = () => {
   showPassword.value = !showPassword.value;
 };
 
 const login = () => {
+  // Reset error message and clear existing timeout
+  errorMessage.value = '';
+  clearTimeout(errorTimeout);
+
   // Check if email and password are not empty
   if (!email.value || !password.value) {
-    alert('Please enter both email and password');
+    errorMessage.value = 'Please enter both email and password';
+    startErrorTimeout();
     return;
   }
 
@@ -31,13 +35,23 @@ const login = () => {
     alert('Admin successfully logged in!');
   } else {
     // Handle invalid credentials
-    alert('Invalid email or password');
+    errorMessage.value = 'Invalid email or password';
+    startErrorTimeout();
   }
+};
+
+const startErrorTimeout = () => {
+  errorTimeout = setTimeout(() => {
+    errorMessage.value = '';
+  }, 5000); // 5 seconds
 };
 </script>
 
 
+
+
 <template>
+<div v-if="errorMessage" data-testid="error-message">{{ errorMessage }}</div>
   <div class="div">
     <div class="div-2">
       <img
@@ -80,7 +94,7 @@ const login = () => {
                 <div class="div-11">Please login to your Account</div>
 
 <div class="material-textfield">
-  <input placeholder=" " v-model="email" type="text">
+  <input data-testid="email" placeholder=" " v-model="email" type="text">
   <label>Email</label>
 </div>
 
@@ -95,11 +109,12 @@ const login = () => {
 </div>
 
 <div class="div-16">
-  <input @click="toggleVisibility" type="checkbox" class="div-17">{{ showPassword ? 'Hide' : 'Show' }} Password
+  <!-- <input data-testid="password" placeholder=" " v-model="password" :type="showPassword ? 'text' : 'password'" id="password"> -->
+  <input data-testid="password" @click="toggleVisibility" type="checkbox" class="div-17">{{ showPassword ? 'Hide' : 'Show' }} Password
   <input type="checkbox" class="div-17" v-model="rememberMe">Remember Me
 </div>
 
-<button type="button" class="div-19" @click="login">Log In</button>
+<button data-testid="login-button" type="button" class="div-19" @click="login">Log In</button>
 
                 
                 <a class="div-20" href="#open-modal">Create a New Account</a>
@@ -138,6 +153,7 @@ const login = () => {
       </div>
     </div>
   </div>
+  
 </template>
 
 

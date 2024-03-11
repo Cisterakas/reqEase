@@ -7,19 +7,17 @@ import { ref } from 'vue';
 
 const counters = ref([0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
+const limit = 2; // Define your limit here
 
 const increment = (index) => {
-  counters.value[index]++;
-  
+  if (counters.value[index] < limit) {
+    counters.value[index]++;
+  }
 };
 
 const decrement = (index) => {
-  if (counters.value[index]) {
+  if (counters.value[index] > 0) {
     counters.value[index]--;
-    ;
-  } else {
-    counters.value[index] = 0;
-    
   }
 };
 </script>

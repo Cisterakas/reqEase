@@ -12,11 +12,6 @@ import newNavbar from './newNavbar.vue';
         class="img"
       />
       <div class="div-3">
-        <!-- <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/6a124d43e8938cda54d70010235048f35600feec874f860685119cc657b8f732?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-          class="img"
-        /> -->
         <div class="div-4">
           <div class="div-5">
             <div class="div-6">

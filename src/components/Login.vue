@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+// import InputText from 'primevue/inputtext';
 
 const email = ref('');
 const password = ref('');
@@ -45,10 +46,9 @@ const startErrorTimeout = () => {
     errorMessage.value = '';
   }, 5000); // 5 seconds
 };
+
+
 </script>
-
-
-
 
 <template>
 <div v-if="errorMessage" data-testid="error-message">{{ errorMessage }}</div>
@@ -93,7 +93,7 @@ const startErrorTimeout = () => {
                 </div>
                 <div class="div-11">Please login to your Account</div>
 
-<div class="material-textfield">
+                <div class="material-textfield">
   <input data-testid="email" placeholder=" " v-model="email" type="text">
   <label>Email</label>
 </div>
@@ -155,8 +155,6 @@ const startErrorTimeout = () => {
   </div>
   
 </template>
-
-
 
 <style scoped>
 

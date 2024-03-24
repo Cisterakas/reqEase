@@ -117,7 +117,7 @@ const startErrorTimeout = () => {
 <button data-testid="login-button" type="button" class="div-19" @click="login">Log In</button>
 
                 
-                <a class="div-20" href="#open-modal">Create a New Account</a>
+                <a data-testid="account-button" class="div-20" href="#open-modal">Create a New Account</a>
 
               
 <div id="open-modal" class="modal-window">
@@ -130,8 +130,8 @@ const startErrorTimeout = () => {
       ><span style="color: rgba(229, 79, 112, 1)">ReqEase!</span>
     </div>
     <div class="div-3-">Please choose role to Create a New Account</div>
-    <router-link to="/regStudent" type="button" class="div-4-">As STUDENT</router-link>
-    <router-link to="/regAdmin" type="button" class="div-5-">As ADMIN</router-link>
+    <router-link data-testid="student-button" to="/regStudent" type="button" class="div-4-">As STUDENT</router-link>
+    <router-link data-testid="admin-button" to="/regAdmin" type="button" class="div-5-">As ADMIN</router-link>
   
     <a href="#" title="Close" class="div-6-">Go Back  </a>
    

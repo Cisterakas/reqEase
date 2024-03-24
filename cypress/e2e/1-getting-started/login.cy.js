@@ -1,6 +1,6 @@
 describe('Login Page', () => {
     beforeEach(() => {
-        cy.viewport(1280, 720)
+      cy.viewport(1920, 1080)
       // Visit the login page before each test
       cy.visit('http://localhost:5173/login');
     });
@@ -10,10 +10,10 @@ describe('Login Page', () => {
       cy.get('[data-testid=login-button]').click();
       // Verify if error message is displayed
       cy.get('[data-testid=error-message]').should('be.visible').and('contain.text', 'Please enter both email and password');
-      // Wait for 5 seconds to ensure error message disappears
+      // Wait for 5 seconds to ensure error message disappears   
       cy.wait(5000);
       // Verify if error message disappears
-      cy.get('[data-testid=error-message]').should('not.exist');
+      cy.get('[data-testid=error-message]').should('not.exist');  
     });
   
     it('should display error message for invalid username and valid password', () => {

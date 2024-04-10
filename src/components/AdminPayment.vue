@@ -14,6 +14,35 @@ const categories = ref([
 
 
   ]);
+import Toolbar from 'primevue/toolbar';
+  import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import Button from 'primevue/button';
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
+import InputText from 'primevue/inputtext';
+
+
+  import axios from 'axios';
+  const dt = ref(); // Define a ref for the DataTable component
+  const payments= ref([]);
+  const filters = ref({
+    'global': { value: null }
+  });
+  
+  const fetchPayments = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/payments/');
+      payments.value = response.data;
+    } catch (error) {
+      console.error('Error fetching payments:', error);
+    }
+  };
+  fetchPayments();
+  
+  const exportCSV = () => {
+  dt.value.exportCSV(); // Access the exportCSV method using the defined ref for DataTable
+};
 
 
 </script>
@@ -128,19 +157,34 @@ const categories = ref([
         
             <div class="div-46">
       
-              <div class="div-48">
-                <div class="input-group">
-  <div class="form-outline" data-mdb-input-init>
-    <input type="search" id="form1" class="form-control" />
-    <label class="form-label" for="form1">Search</label>
-  </div>
-  <button type="button" class="btn btn-warning" data-mdb-ripple-init>
-    <i class="fas fa-search"></i>
-  </button>
+      <div class="div-48">
+        <div class="input-group">
+<div class="form-outline" data-mdb-input-init>
+<InputText class="form-outline" v-model="filters['global'].value" placeholder="Search..." />
+
+</div>
 </div>
 
-              </div>
-            </div>
+      </div>
+      <button @click="exportCSV" type="button" class="btn btn-warning" data-mdb-ripple-init>
+        <i class="fas fa-download"></i>  Download Report</button>
+    </div>
+    <DataTable ref="dt" :value="payments" stripedRows tableStyle="min-width: 50rem" dataKey="id"
+                   :paginator="true" :rows="5" :filters="filters"
+                   paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
+                   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} accounts">
+        
+          <Column field="request_number" header="Request Number" sortable></Column>
+          <Column field="school_student_id" header="School ID" sortable></Column>
+          <Column field="full_name" header="Full Name" sortable></Column>
+          <Column field="document_names" header="Requested Document" sortable></Column>
+          <Column field="total_fee" header="Amount" sortable></Column>
+          <Column field="receipt_link" header="Receipts" sortable></Column>
+          <Column field="payment_date" header="Payment Date" sortable></Column>
+          <Column field="claiming_date" header="Claiming Date" sortable></Column>
+          <Column field="status" header="Status" sortable></Column>
+        
+        </DataTable>
 
 <div class="arrangement">
             <table class="table table-striped">

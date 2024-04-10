@@ -6,14 +6,44 @@ import Footer from "./Footer.vue";
 
 
 
-const categories = ref([
-    { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Admin", regDate: "11 / 06 / 23", status: "To be approve" },
-    { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Student", regDate: "11 / 06 / 23", status: "To be approve" },
-    { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Developer", regDate: "11 / 06 / 23", status: "To be approve" },
+// const categories = ref([
+//     { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Admin", regDate: "11 / 06 / 23", status: "To be approve" },
+//     { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Student", regDate: "11 / 06 / 23", status: "To be approve" },
+//     { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Developer", regDate: "11 / 06 / 23", status: "To be approve" },
 
 
-  ]);
+//   ]);
 
+
+  import Toolbar from 'primevue/toolbar';
+  import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import Button from 'primevue/button';
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
+import InputText from 'primevue/inputtext';
+
+
+  import axios from 'axios';
+  const dt = ref(); // Define a ref for the DataTable component
+  const newAccounts = ref([]);
+  const filters = ref({
+    'global': { value: null }
+  });
+  
+  const fetchNewAccounts = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/new_accounts/');
+      newAccounts.value = response.data;
+    } catch (error) {
+      console.error('Error fetching new accounts:', error);
+    }
+  };
+  fetchNewAccounts();
+  
+  const exportCSV = () => {
+  dt.value.exportCSV(); // Access the exportCSV method using the defined ref for DataTable
+};
 
 </script>
 
@@ -128,27 +158,42 @@ const categories = ref([
               <div class="div-48">
                 <div class="input-group">
   <div class="form-outline" data-mdb-input-init>
-    <input type="search" id="form1" class="form-control" />
-    <label class="form-label" for="form1">Search</label>
+    <InputText class="form-outline" v-model="filters['global'].value" placeholder="Search..." />
+    
   </div>
-  <button type="button" class="btn btn-warning" data-mdb-ripple-init>
-    <i class="fas fa-search"></i>
-  </button>
 </div>
 
               </div>
-              <button type="button" class="btn btn-warning" data-mdb-ripple-init>
+              <button @click="exportCSV" type="button" class="btn btn-warning" data-mdb-ripple-init>
                 <i class="fas fa-download"></i>  Download Report</button>
             </div>
-
+            <DataTable ref="dt" :value="newAccounts" stripedRows tableStyle="min-width: 50rem" dataKey="id"
+                   :paginator="true" :rows="5" :filters="filters"
+                   paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
+                   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} accounts">
+        
+          <Column field="student_school_id" header="Student School ID" sortable></Column>
+          <Column field="first_name" header="First Name" sortable></Column>
+          <Column field="middle_name" header="Middle Name" sortable></Column>
+          <Column field="last_name" header="Last Name" sortable></Column>
+          <Column field="suffix" header="Suffix" sortable></Column>
+          <Column field="degree" header="Degree" sortable></Column>
+          <Column field="email" header="Email" sortable></Column>
+          <Column field="registration_date" header="Registration Date" sortable></Column>
+          <Column field="role" header="Role" sortable></Column>
+          <Column field="account_approval_status" header="Approval Status" sortable></Column>
+        
+        </DataTable>
 <div class="arrangement">
             <table class="table table-striped">
           <thead>
             <tr>
+              <th>School ID</th>
               <th>First Name</th>
               <th>Middle Name</th>
               <th>Last Name</th>
               <th>Suffix</th>
+              <th>Degree</th>
               <th>Email</th>
               <th>Registration Date</th> 
               <th>Role</th>
@@ -159,33 +204,25 @@ const categories = ref([
           </thead>
           <tbody>
            
-            <tr v-for="category in categories" :key="category.id">
-              <td class="">{{ category.firstN }}</td>
-              <td class="">{{ category.middleN}}</td>
-              <td class="">{{ category.lastN }}</td>
-              <td class="">{{ category.suffix}}</td>
-              <td class="">{{ category.email }}</td>
-              <td class="">{{ category.regDate }}</td>
-              <td class="">{{ category.role }}</td>
-              
-              <td class="">
-                <button type="button" class="btn btn-outline-dark" data-mdb-ripple-init data-mdb-ripple-color="dark">view</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>approve</button>
-            </td>
+            <tr v-for="(account, index) in newAccounts" :key="index">
+              <td>{{ account.student_school_id }}</td>
+          <td>{{ account.first_name }}</td>
+          <td>{{ account.middle_name }}</td>
+          <td>{{ account.last_name }}</td>
+          <td>{{ account.suffix }}</td>
+          <td>{{ account.degree }}</td>
+          <td>{{ account.email }}</td>
+          <td>{{ account.registration_date }}</td>
+          <td>{{ account.role }}</td>
+          <td>{{ account.account_approval_status }}</td>
          
             </tr>
           </tbody>
         </table>
       </div>
         
-         
-        
-            <div class="div-98">
-                <button type="button" class="btn btn-warning" data-mdb-ripple-init>Sort Date</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Previous</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>next</button>
-              
-            </div>
+      <!-- <button type="button" class="btn btn-outline-dark" data-mdb-ripple-init data-mdb-ripple-color="dark">view</button>
+                <button type="button" class="btn btn-dark" data-mdb-ripple-init>approve</button> -->
           </div>
         </div>
       </div>
@@ -211,8 +248,7 @@ const categories = ref([
   min-height: auto;
   width: 100%;
   }
- 
-  
+
 
   tbody{
     width: auto;

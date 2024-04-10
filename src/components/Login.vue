@@ -1,7 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted} from 'vue';
 import { useRouter } from 'vue-router';
-// import InputText from 'primevue/inputtext';
+import axios from 'axios';
 
 const email = ref('');
 const password = ref('');
@@ -41,11 +41,31 @@ const login = () => {
   }
 };
 
+
+
+
 const startErrorTimeout = () => {
   errorTimeout = setTimeout(() => {
     errorMessage.value = '';
   }, 5000); // 5 seconds
 };
+
+
+const fetchUsers = async () => {
+  try {
+    const response = await fetch('http://127.0.0.1:8000/api/users');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+onMounted(() => {
+  fetchUsers();
+});
+
 
 
 </script>

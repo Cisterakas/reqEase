@@ -1,83 +1,101 @@
 <script setup>
+
+
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import InputText from "primevue/inputtext";
+import FloatLabel from "primevue/floatlabel";
+import Button from "primevue/button";
+import Card from "primevue/card";
+import axios from "axios";
 
-const password = ref("");
-const showPassword = ref(false);
-
-const toggleVisibility = () => {
-  showPassword.value = !showPassword.value;
-};
-
-// Reactive variables to store sample existing students and their credentials
-const existingStudents = ref([
-  {
-    id: 1,
-    email: 'student1@example.com',
-    password: 'password1',
-    firstName: 'John',
-    lastName: 'Doe',
-    middleName: 'Middle',
-    suffix: 'Jr',
-    address: '123 Main St',
-    contactNumber: '1234567890',
-    lastSchoolYearAttended: '2023',
-    degree: 'Computer Science',
-    schoolId: '12345678',
-    // Add more fields as needed
-  },
-  {
-    id: 2,
-    email: 'student2@example.com',
-    password: 'password2',
-    firstName: 'Jane',
-    lastName: 'Doe',
-    middleName: 'Anne',
-    suffix: '',
-    address: '456 Elm St',
-    contactNumber: '9876543210',
-    lastSchoolYearAttended: '2022',
-    degree: 'Engineering',
-    schoolId: '87654321',
-    // Add more fields as needed
-  },
-  // Add more sample student data as needed
-]);
-// Reactive variables to store login form data
-const formData = ref({
+const newUser = ref({
+  student_school_id: "",
+  first_name: "",
+  middle_name: "",
+  last_name: "",
+  suffix: "",
+  address: "",
+  contact: "",
+  last_school_year: "",
+  degree: "",
   email: "",
   password: "",
 });
 
-// Reactive variable to store error messages
+const password = ref("");
+const showPassword = ref(false);
+const toggleVisibility = () => {
+ showPassword.value = !showPassword.value;
+ };
+const loading = ref(false);
+const error = ref(null);
+const success = ref(false);
+
 const errorMessage = ref("");
 const submitButtonActive = ref(false);
 
-// Function to check if an email already exists
-const isExistingEmail = (email) => {
-  return existingStudents.value.some((student) => student.email === email);
+const checkEmailExists = async (email) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/api/addusers/email-exists/?email=${email}`);
+    return response.data.email_exists;
+  } catch (error) {
+    console.error('Error checking email existence:', error);
+    return false;
+  }
 };
 
-// Function to find a student by email
-const findStudentByEmail = (email) => {
-  return existingStudents.value.find((student) => student.email === email);
+const checkStudentSchoolIdExists = async (studentSchoolId) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/api/addusers/student-school-id-exists/?student_school_id=${studentSchoolId}`);
+    return response.data.student_school_id_exists;
+  } catch (error) {
+    console.error('Error checking student school ID existence:', error);
+    return false;
+  }
 };
 
-// Function to handle form submission
-const handleSubmit = () => {
-  const { email, password, schoolId, firstName, lastName, middleName, address, contactNumber, lastSchoolYearAttended, degree } = formData.value;
-  if (!email || !password || !schoolId || !firstName || !lastName || !middleName || !address || !contactNumber || !lastSchoolYearAttended || !degree ) {
+const handleSubmit = async () => {
+  const { student_school_id, first_name, middle_name, last_name, suffix, address, contact, last_school_year, degree, email, password } = newUser.value;
+
+  if (!email || !password || !student_school_id || !first_name || !last_name || !address || !contact || !last_school_year || !degree) {
     errorMessage.value = "Please fill in all fields.";
     return;
   }
 
-  if (isExistingEmail(email)) {
+  const emailExists = await checkEmailExists(email);
+  if (emailExists) {
     errorMessage.value = "Account with this email already exists.";
     submitButtonActive.value = false;
     return;
   }
+
+  const studentSchoolIdExists = await checkStudentSchoolIdExists(student_school_id);
+  if (studentSchoolIdExists) {
+    errorMessage.value = "Student with this school ID already exists.";
+    submitButtonActive.value = false;
+    return;
+  }
   errorMessage.value = "Click Submit button.";
-  submitButtonActive.value = true; // Activate submit button
+  submitButtonActive.value = true; 
+  submitForm();
+};
+
+const submitForm = async () => {
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/addusers/', newUser.value, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+      }
+    });
+    errorMessage.value = "";
+    success.value = true;
+    submitButtonActive.value = true;
+  } catch (error) {
+    console.error('Error adding user:', error);
+    errorMessage.value = 'Failed to add user. Please try again later.';
+    submitButtonActive.value = false;
+  }
 };
 </script>
 
@@ -156,140 +174,97 @@ const handleSubmit = () => {
                     </ul>
                   </div>
                 </div>
-                <form @submit.prevent="handleSubmit">
-                  <div class="material-textfield1">
-  <input
-    id="schoolId"
-    placeholder=" "
-    type="text"
-    v-model="formData.schoolId"
-  />
-  <label for="schoolId">School ID</label>
-</div>
-<div class="material-textfield">
-  <input
-    id="firstName"
-    placeholder=" "
-    type="text"
-    v-model="formData.firstName"
-  />
-  <label for="firstName">First Name</label>
-</div>
-<div class="material-textfield">
-  <input
-    id="lastName"
-    placeholder=" "
-    type="text"
-    v-model="formData.lastName"
-  />
-  <label for="lastName">Last Name</label>
-</div>
-<div class="material-textfield">
-  <input
-    id="middleName"
-    placeholder=" "
-    type="text"
-    v-model="formData.middleName"
-  />
-  <label for="middleName">Middle Name</label>
-</div>
-<div class="material-textfield">
-  <input
-    id="suffix"
-    placeholder=" "
-    type="text"
-    v-model="formData.suffix"
-  />
-  <label for="suffix">Suffix <b>(optional)</b></label>
-</div>
-<div class="material-textfield">
-  <input
-    id="address"
-    placeholder=" "
-    type="text"
-    v-model="formData.address"
-  />
-  <label for="address">Address</label>
-</div>
-<div class="material-textfield">
-  <input
-    id="contactNumber"
-    placeholder=" "
-    type="text"
-    v-model="formData.contactNumber"
-  />
-  <label for="contactNumber">Contact Number</label>
-</div>
-<div class="material-textfield">
-  <input
-    id="lastSchoolYearAttended"
-    placeholder=" "
-    type="text"
-    v-model="formData.lastSchoolYearAttended"
-  />
-  <label for="lastSchoolYearAttended">Last School Year Attended</label>
-</div>
-<div class="material-textfield">
-  <input
-    id="degree"
-    placeholder=" "
-    type="text"
-    v-model="formData.degree"
-  />
-  <label for="degree">Degree</label>
-</div>
-<div class="material-textfield1">
-  <input
-    id="email"
-    placeholder=" "
-    type="text"
-    v-model="formData.email"
-  />
-  <label for="email">Email Address</label>
-</div>
-<div class="material-textfield">
-  <input
-    id="password"
-    placeholder=" "
-    v-model="formData.password"
-    :type="showPassword ? 'text' : 'password'"
-  />
-  <label for="password">Password</label>
-</div>
+                <form @submit.prevent="addUser">
+                  <form>
+                    <div class="material-textfield1">
+                    
+                      <input placeholder=" " id="student_school_id" v-model="newUser.student_school_id"/>
+                      <label for="schoolId">School ID</label>
+                    </div>
+                    <div class="material-textfield">
+                      <input placeholder=" " id="first_name" v-model="newUser.first_name"/>
+                      <label for="firstName">First Name</label>
+                    </div>
+                    <div class="material-textfield">
+                      <input placeholder=" " id="last_name" v-model="newUser.last_name"/>
+                      <label for="lastName">Last Name</label>
+                    </div>
+                    <div class="material-textfield">
+                      <input placeholder=" " id="middle_name" v-model="newUser.middle_name"/>
+                      <label for="middleName">Middle Name</label>
+                    </div>
+                    <div class="material-textfield">
+                      <input placeholder=" " id="suffix" v-model="newUser.suffix"/>
+                      <label for="suffix">Suffix <b>(optional)</b></label>
+                    </div>
+                    <div class="material-textfield">
+                      <input placeholder=" " id="address" v-model="newUser.address"/>
+                      <label for="address">Address</label>
+                    </div>
+                    <div class="material-textfield">
+                      <input placeholder=" " id="contact" v-model="newUser.contact"/>
+                      <label for="contactNumber">Contact Number</label>
+                    </div>
+                    <div class="material-textfield">
+                      <input placeholder=" " id="last_school_year" v-model="newUser.last_school_year"/>
+                      <label for="lastSchoolYearAttended"
+                        >Last School Year Attended</label
+                      >
+                    </div>
+                    <div class="material-textfield">
+                      <input placeholder=" " id="degree" v-model="newUser.degree"/>
+                      <label for="degree">Degree</label>
+                    </div>
+                    <div class="material-textfield1">
+                      <input placeholder=" " id="email" v-model="newUser.email"/>           
+                      <label for="email">Email Address</label>
+                    </div>
+                    <div class="material-textfield">
+                      <input
+                        id="password"
+                        placeholder=" "
+                        v-model="newUser.password"
+                        :type="showPassword ? 'text' : 'password'"
+                      />
+                      <label for="password">Password</label>
+                    </div>
+                  </form>
+                  <div class="div-16-">
+                    <input
+                      @click="toggleVisibility"
+                      type="checkbox"
+                      class="div-17-"
+                    />{{ showPassword ? "Hide" : "Show" }} Password
+                  </div>
+                  <div style="color: red" class="error-message">
+                    {{ errorMessage }}
+                  </div>
+                  <div v-if="loading">Adding user...</div>
+                  <div v-if="error" style="color: red">{{ error }}</div>
+                  <div v-if="success">User added successfully!</div>
 
+                  <div class="div-33">
+                    <router-link to="/login" type="button" class="div-34"
+                      >Back</router-link
+                    >
+                    <button
+                      id="create-button"
+                      class="div-34"
+                      @click="handleSubmit"
+                      :disabled="submitButtonActive"
+                    >
+                      Create
+                    </button>
+                    <a
+                      id="submit-button"
+                      class="div-35"
+                      href="#open-modal"
+                      v-show="submitButtonActive"
+                      type="submit"
+                      >Submit</a
+                    >
+                  </div>
                 </form>
-                <div class="div-16-">
-                  <input
-                    @click="toggleVisibility"
-                    type="checkbox"
-                    class="div-17-"
-                  />{{ showPassword ? "Hide" : "Show" }} Password
-                </div>
-                <div style="color: red" class="error-message">
-                  {{ errorMessage }}
-                </div>
-
-                <div class="div-33">
-                  <router-link to="/login" type="button" class="div-34"
-                    >Back</router-link
-                  >
-                  <button
-                    id="create-button"
-                    class="div-34"
-                    @click="handleSubmit"
-                    :disabled="submitButtonActive"
-                  >
-                    Create
-                  </button>
-                  <a
-                    id="submit-button"
-                    class="div-35"
-                    href="#open-modal"
-                    v-show="submitButtonActive"
-                    >Submit</a
-                  >
-                </div>
-
                 <div id="open-modal" class="modal-window">
                   <div>
                     <!-- Your Modal Content Goes Here -->
@@ -321,7 +296,11 @@ const handleSubmit = () => {
                           in order for you to LOG IN</span
                         >
                       </div>
-                      <router-link id="done-button" to="/" type="button" class="div-3-"
+                      <router-link
+                        id="done-button"
+                        to="/"
+                        type="button"
+                        class="div-3-"
                         >DONE</router-link
                       >
                     </div>

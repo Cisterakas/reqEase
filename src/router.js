@@ -20,6 +20,11 @@ import AdminAcc from './components/AdminAccount.vue';
 import AdminHistory from './components/AdminHistory.vue';
 import AdminFeed from './components/AdminFeedback.vue';
 
+import ReqDocS from './components/ReqDocS.vue';
+import LoginC from './components/Logincopy.vue';
+import NewAccounts from './components/aanewaccount.vue';
+import NewStudent from './components/aaaddaccount.vue';
+import NewAdmin from './components/aaaddadmin.vue';
 const routes = [
     { path: '/', component: Home },
     { path: '/category', component: Category },
@@ -41,6 +46,11 @@ const routes = [
     { path: '/adminA', component: AdminAcc },
     { path: '/adminHy', component: AdminHistory },
     { path: '/adminF', component: AdminFeed },
+    { path: '/requestdocs', component: ReqDocS},
+    { path: '/loginC', component: LoginC},
+    { path: '/aanewAcc', component: NewAccounts},
+    { path: '/aaaddAcc', component: NewStudent},
+    { path: '/aaaddAdmin', component: NewAdmin}
 ];
 
 const router = createRouter({

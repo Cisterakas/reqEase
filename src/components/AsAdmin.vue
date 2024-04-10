@@ -1,78 +1,181 @@
 <script setup>
-import { ref } from "vue";
+// import { ref } from "vue";
 
-const password = ref("");
+// const password = ref("");
+// const showPassword = ref(false);
+
+// const toggleVisibility = () => {
+//   showPassword.value = !showPassword.value;
+// };
+
+// const existingAdmins = ref([
+//   {
+//     id: 1,
+//     email: "admin2@uic.edu.ph",
+//     password: "admin456",
+//     firstName: "Juvenile Christen",
+//     lastName: "Bajo",
+//     middleName: "Lanticse",
+//     suffix: "",
+//     role: "Administrator",
+//     // Add more fields as needed
+//   },
+//   {
+//     id: 2,
+//     email: "admin1@uic.edu.ph",
+//     password: "admin123",
+//     firstName: "John",
+//     lastName: "Doe",
+//     middleName: "Middle",
+//     suffix: "Jr",
+//     role: "Registrar",
+//     // Add more fields as needed
+//   },
+//   // Add more sample student data as needed
+// ]);
+
+// // Reactive variables to store form data
+// const formData = ref({
+//   email: "",
+//   password: "",
+//   firstName: "",
+//   lastName: "",
+//   middleName: "",
+//   suffix: "",
+//   role: "", // Added role field
+// });
+
+// // Reactive variable to store error messages
+// const errorMessage = ref("");
+// const submitButtonActive = ref(false);
+
+// // Function to check if an email already exists
+// const isExistingEmail = (email) => {
+//   return existingAdmins.value.some((admin) => admin.email === email);
+// };
+
+// // Function to handle form submission
+// const handleSubmit = () => {
+//   const { email, password, firstName, lastName, role } =
+//     formData.value;
+//   if (!email || !password || !firstName || !lastName || !role) {
+//     errorMessage.value = "Please fill in all fields.";
+//     submitButtonActive.value = false;
+//     return;
+//   }
+
+//   if (isExistingEmail(email)) {
+//     errorMessage.value = "Account with this email already exists.";
+//     submitButtonActive.value = false;
+//     return;
+//   }
+
+//   errorMessage.value = "Click Submit button.";
+//   submitButtonActive.value = true; // Activate submit button
+// };
+
+import { ref } from 'vue';
+  import InputText from 'primevue/inputtext';
+import FloatLabel from 'primevue/floatlabel';
+import Button from 'primevue/button';
+import Card from 'primevue/card';
+  import axios from 'axios';
+  
+  const newAdminUser = ref({
+    first_name: '',
+    middle_name: '',
+    last_name: '',
+    suffix: '',
+    email: '',
+    password: '',
+    role: ''
+  });
+  const password = ref("");
 const showPassword = ref(false);
-
 const toggleVisibility = () => {
-  showPassword.value = !showPassword.value;
-};
+ showPassword.value = !showPassword.value;
+ };
+const loading = ref(false);
+const error = ref(null);
+const success = ref(false);
 
-const existingAdmins = ref([
-  {
-    id: 1,
-    email: "admin2@uic.edu.ph",
-    password: "admin456",
-    firstName: "Juvenile Christen",
-    lastName: "Bajo",
-    middleName: "Lanticse",
-    suffix: "",
-    role: "Administrator",
-    // Add more fields as needed
-  },
-  {
-    id: 2,
-    email: "admin1@uic.edu.ph",
-    password: "admin123",
-    firstName: "John",
-    lastName: "Doe",
-    middleName: "Middle",
-    suffix: "Jr",
-    role: "Registrar",
-    // Add more fields as needed
-  },
-  // Add more sample student data as needed
-]);
-
-// Reactive variables to store form data
-const formData = ref({
-  email: "",
-  password: "",
-  firstName: "",
-  lastName: "",
-  middleName: "",
-  suffix: "",
-  role: "", // Added role field
-});
-
-// Reactive variable to store error messages
 const errorMessage = ref("");
 const submitButtonActive = ref(false);
 
-// Function to check if an email already exists
-const isExistingEmail = (email) => {
-  return existingAdmins.value.some((admin) => admin.email === email);
+const checkEmailExists = async (email) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/api/addusers/email-exists/?email=${email}`);
+    return response.data.email_exists;
+  } catch (error) {
+    console.error('Error checking email existence:', error);
+    return false;
+  }
 };
+const handleSubmit = async () => {
+  const { first_name, middle_name, last_name, suffix, email, password, role } = newAdminUser.value;
 
-// Function to handle form submission
-const handleSubmit = () => {
-  const { email, password, firstName, lastName, middleName, role } =
-    formData.value;
-  if (!email || !password || !firstName || !lastName || !middleName || !role) {
+  if (!email || !password || !first_name || !last_name || !role) {
     errorMessage.value = "Please fill in all fields.";
-    submitButtonActive.value = false;
     return;
   }
 
-  if (isExistingEmail(email)) {
+  const emailExists = await checkEmailExists(email);
+  if (emailExists) {
     errorMessage.value = "Account with this email already exists.";
     submitButtonActive.value = false;
     return;
   }
 
   errorMessage.value = "Click Submit button.";
-  submitButtonActive.value = true; // Activate submit button
+  submitButtonActive.value = true; 
+  submitForm();
 };
+  
+const submitForm = async () => {
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/addadminusers/', newAdminUser.value, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
+      }
+    });
+    errorMessage.value = "";
+    success.value = true;
+    submitButtonActive.value = true;
+  } catch (error) {
+    console.error('Error adding admin user:', error);
+    errorMessage.value = 'Failed to add admin user. Please try again later.';
+    submitButtonActive.value = false;
+  }
+};
+  // const addAdminUser = async () => {
+  //   loading.value = true;
+  //   error.value = null;
+  //   success.value = false;
+  //   try {
+  //     await axios.post('http://127.0.0.1:8000/api/addadminusers/', newAdminUser.value, {
+  //       headers: {
+  //         'Content-Type': 'application/x-www-form-urlencoded',
+  //         'Accept': 'application/json'
+  //       }
+  //     });
+  //     success.value = true;
+  //     newAdminUser.value = { 
+  //       first_name: '',
+  //       middle_name: '',
+  //       last_name: '',
+  //       suffix: '',
+  //       email: '',
+  //       password: '',
+  //       role: ''
+  //     }; // Reset form fields after successful submission
+  //   } catch (err) {
+  //     console.error('Error adding admin user:', err);
+  //     error.value = 'Failed to add admin user. Please try again later.';
+  //   } finally {
+  //     loading.value = false;
+  //   }
+  // };
 </script>
 
 <template>
@@ -149,57 +252,32 @@ const handleSubmit = () => {
                     </ul>
                   </div>
                 </div>
-
-                <form @submit.prevent="handleSubmit">
+                <form @submit.prevent="addAdminUser">
+                <form>
                   <div class="material-textfield1">
-                    <input
-                    id="firstName"
-                      placeholder=" "
-                      type="text"
-                      v-model="formData.firstName"
-                    />
+                    <input placeholder=" " id="firstName" v-model="newAdminUser.first_name"/>
                     <label for="firstName">First Name</label>
                   </div>
                   <div class="material-textfield">
-                    <input
-                    id="lastName"
-                      placeholder=" "
-                      type="text"
-                      v-model="formData.lastName"
-                    />
+                    <input placeholder=" " id="lastName" v-model="newAdminUser.last_name"/>
                     <label for="lastName">Last Name</label>
                   </div>
                   <div class="material-textfield">
-                    <input
-                    id="middleName"
-                      placeholder=" "
-                      type="text"
-                      v-model="formData.middleName"
-                    />
+                    <input placeholder=" " id="middleName" v-model="newAdminUser.middle_name"/>
                     <label for="middleName">Middle Name</label>
                   </div>
                   <div class="material-textfield">
-                    <input
-                    id="suffix"
-                      placeholder=" "
-                      type="text"
-                      v-model="formData.suffix"
-                    />
+                    <input placeholder=" " id="suffix" v-model="newAdminUser.suffix"/>
                     <label for="suffix">Suffix <b>(optional)</b></label>
                   </div>
                   <div class="material-textfield">
-                    <input
-                   id="email"
-                      placeholder=" "
-                      type="text"
-                      v-model="formData.email"
-                    />
+                    <input placeholder=" " id="email" v-model="newAdminUser.email"/>
                     <label for="email">Email Address</label>
                   </div>
                   <div class="material-textfield">
                     <input
                       placeholder=" "
-                      v-model="formData.password"
+                      v-model="newAdminUser.password"
                       :type="showPassword ? 'text' : 'password'"
                       id="password"
                     />
@@ -213,18 +291,16 @@ const handleSubmit = () => {
                     />{{ showPassword ? "Hide" : "Show" }} Password
                   </div>
                   <div class="material-textfield">
-                    <input
-                    id="role"
-                      placeholder=" "
-                      type="text"
-                      v-model="formData.role"
-                    />
+                    <input placeholder=" " id="role" v-model="newAdminUser.role"/>
                     <label for="role">Role</label>
                   </div>
                 </form>
                 <div style="color: red" class="error-message">
                   {{ errorMessage }}
                 </div>
+                <div v-if="loading">Adding user...</div>
+                  <div v-if="error" style="color: red">{{ error }}</div>
+                  <div v-if="success">User added successfully!</div>
 
                 <div class="div-33">
                   <router-link to="/login" type="button" class="div-34"
@@ -246,7 +322,7 @@ const handleSubmit = () => {
                     >Submit</a
                   >
                 </div>
-
+              </form>
                 <div id="open-modal" class="modal-window">
                   <div>
                     <!-- Your Modal Content Goes Here -->

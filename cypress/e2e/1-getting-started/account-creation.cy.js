@@ -40,18 +40,17 @@ describe('Account Creation Page', () => {
   
     it('should register user successfully and display approval message', () => {
       // Fill the form with valid details
-      cy.get('#schoolId').type('123456');
-      cy.get('#firstName').type('New');
-      cy.get('#lastName').type('User');
-      cy.get('#middleName').type('Middle');
+      cy.get('#student_school_id').type('123456');
+      cy.get('#first_name').type('New');
+      cy.get('#last_name').type('User');
+      cy.get('#middle_name').type('Middle');
       cy.get('#suffix').type('Jr');
       cy.get('#address').type('123 Main St');
-      cy.get('#contactNumber').type('1234567890');
-      cy.get('#lastSchoolYearAttended').type('2022');
+      cy.get('#contact').type('1234567890');
+      cy.get('#last_school_year').type('2022');
       cy.get('#degree').type('BSc');
       cy.get('#email').type('newuser@example.com');
       cy.get('#password').type('password123');
-    
       // Submit the form
       cy.get('#create-button').click();
       cy.get('#submit-button').click();
@@ -63,16 +62,16 @@ describe('Account Creation Page', () => {
     
     it('should display error message for existing email', () => {
       // Fill the form with existing email
-      cy.get('#schoolId').type('123456');
-      cy.get('#firstName').type('John');
-      cy.get('#lastName').type('Doe');
-      cy.get('#middleName').type('Middle');
+      cy.get('#student_school_id').type('654321');
+      cy.get('#first_name').type('New');
+      cy.get('#last_name').type('User');
+      cy.get('#middle_name').type('Middle');
       cy.get('#suffix').type('Jr');
       cy.get('#address').type('123 Main St');
-      cy.get('#contactNumber').type('1234567890');
-      cy.get('#lastSchoolYearAttended').type('2022');
+      cy.get('#contact').type('1234567890');
+      cy.get('#last_school_year').type('2022');
       cy.get('#degree').type('BSc');
-      cy.get('#email').type('student1@example.com');
+      cy.get('#email').type('newuser@example.com');
       cy.get('#password').type('password123');
     
       // Submit the form
@@ -101,7 +100,7 @@ describe('Account Creation Page', () => {
       cy.get('#lastName').type('User');
       cy.get('#middleName').type('Middle');
       cy.get('#suffix').type('Jr');
-      cy.get('#email').type('newuser@example.com');
+      cy.get('#email').type('newadmin@example.com');
       cy.get('#password').type('password123');
       cy.get('#role').type('Registrar');
     
@@ -119,7 +118,7 @@ describe('Account Creation Page', () => {
       cy.get('#firstName').type('Juvenile Christen');
       cy.get('#lastName').type('Bajo');
       cy.get('#middleName').type('Lanticse');
-      cy.get('#email').type('admin2@uic.edu.ph');
+      cy.get('#email').type('newadmin@example.com');
       cy.get('#password').type('password123');
       cy.get('#role').type('Registrar');
     

@@ -115,13 +115,9 @@ import VirtualScroller from 'primevue/virtualscroller';
 
 
 const app = createApp(App);
-app.use(PrimeVue);
-
-app.use(PrimeVue, { ripple: true  });
 app.use(ConfirmationService);
 app.use(ToastService);
 app.use(DialogService);
-app.use(router);
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);

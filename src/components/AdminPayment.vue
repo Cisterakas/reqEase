@@ -32,7 +32,7 @@ import InputText from 'primevue/inputtext';
   
   const fetchPayments = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/payments/');
+      const response = await axios.get('https://reqease-fastapi.vercel.app/api/payments/');
       payments.value = response.data;
     } catch (error) {
       console.error('Error fetching payments:', error);

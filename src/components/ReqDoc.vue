@@ -145,14 +145,16 @@ const decrement = (index) => {
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                       class="img-4"
+                      id="row1decrement"
                       @click="decrement(0)"
                     />
-                    <div class="div-63">{{ counters[0] }}</div>
+                    <div class="div-63" id="row1qty">{{ counters[0] }}</div>
                     <img
                       type="button"
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                       class="img-5"
+                      id="row1increment"
                       @click="increment(0)"
                     />
                   </div>
@@ -748,6 +750,12 @@ appropriate disposition.
   
   
   <style scoped>
+  .button-with-image {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
     .div-197 {
     
     font: 275 15px Poppins, sans-serif;

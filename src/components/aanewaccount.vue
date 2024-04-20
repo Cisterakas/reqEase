@@ -23,7 +23,7 @@
           </div>
         </template>
 
-        <Column field="student_school_id" header="Student School ID" sortable></Column>
+        <Column class="col1" field="student_school_id" header="Student School ID" sortable></Column>
         <Column field="first_name" header="First Name" sortable></Column>
         <Column field="middle_name" header="Middle Name" sortable></Column>
         <Column field="last_name" header="Last Name" sortable></Column>
@@ -121,7 +121,7 @@ const originalAccount = ref({});
 
 const fetchNewAccounts = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/new_accounts/');
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/new_accounts/');
     newAccounts.value = response.data;
   } catch (error) {
     console.error('Error fetching new accounts:', error);
@@ -188,5 +188,10 @@ const toggleApprovalStatus = () => {
 </script>
 
 <style scoped>
-/* Add your custom styles here */
+.datatable-header {
+  background-color: #000000; /* Header background color */
+  color: #333; /* Header text color */
+  font-weight: bold; /* Header text font weight */
+  padding: 10px; /* Header padding */
+}
 </style>

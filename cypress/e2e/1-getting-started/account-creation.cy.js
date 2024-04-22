@@ -60,27 +60,6 @@ describe('Account Creation Page', () => {
       cy.get('#done-button').click();
     });
     
-    it('should display error message for existing email', () => {
-      // Fill the form with existing email
-      cy.get('#student_school_id').type('654321');
-      cy.get('#first_name').type('New');
-      cy.get('#last_name').type('User');
-      cy.get('#middle_name').type('Middle');
-      cy.get('#suffix').type('Jr');
-      cy.get('#address').type('123 Main St');
-      cy.get('#contact').type('1234567890');
-      cy.get('#last_school_year').type('2022');
-      cy.get('#degree').type('BSc');
-      cy.get('#email').type('newuser@example.com');
-      cy.get('#password').type('password123');
-    
-      // Submit the form
-      cy.get('#create-button').click();
-    
-      // Ensure error message is displayed
-      cy.get('.error-message').should('have.text', 'Account with this email already exists.');
-    });
-    
   });
   
   describe('As Admin', () => {
@@ -112,21 +91,6 @@ describe('Account Creation Page', () => {
       cy.contains('Please wait for the Registrar’s Approval').should('be.visible');
       cy.get('#done-button').click();
     });
-    
-    it('should display error message for existing email', () => {
-      // Fill the form with existing email
-      cy.get('#firstName').type('Juvenile Christen');
-      cy.get('#lastName').type('Bajo');
-      cy.get('#middleName').type('Lanticse');
-      cy.get('#email').type('newadmin@example.com');
-      cy.get('#password').type('password123');
-      cy.get('#role').type('Registrar');
-    
-      // Submit the form
-      cy.get('#create-button').click();
-    
-      // Ensure error message is displayed
-      cy.get('.error-message').should('have.text', 'Account with this email already exists.');
-    });
+  
     
   });

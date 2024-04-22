@@ -104,7 +104,7 @@ const submitButtonActive = ref(false);
 
 const checkEmailExists = async (email) => {
   try {
-    const response = await axios.get(`hhttps://reqease-fastapi.vercel.app/api/addusers/email-exists/?email=${email}`);
+    const response = await axios.get(`https://reqease-fastapi.vercel.app/api/addusers/email-exists/?email=${email}`);
     return response.data.email_exists;
   } catch (error) {
     console.error('Error checking email existence:', error);

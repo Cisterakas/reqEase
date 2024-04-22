@@ -9,7 +9,7 @@ describe('As Admin', () => {
       cy.get('#firstName').type('Juvenile Christen');
       cy.get('#lastName').type('Bajo');
       cy.get('#middleName').type('Lanticse');
-      cy.get('#email').type('newadmin@example.com');
+      cy.get('#email').type('jbajo_220000001294@uic.edu.ph');
       cy.get('#password').type('password123');
       cy.get('#role').type('Registrar');
     

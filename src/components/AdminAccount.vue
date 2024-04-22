@@ -5,16 +5,6 @@ import newNavbar from "./newNavbar.vue";
 import Footer from "./Footer.vue";
 
 
-
-// const categories = ref([
-//     { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Admin", regDate: "11 / 06 / 23", status: "To be approve" },
-//     { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Student", regDate: "11 / 06 / 23", status: "To be approve" },
-//     { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Developer", regDate: "11 / 06 / 23", status: "To be approve" },
-
-
-//   ]);
-
-
   import Toolbar from 'primevue/toolbar';
   import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
@@ -45,6 +35,18 @@ import InputText from 'primevue/inputtext';
   dt.value.exportCSV(); // Access the exportCSV method using the defined ref for DataTable
 };
 
+const approveAccount = async (userId) => {
+  try {
+    const approvalDate = new Date();
+    const formattedApprovalDate = approvalDate.toISOString().split('T')[0]; // format the date as "YYYY-MM-DD"
+    const response = await axios.put(`https://reqease-fastapi.vercel.app/api/new_accounts/${userId}/approve?approval_date=${formattedApprovalDate}`, {
+      approved: 'TRUE'
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.error('Error approving account:', error.response.data.detail);
+  }
+};
 </script>
 
 <template>
@@ -171,7 +173,7 @@ import InputText from 'primevue/inputtext';
                    :paginator="true" :rows="5" :filters="filters"
                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} accounts">
-        
+                   <Column field="user_id" header="User ID" sortable></Column> <!-- Add this line for user_id column -->
           <Column field="student_school_id" header="Student School ID" sortable></Column>
           <Column field="first_name" header="First Name" sortable></Column>
           <Column field="middle_name" header="Middle Name" sortable></Column>
@@ -182,6 +184,11 @@ import InputText from 'primevue/inputtext';
           <Column field="registration_date" header="Registration Date" sortable></Column>
           <Column field="role" header="Role" sortable></Column>
           <Column field="account_approval_status" header="Approval Status" sortable></Column>
+          <Column header="Approve">
+        <template #body="slotProps">
+            <Button icon="pi pi-check" class="p-button-rounded p-button-success" @click="approveAccount(slotProps.data.user_id)" />
+        </template>
+    </Column>
         
         </DataTable>
 <div class="arrangement">

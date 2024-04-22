@@ -190,7 +190,7 @@ const toggleApprovalStatus = () => {
 <style scoped>
 .datatable-header {
   background-color: #000000; /* Header background color */
-  color: #333; /* Header text color */
+  color: #ff0707; /* Header text color */
   font-weight: bold; /* Header text font weight */
   padding: 10px; /* Header padding */
 }

@@ -15,7 +15,7 @@
       cy.get('#contact').type('1234567890');
       cy.get('#last_school_year').type('2022');
       cy.get('#degree').type('BSc');
-      cy.get('#email').type('newuser@example.com');
+      cy.get('#email').type('jcister_220000001482@uic.edu.ph');
       cy.get('#password').type('password123');
     
       // Submit the form

@@ -137,7 +137,7 @@ import { ref } from 'vue';
                   class="img-17"
                 />
                 <div class="div-21">Yukihiro Galope Gamale</div>
-                <div class="div-22">UI / UX Designer</div>
+                <div class="div-22">Documenter</div>
               </div>
               <div class="div-11">
                 <a class="btn text-white" data-mdb-ripple-init style="background-color: #333333;" href="https://github.com/HiroG0" target="_blank">

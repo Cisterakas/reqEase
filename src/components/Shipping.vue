@@ -269,7 +269,10 @@ const handleImageUpload = (event) => {
                   government-issued IDs)<br
                 /></span>
               </div>
-              
+              <div class="material-textfield">
+              <input placeholder=" " type="text" class="info"/>
+              <label>Paste your link here</label>
+            </div>
               <div class="div-35">
                 
                 

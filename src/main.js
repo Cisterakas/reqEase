@@ -226,8 +226,9 @@ app.component('TriStateCheckbox', TriStateCheckbox);
 app.component('VirtualScroller', VirtualScroller);
 
 // createApp(App).mount('#app')
+app.use(router);
 createApp(App)
     .use(router)
-    .use(PrimeVue, { ripple: true})
+    .use(PrimeVue, { ripple: true}, { unstyled: true })
     .mount('#app')
 

@@ -23,7 +23,7 @@ import InputText from 'primevue/inputtext';
   
   const fetchNewAccounts = async () => {
     try {
-      const response = await axios.get('https://reqease-fastapi.vercel.app/api/new_accounts/');
+      const response = await axios.get('http://127.0.0.1:8000/api/new_accounts/');
       newAccounts.value = response.data;
     } catch (error) {
       console.error('Error fetching new accounts:', error);
@@ -39,7 +39,7 @@ const approveAccount = async (userId) => {
   try {
     const approvalDate = new Date();
     const formattedApprovalDate = approvalDate.toISOString().split('T')[0]; // format the date as "YYYY-MM-DD"
-    const response = await axios.put(`https://reqease-fastapi.vercel.app/api/new_accounts/${userId}/approve?approval_date=${formattedApprovalDate}`, {
+    const response = await axios.put(`http://127.0.0.1:8000/api/new_accounts/${userId}/approve?approval_date=${formattedApprovalDate}`, {
       approved: 'TRUE'
     });
     console.log(response.data);
@@ -169,7 +169,9 @@ const approveAccount = async (userId) => {
               <button @click="exportCSV" type="button" class="btn btn-warning" data-mdb-ripple-init>
                 <i class="fas fa-download"></i>  Download Report</button>
             </div>
-            <DataTable id="dtable" ref="dt" :value="newAccounts" stripedRows tableStyle="min-width: 50rem" dataKey="id"
+            <DataTable id="dtable" :pt="{
+        table: 'table table-striped',
+      }" ref="dt" :value="newAccounts" stripedRows tableStyle="min-width: 50rem" dataKey="id"
                    :paginator="true" :rows="5" :filters="filters"
                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} accounts">

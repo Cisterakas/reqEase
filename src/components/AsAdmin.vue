@@ -104,7 +104,7 @@ const submitButtonActive = ref(false);
 
 const checkEmailExists = async (email) => {
   try {
-    const response = await axios.get(`https://reqease-fastapi.vercel.app/api/addusers/email-exists/?email=${email}`);
+    const response = await axios.get(`http://127.0.0.1:8000/api/addusers/email-exists/?email=${email}`);
     return response.data.email_exists;
   } catch (error) {
     console.error('Error checking email existence:', error);
@@ -133,7 +133,7 @@ const handleSubmit = async () => {
   
 const submitForm = async () => {
   try {
-    const response = await axios.post('https://reqease-fastapi.vercel.app/api/addadminusers/', newAdminUser.value, {
+    const response = await axios.post('http://127.0.0.1:8000/api/addadminusers/', newAdminUser.value, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json'

@@ -32,7 +32,7 @@ import InputText from 'primevue/inputtext';
   
   const fetchPayments = async () => {
     try {
-      const response = await axios.get('https://reqease-fastapi.vercel.app/api/payments/');
+      const response = await axios.get('http://127.0.0.1:8000/api/payments/');
       payments.value = response.data;
     } catch (error) {
       console.error('Error fetching payments:', error);
@@ -169,22 +169,32 @@ import InputText from 'primevue/inputtext';
       <button @click="exportCSV" type="button" class="btn btn-warning" data-mdb-ripple-init>
         <i class="fas fa-download"></i>  Download Report</button>
     </div>
-    <DataTable ref="dt" :value="payments" stripedRows tableStyle="min-width: 50rem" dataKey="id"
-                   :paginator="true" :rows="5" :filters="filters"
-                   paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
-                   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} accounts">
-        
-          <Column field="request_number" header="Request Number" sortable></Column>
-          <Column field="school_student_id" header="School ID" sortable></Column>
-          <Column field="full_name" header="Full Name" sortable></Column>
-          <Column field="document_names" header="Requested Document" sortable></Column>
-          <Column field="total_fee" header="Amount" sortable></Column>
-          <Column field="receipt_link" header="Receipts" sortable></Column>
-          <Column field="payment_date" header="Payment Date" sortable></Column>
-          <Column field="claiming_date" header="Claiming Date" sortable></Column>
-          <Column field="status" header="Status" sortable></Column>
-        
-        </DataTable>
+    <DataTable
+      ref="dt"
+      :pt="{
+        table: 'table table-striped',
+      }"
+      :value="payments"
+      stripedRows
+      tableStyle="min-width: 50rem"
+      dataKey="id"
+      :paginator="true"
+      :rows="5"
+      :filters="filters"
+      :paginator-template="paginatorTemplate"
+      :rows-per-page-options="[5, 10, 25]"
+      :current-page-report-template="currentPageReportTemplate"
+    >
+      <Column field="request_number" header="Request Number" sortable></Column>
+      <Column field="school_student_id" header="School ID" sortable></Column>
+      <Column field="full_name" header="Full Name" sortable></Column>
+      <Column field="document_names" header="Requested Document" sortable></Column>
+      <Column field="total_fee" header="Amount" sortable></Column>
+      <Column field="receipt_link" header="Receipts" sortable></Column>
+      <Column field="payment_date" header="Payment Date" sortable></Column>
+      <Column field="claiming_date" header="Claiming Date" sortable></Column>
+      <Column field="status" header="Status" sortable></Column>
+    </DataTable>
 
 <div class="arrangement">
             <table class="table table-striped">

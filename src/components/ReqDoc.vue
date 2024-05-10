@@ -2,24 +2,86 @@
 import newNavbar from './newNavbar.vue';
 import ApplicationNavigationBar from './ApplicationNavigationBar.vue';
 import Footer from './Footer.vue';
+import router from '@/router';
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
-const counters = ref([0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+const documentTypes = ref([]);
 
-const limit = 2; // Define your limit here
-
-const increment = (index) => {
-  if (counters.value[index] < limit) {
-    counters.value[index]++;
+const fetchDocumentTypes = async () => {
+  try {
+    const response = await axios.get('http://127.0.0.1:8000/api/document_types/');
+    console.log('API response:', response.data);
+    documentTypes.value = response.data.map(item => ({
+      ...item,
+      quantity: parseFloat(item.quantity) || 0 // Parse quantity to float or default to 0
+    }));
+  } catch (error) {
+    console.error('Error fetching document types:', error);
   }
 };
 
-const decrement = (index) => {
-  if (counters.value[index] > 0) {
-    counters.value[index]--;
+const incrementQuantity = (index) => {
+  documentTypes.value[index].quantity++;
+};
+
+const decrementQuantity = (index) => {
+  if (documentTypes.value[index].quantity > 0) {
+    documentTypes.value[index].quantity--;
   }
 };
+
+const proceedToNextPage = async () => {
+  const selectedItems = documentTypes.value.filter(item => item.quantity > 0);
+  if (selectedItems.length === 0) {
+        // Display an error message
+        console.error('Please request at least one document.');
+        alert('Please request at least one document.');
+        // You can also show an error message to the user using a toast or modal
+        return;
+    }
+  const requestBody = {
+    items: selectedItems.map(item => ({
+      document_type_id: item.document_type_id,
+      quantity: item.quantity
+    }))
+  };
+
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/auth/document_requests/', requestBody, {
+      withCredentials: true
+    });
+    console.log('Document request created successfully:', response.data);
+    
+    // Check if the response contains the 'items' field
+    if ('items' in response.data) {
+      console.log('Response contains items:', response.data.items);
+      router.push('/shipping');
+      // Proceed with further processing if needed
+    } else {
+      console.error('Response does not contain items field');
+      // Handle the error appropriately
+    }
+     // Check if the response contains the 'request_id' field
+     if ('request_id' in response.data) {
+      console.log('Response contains request_id:', response.data.request_id);
+      requestId = response.data.request_id;
+      
+      // Pass the request ID to the next page using router
+      router.push({ name: 'sample shippment', query: { requestId } });
+    } else {
+      console.error('Response does not contain request_id field');
+      // Handle the error appropriately
+    }
+  } catch (error) {
+    console.error('Error creating document request:', error);
+  }
+};
+
+
+onMounted(fetchDocumentTypes);
+
 </script>
 
 
@@ -120,7 +182,7 @@ const decrement = (index) => {
             <div class="div-40">REQUEST DOCUMENT</div>
             <div class="div-41">
               <div class="div-42">
-                <div class="div-43">
+                <!-- <div class="div-43">
                   <div class="div-44">
                     <div class="div-45">Document Code</div>
                     <div class="div-46">Document Name</div>
@@ -129,9 +191,9 @@ const decrement = (index) => {
                     <div class="div-48">Document Fee</div>
                     <div class="div-49">No. of Copies</div>
                   </div>
-                </div>
+                </div> -->
             
-
+<!-- 
                 <div class="div-58">
                   <div class="div-59">1</div>
                   <div class="div-60">
@@ -688,17 +750,88 @@ appropriate disposition.
                       @click="increment(20)"
                     />
                   </div>
-                </div>
+                </div> -->
 
      
              
-                <div class="div-196">Purposes</div>
+                <!-- <div class="div-196">Purposes</div>
                 
                 <textarea class="div-197">
 
-</textarea>
+</textarea> -->
+<!-- <table>
+      <thead class="div-43">
+        <tr class="div-44">
+          <th>Document Name</th>
+          <th>Document Fee (with Unit)</th>
+          <th>No. of Copies</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr class="div-58" v-for="documentType in documentTypes" :key="documentType.document_type_id">
+          <td class="div-60">{{ documentType.name }}</td>
+          <td class="div-61">{{ documentType.fee }} {{ documentType.unit_name }}</td>
+          <td>  <div class="div-62">
+                    <img
+                    type="button"
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                      class="img-4"
+                      @click="decrement(20)"
+                    />
+                    <div class="div-63">{{ counters[20] }}</div>
+                    <img
+                    type="button"
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                      class="img-5"
+                      @click="increment(20)"
+                    />
+                  </div></td>
+        </tr>
+      </tbody>
+    </table> -->
+    <table>
+      <div class="div-43">
+                  <div class="div-44">
+                    <div class="div-45">Document Code</div>
+                    <div class="div-46">Document Name</div>
+                  </div>
+                  <div class="div-47">
+                    <div class="div-48">Document Fee</div>
+                    <div class="div-49">No. of Copies</div>
+                  </div>
+                </div>
+      <tbody>
+        <tr class="div-58" v-for="(documentType, index) in documentTypes" :key="documentType.document_type_id">
+          <td>{{ documentType.document_type_id }}</td>
+          <td class="div-60">{{ documentType.name }}</td>
+          <td class="div-61">{{ documentType.fee }} {{ documentType.unit_name }}</td>
+          <td>
+            <div class="div-62">
+                    <img
+                    type="button"
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                      class="img-4"
+                      @click="decrementQuantity(index)"
+                    />
+                    <span>{{ parseFloat(documentType.quantity) || 0 }}</span>
+                    <img
+                    type="button"
+                      loading="lazy"
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                      class="img-5"
+                      @click="incrementQuantity(index)"
+                    />
+                  </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
               </div>
             </div>
+         
             <div class="div-198">
               <div class="div-199">
                 <span
@@ -734,7 +867,8 @@ appropriate disposition.
             <div class="div-200">Page 1 of 3</div>
           </div>
         </div>
-        <router-link to="/shipping" type="button" class="div-391">Next</router-link>
+        <button class="div-391" @click="proceedToNextPage">Next</button>
+        <!-- <router-link @click="proceedToNextPage" to="/shipping" type="button" class="div-391">Next</router-link> -->
       </div>
 
 
@@ -1317,6 +1451,7 @@ input:not(:placeholder-shown) + label {
     display: flex;
     justify-content: space-between;
     gap: 120px;
+    color:  #fff;
   }
   .div-45 {
     color:  #fff;

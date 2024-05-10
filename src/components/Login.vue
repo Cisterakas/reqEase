@@ -1,13 +1,14 @@
 <script setup>
 import { ref, onMounted} from 'vue';
+import router from '@/router';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 
-const email = ref('');
-const password = ref('');
+// const email = ref('');
+// const password = ref('');
 const showPassword = ref(false);
 const rememberMe = ref(false);
-const router = useRouter();
+// const router = useRouter();
 const errorMessage = ref('');
 let errorTimeout = null;
 
@@ -15,58 +16,93 @@ const toggleVisibility = () => {
   showPassword.value = !showPassword.value;
 };
 
-const login = () => {
-  // Reset error message and clear existing timeout
-  errorMessage.value = '';
-  clearTimeout(errorTimeout);
+// const login = () => {
+//   // Reset error message and clear existing timeout
+//   errorMessage.value = '';
+//   clearTimeout(errorTimeout);
 
-  // Check if email and password are not empty
-  if (!email.value || !password.value) {
-    errorMessage.value = 'Please enter both email and password';
-    startErrorTimeout();
-    return;
-  }
+//   // Check if email and password are not empty
+//   if (!email.value || !password.value) {
+//     errorMessage.value = 'Please enter both email and password';
+//     startErrorTimeout();
+//     return;
+//   }
 
-  // Check credentials and redirect accordingly
-  if (email.value === 'student@example.com' && password.value === '12345') {
-    router.push('/');
-    alert('Student successfully logged in!');
-  } else if (email.value === 'admin@example.com' && password.value === '12345') {
-    router.push('/adminH');
-    alert('Admin successfully logged in!');
-  } else {
-    // Handle invalid credentials
-    errorMessage.value = 'Invalid email or password';
+//   // Check credentials and redirect accordingly
+//   if (email.value === 'student@example.com' && password.value === '12345') {
+//     router.push('/');
+//     alert('Student successfully logged in!');
+//   } else if (email.value === 'admin@example.com' && password.value === '12345') {
+//     router.push('/adminH');
+//     alert('Admin successfully logged in!');
+//   } else {
+//     // Handle invalid credentials
+//     errorMessage.value = 'Invalid email or password';
+//     startErrorTimeout();
+//   }
+// };
+
+
+
+
+
+
+
+// const fetchUsers = async () => {
+//   try {
+//     const response = await fetch('https://reqease-fastapi.vercel.app/api/users/');
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+
+// onMounted(() => {
+//   fetchUsers();
+// });
+
+const userlogin = ref({
+  username: '',
+  password: '',
+});
+
+
+const login = async () => {
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/login', userlogin.value, { withCredentials: true });
+    const data = await response.data;
+
+    if (data) {
+      router.push('/');
+      // Clear any previous error message on successful login
+      alert('Student successfully logged in!');
+      errorMessage.value = '';
+    } else {
+      // Improved error handling: Check for specific error codes or messages from the server
+      errorMessage.value = 'Invalid login credentials. Please check your username and password.';
+      startErrorTimeout();
+    }
+  } catch (error) {
+    console.error('Failed to login:', error);
+    errorMessage.value = 'An error occurred during login. Please try again later.';
     startErrorTimeout();
   }
 };
-
-
-
 
 const startErrorTimeout = () => {
   errorTimeout = setTimeout(() => {
     errorMessage.value = '';
-  }, 5000); // 5 seconds
+  }, 5000); // 5 seconds to clear the error message
 };
 
 
-const fetchUsers = async () => {
-  try {
-    const response = await fetch('https://reqease-fastapi.vercel.app/api/users/');
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+
 
 
 onMounted(() => {
-  fetchUsers();
 });
-
-
 
 </script>
 
@@ -112,21 +148,22 @@ onMounted(() => {
                   ><span style="color: rgba(229, 79, 112, 1)">ReqEase!</span>
                 </div>
                 <div class="div-11">Please login to your Account</div>
-
+                <form @submit.prevent="login">
                 <div class="material-textfield">
-  <input data-testid="email" placeholder=" " v-model="email" type="text">
+  <input id="username" placeholder=" " v-model="userlogin.username" type="text">
   <label>Email</label>
 </div>
 
 <div class="material-textfield">
   <input
     placeholder=" "
-    v-model="password"
+    v-model="userlogin.password"
     :type="showPassword ? 'text' : 'password'"
     id="password"
   >
   <label for="password">Password</label>
 </div>
+
 
 <div class="div-16">
   <!-- <input data-testid="password" placeholder=" " v-model="password" :type="showPassword ? 'text' : 'password'" id="password"> -->
@@ -134,8 +171,8 @@ onMounted(() => {
   <input type="checkbox" class="div-17" v-model="rememberMe">Remember Me
 </div>
 
-<button data-testid="login-button" type="button" class="div-19" @click="login">Log In</button>
-
+<button data-testid="login-button" type="submit" @click="loginUser" class="div-19">Log In</button>
+</form>
                 
                 <a data-testid="account-button" class="div-20" href="#open-modal">Create a New Account</a>
 

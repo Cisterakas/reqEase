@@ -374,7 +374,7 @@ const submitForm = async () => {
                       </div>
                       <router-link
                         id="done-button"
-                        to="/"
+                        to="/login"
                         type="button"
                         class="div-3-"
                         >DONE</router-link

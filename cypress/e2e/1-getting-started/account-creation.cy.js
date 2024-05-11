@@ -27,6 +27,7 @@ describe('Account Creation Page', () => {
 
     
   });
+
   describe('As Student', () => {
     beforeEach(() => {
       cy.viewport(1920, 1080)
@@ -47,8 +48,8 @@ describe('Account Creation Page', () => {
       cy.get('#suffix').type('Jr');
       cy.get('#address').type('123 Main St');
       cy.get('#contact').type('1234567890');
-      cy.get('#last_school_year').type('2022');
-      cy.get('#degree').type('BSc');
+      cy.get('#last_school_year').select('2023-2024'); // Change the year to a valid one
+      cy.get('#degree').select('BS in Computer Science'); // Change the degree to a valid one
       cy.get('#email').type('newuser@example.com');
       cy.get('#password').type('password123');
       // Submit the form

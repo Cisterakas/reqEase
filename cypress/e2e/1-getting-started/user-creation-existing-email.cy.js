@@ -6,16 +6,16 @@
     
     it('should display error message for existing email', () => {
       // Fill the form with existing email
-      cy.get('#student_school_id').type('654321');
+      cy.get('#student_school_id').type('888888');
       cy.get('#first_name').type('New');
       cy.get('#last_name').type('User');
       cy.get('#middle_name').type('Middle');
       cy.get('#suffix').type('Jr');
       cy.get('#address').type('123 Main St');
       cy.get('#contact').type('1234567890');
-      cy.get('#last_school_year').type('2022');
-      cy.get('#degree').type('BSc');
-      cy.get('#email').type('jcister_220000001482@uic.edu.ph');
+      cy.get('#last_school_year').select('2023-2024'); // Change the year to a valid one
+      cy.get('#degree').select('BS in Computer Science'); // Change the degree to a valid one
+      cy.get('#email').type('newuser@example.com');
       cy.get('#password').type('password123');
     
       // Submit the form
@@ -27,16 +27,16 @@
 
     it('should display error message for existing student school id', () => {
       // Fill the form with existing email
-      cy.get('#student_school_id').type('220000001482');
+      cy.get('#student_school_id').type('123456');
       cy.get('#first_name').type('New');
       cy.get('#last_name').type('User');
       cy.get('#middle_name').type('Middle');
       cy.get('#suffix').type('Jr');
       cy.get('#address').type('123 Main St');
       cy.get('#contact').type('1234567890');
-      cy.get('#last_school_year').type('2022');
-      cy.get('#degree').type('BSc');
-      cy.get('#email').type('newuser2@example.com');
+      cy.get('#last_school_year').select('2023-2024'); // Change the year to a valid one
+      cy.get('#degree').select('BS in Computer Science'); // Change the degree to a valid one
+      cy.get('#email').type('newuser@example23232.com');
       cy.get('#password').type('password123');
     
       // Submit the form

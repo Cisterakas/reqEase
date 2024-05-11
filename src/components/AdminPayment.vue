@@ -139,11 +139,7 @@ import InputText from 'primevue/inputtext';
 
               </div>
               <div class="div-22">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/316dddf451e95c71793dba7fdaffc4bbed6686ed6f912c7c1f83e852850504c5?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-8"
-                />
+           
                 <div class="div-23">
                   <img
                     loading="lazy"
@@ -179,10 +175,10 @@ import InputText from 'primevue/inputtext';
       tableStyle="min-width: 50rem"
       dataKey="id"
       :paginator="true"
-      :rows="5"
+      :rows="10"
       :filters="filters"
       :paginator-template="paginatorTemplate"
-      :rows-per-page-options="[5, 10, 25]"
+      :rows-per-page-options="[10, 20, 50, 100]"
       :current-page-report-template="currentPageReportTemplate"
     >
       <Column field="request_number" header="Request Number" sortable></Column>
@@ -196,7 +192,7 @@ import InputText from 'primevue/inputtext';
       <Column field="status" header="Status" sortable></Column>
     </DataTable>
 
-<div class="arrangement">
+<!-- <div class="arrangement">
             <table class="table table-striped">
           <thead>
             <tr>
@@ -234,16 +230,16 @@ import InputText from 'primevue/inputtext';
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
         
          
         
-            <div class="div-98">
+            <!-- <div class="div-98">
                 <button type="button" class="btn btn-warning" data-mdb-ripple-init>Sort Date</button>
                 <button type="button" class="btn btn-dark" data-mdb-ripple-init>Previous</button>
                 <button type="button" class="btn btn-dark" data-mdb-ripple-init>next</button>
               
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

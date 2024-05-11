@@ -3,6 +3,7 @@
 import { ref } from 'vue';
 import newNavbar from "./newNavbar.vue";
 import Footer from "./Footer.vue";
+import router from '@/router';
 
 
   import Toolbar from 'primevue/toolbar';
@@ -43,6 +44,8 @@ const approveAccount = async (userId) => {
       approved: 'TRUE'
     });
     console.log(response.data);
+    alert('Account successfully approved!');
+    router.push('/AdminA');
   } catch (error) {
     console.error('Error approving account:', error.response.data.detail);
   }
@@ -139,11 +142,7 @@ const approveAccount = async (userId) => {
 
               </div>
               <div class="div-22">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/316dddf451e95c71793dba7fdaffc4bbed6686ed6f912c7c1f83e852850504c5?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-8"
-                />
+        
                 <div class="div-23">
                   <img
                     loading="lazy"
@@ -172,8 +171,8 @@ const approveAccount = async (userId) => {
             <DataTable id="dtable" :pt="{
         table: 'table table-striped',
       }" ref="dt" :value="newAccounts" stripedRows tableStyle="min-width: 50rem" dataKey="id"
-                   :paginator="true" :rows="5" :filters="filters"
-                   paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
+                   :paginator="true" :rows="10" :filters="filters"
+                   paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[10, 20, 50, 100]"
                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} accounts">
                    <Column field="user_id" header="User ID" sortable></Column> <!-- Add this line for user_id column -->
           <Column field="student_school_id" header="Student School ID" sortable></Column>
@@ -186,14 +185,14 @@ const approveAccount = async (userId) => {
           <Column field="registration_date" header="Registration Date" sortable></Column>
           <Column field="role" header="Role" sortable></Column>
           <Column field="account_approval_status" header="Approval Status" sortable></Column>
-          <Column header="Approve">
+          <Column header="Action">
         <template #body="slotProps">
-            <Button icon="pi pi-check" class="p-button-rounded p-button-success" @click="approveAccount(slotProps.data.user_id)" />
+          <button @click="approveAccount(slotProps.data.user_id)" type="button" class="btn btn-dark" data-mdb-ripple-init>Approve</button>
         </template>
     </Column>
         
         </DataTable>
-<div class="arrangement">
+<!-- <div class="arrangement">
             <table class="table table-striped">
           <thead>
             <tr>
@@ -228,7 +227,7 @@ const approveAccount = async (userId) => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
         
       <!-- <button type="button" class="btn btn-outline-dark" data-mdb-ripple-init data-mdb-ripple-color="dark">view</button>
                 <button type="button" class="btn btn-dark" data-mdb-ripple-init>approve</button> -->

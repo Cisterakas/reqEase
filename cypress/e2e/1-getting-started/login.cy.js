@@ -18,8 +18,8 @@ describe('Login Page', () => {
   
     it('should display error message for invalid username and valid password', () => {
       // Fill in invalid username and valid password
-      cy.get('[data-testid=email]').type('invalid@example.com');
-      cy.get('[data-testid=password]').type('12345');
+      cy.get('#username').type('invalid@example.com');
+      cy.get('#password').type('12345');
       // Click the login button
       cy.get('[data-testid=login-button]').click();
       // Verify if error message is displayed
@@ -32,8 +32,8 @@ describe('Login Page', () => {
   
     it('should login with valid username and password', () => {
       // Fill in valid username and password
-      cy.get('[data-testid=email]').type('student@example.com');
-      cy.get('[data-testid=password]').type('12345');
+      cy.get('#username').type('jcister_220000001482@uic.edu.ph');
+      cy.get('#password').type('securepass');
       // Click the login button
       cy.get('[data-testid=login-button]').click();
       // Verify if redirected to the next page

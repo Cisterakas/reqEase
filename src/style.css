@@ -3,7 +3,7 @@
 @import url('https://unpkg.com/primevue/resources/themes/saga-blue/theme.css');
 @import url('https://unpkg.com/primevue/resources/primevue.min.css');
 @import url('https://unpkg.com/primeicons/primeicons.css');
-body {
+/* body {
     font-family: var(--font-family);
     font-weight: normal;
     background: var(--surface-ground);
@@ -32,7 +32,7 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+  } */
 
 
   

@@ -86,7 +86,7 @@ const login = async () => {
     }
   } catch (error) {
     console.error('Failed to login:', error);
-    errorMessage.value = 'An error occurred during login. Please try again later.';
+    errorMessage.value = 'Please enter both email and password';
     startErrorTimeout();
   }
 };

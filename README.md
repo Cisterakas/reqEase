@@ -1,4 +1,4 @@
-# FRONT END of the ReqEase : Registrar Document Request Suite
+# FRONTEND of the ReqEase : Registrar Document Request Suite
 
 Welcome to the Registrar Document Request Suite! We are your one-stop online solution for all your school document needs. Whether you're looking for transcripts, enrollment verification, or any other official records, we've got you covered. 
 

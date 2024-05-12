@@ -11,21 +11,24 @@ Welcome to the Registrar Document Request Suite! We are your one-stop online sol
 
 ## Running Tests and Setup Instructions
 
-Cypress (if not installed).
+**Cypress (if not installed).**
+
 If Cypress is not currently installed in your project, you can install it as a dev dependency using npm:
 
 ```bash
 npm install cypress --save-dev
 ```
 
-Opening Cypress.
+**Opening Cypress.**
+
 To open Cypress for running tests, use the following command:
 
 ```bash
 npx cypress open
 ```
 
-Frontend Setup.
+**Frontend Setup.**
+
 If you haven't cloned the frontend repository yet, you can do so by copying the repository path and running:
 
 ```bash
@@ -44,7 +47,8 @@ Install dependencies if they are not installed:
 npm install
 ```
 
-Running the Frontend.
+**Running the Frontend.**
+
 To run the frontend and open it in your browser locally, execute:
 
 ```bash

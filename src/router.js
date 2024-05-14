@@ -99,7 +99,6 @@ const router = createRouter({
      },
     { path: '/regStudent', component: AsStudent },
     { path: '/regAdmin', component: AsAdmin },
-    { path: '/reqDoc', component: ReqDoc },
     {
       path: '/reqDoc',
       name: 'request-docs',
@@ -107,7 +106,12 @@ const router = createRouter({
       meta: { requiresAuth: true }, 
     },
     { path: '/verify', component: Verify },
-    { path: '/track', component: Track },
+    {
+      path: '/track',
+      name: 'track-docs',
+      component: () => import('./components/Tracker.vue'),
+      meta: { requiresAuth: true }, 
+    },
     { path: '/adminH', component: AdminHome },
     { path: '/adminP', component: AdminPayment },
     { path: '/adminC', component: AdminConfirm },

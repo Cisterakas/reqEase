@@ -1,14 +1,13 @@
-<script setup>
+<!-- <script setup>
 import { ref, onMounted} from 'vue';
 import router from '@/router';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 
-// const email = ref('');
-// const password = ref('');
+
 const showPassword = ref(false);
 const rememberMe = ref(false);
-// const router = useRouter();
+
 const errorMessage = ref('');
 let errorTimeout = null;
 
@@ -16,52 +15,6 @@ const toggleVisibility = () => {
   showPassword.value = !showPassword.value;
 };
 
-// const login = () => {
-//   // Reset error message and clear existing timeout
-//   errorMessage.value = '';
-//   clearTimeout(errorTimeout);
-
-//   // Check if email and password are not empty
-//   if (!email.value || !password.value) {
-//     errorMessage.value = 'Please enter both email and password';
-//     startErrorTimeout();
-//     return;
-//   }
-
-//   // Check credentials and redirect accordingly
-//   if (email.value === 'student@example.com' && password.value === '12345') {
-//     router.push('/');
-//     alert('Student successfully logged in!');
-//   } else if (email.value === 'admin@example.com' && password.value === '12345') {
-//     router.push('/adminH');
-//     alert('Admin successfully logged in!');
-//   } else {
-//     // Handle invalid credentials
-//     errorMessage.value = 'Invalid email or password';
-//     startErrorTimeout();
-//   }
-// };
-
-
-
-
-
-
-
-// const fetchUsers = async () => {
-//   try {
-//     const response = await fetch('https://reqease-fastapi.vercel.app/api/users/');
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-
-// onMounted(() => {
-//   fetchUsers();
-// });
 
 const userlogin = ref({
   username: '',
@@ -104,7 +57,76 @@ const startErrorTimeout = () => {
 onMounted(() => {
 });
 
+</script> -->
+<script setup>
+import { ref, onMounted } from 'vue';
+import router from '@/router';
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+
+const showPassword = ref(false);
+const rememberMe = ref(false);
+
+const errorMessage = ref('');
+let errorTimeout = null;
+
+const toggleVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
+
+const userlogin = ref({
+  username: '',
+  password: '',
+});
+
+const login = async () => {
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/login', userlogin.value, { withCredentials: true });
+    const data = await response.data;
+
+    if (data) {
+      if (data.role === 'admin') {
+        router.push('/adminH');
+      } else if (data.role === 'student') {
+        router.push('/');
+      } else {
+        router.push('/');
+      }
+      alert('Logged in!');
+      errorMessage.value = '';
+    }
+  } catch (error) {
+    if (error.response) {
+      const response = error.response;
+      if (response.status === 403 && response.data.detail === 'Account not approved') {
+        alert('Account not yet approved. Please contact administrator.');
+      } else if (response.status === 400) {
+        errorMessage.value = 'Invalid login credentials or request. Please check your details.';
+      } else {
+        errorMessage.value = 'An unexpected error occurred. Please try again later.';
+        console.error('Login error:', error);
+      }
+    } else {
+      errorMessage.value = 'Please enter both email and password';
+      console.error('Login error:', error);
+    }
+  } finally {
+    startErrorTimeout();
+  }
+};
+
+
+const startErrorTimeout = () => {
+  errorTimeout = setTimeout(() => {
+    errorMessage.value = '';
+  }, 5000); // 5 seconds to clear the error message
+};
+
+onMounted(() => {});
 </script>
+
+
+
 
 <template>
 <div v-if="errorMessage" data-testid="error-message">{{ errorMessage }}</div>
@@ -168,7 +190,6 @@ onMounted(() => {
 <div class="div-16">
   <!-- <input data-testid="password" placeholder=" " v-model="password" :type="showPassword ? 'text' : 'password'" id="password"> -->
   <input data-testid="password" @click="toggleVisibility" type="checkbox" class="div-17">{{ showPassword ? 'Hide' : 'Show' }} Password
-  <input type="checkbox" class="div-17" v-model="rememberMe">Remember Me
 </div>
 
 <button data-testid="login-button" type="submit" @click="loginUser" class="div-19">Log In</button>

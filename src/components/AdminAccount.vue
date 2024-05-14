@@ -168,9 +168,11 @@ const approveAccount = async (userId) => {
               <button @click="exportCSV" type="button" class="btn btn-warning" data-mdb-ripple-init>
                 <i class="fas fa-download"></i>  Download Report</button>
             </div>
-            <DataTable id="dtable" :pt="{
-        table: 'table table-striped',
-      }" ref="dt" :value="newAccounts" stripedRows tableStyle="min-width: 50rem" dataKey="id"
+            <DataTable id="dtable" ::pt="{
+      table: 'custom-table',
+      header: 'custom-header',
+      tbody: 'custom-body'
+    }" ref="dt" :value="newAccounts" stripedRows tableStyle="min-width: 50rem" dataKey="id"
                    :paginator="true" :rows="10" :filters="filters"
                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[10, 20, 50, 100]"
                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} accounts">

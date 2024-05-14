@@ -167,9 +167,11 @@ import InputText from 'primevue/inputtext';
     </div>
     <DataTable
       ref="dt"
-      :pt="{
-        table: 'table table-striped',
-      }"
+     :pt="{
+      table: 'custom-table',
+      header: 'custom-header',
+      tbody: 'custom-body'
+    }"
       :value="payments"
       stripedRows
       tableStyle="min-width: 50rem"

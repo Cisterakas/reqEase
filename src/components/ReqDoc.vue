@@ -408,7 +408,7 @@ onMounted(fetchDocumentTypes);
             <li>Email: {{ courierData.email }}</li>
           </ul>
         </li>
-        <li>Total Fee: ${{ totalFee }}</li>
+        <li>Total Fee: Php {{ totalFee }}.00</li>
         <!-- Include additional fields here if needed -->
       </ul>
       <div class="p-grid">

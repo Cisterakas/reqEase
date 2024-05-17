@@ -1,150 +1,144 @@
 <template>
-    <div>
-      <Card>
-        <template #title>Add Users</template>
-        <template #content>
-          <form @submit.prevent="addUser">
-            <div class="customstyle">
-            <FloatLabel>
-              <label for="student_school_id">Student School ID</label>
-              <InputText id="student_school_id" v-model="newUser.student_school_id"/>
-            </FloatLabel>
+  <div>
+    <DataTable :value="payments" responsiveLayout="scroll">
+      <Column field="request_number" header="Request Number"></Column>
+      <Column field="school_student_id" header="Student ID"></Column>
+      <Column field="full_name" header="Full Name"></Column>
+      <Column field="document_names" header="Documents"></Column>
+      <Column field="total_fee" header="Total Fee"></Column>
+      <Column field="claiming_date" header="Claiming Date"></Column>
+      <Column field="status" header="Status"></Column>
+      <Column header="Actions">
+        <template #body="slotProps">
+          <div>
+            <Button icon="pi pi-pencil" class="p-button-rounded p-button-info" @click="editPayment(slotProps.data)" />
+            <Button icon="pi pi-check" class="p-button-rounded p-button-success" @click="updateStatus(slotProps.data, 'To Receive')" />
+            <Button icon="pi pi-times" class="p-button-rounded p-button-danger" @click="updateStatus(slotProps.data, 'Denied Request')" />
           </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="first_name">First Name</label>
-                <InputText id="first_name" v-model="newUser.first_name"/>
-              </FloatLabel>
-            </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="middle_name">Middle Name</label>
-                <InputText id="middle_name" v-model="newUser.middle_name"/>
-              </FloatLabel>          
-            </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="last_name">Last Name</label>
-                <InputText id="last_name" v-model="newUser.last_name"/>
-              </FloatLabel>            
-            </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="suffix">Suffix</label>
-                <InputText id="suffix" v-model="newUser.suffix"/>
-              </FloatLabel>            
-            </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="address">Address</label>
-                <InputText id="address" v-model="newUser.address"/>
-              </FloatLabel>            
-            </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="contact">Contact</label>
-                <InputText id="contact" v-model="newUser.contact"/>
-              </FloatLabel>            
-            </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="last_school_year">Last School Year</label>
-                <InputText id="last_school_year" v-model="newUser.last_school_year"/>
-              </FloatLabel>            
-            </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="degree">Degree</label>
-                <InputText id="degree" v-model="newUser.degree"/>
-              </FloatLabel>            
-            </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="email">Email</label>
-                <InputText id="email" v-model="newUser.email"/>
-              </FloatLabel>            
-            </div>
-            <div class="customstyle">
-              <FloatLabel>
-                <label for="password">Password</label>
-                <InputText type="password" id="password" v-model="newUser.password" required/>
-              </FloatLabel>            
-            </div>
-            <div class="customstyle">
-              <Button type="submit" label="Create New User" icon="pi pi-user-plus" />
-            </div>
-          </form>
-          <div v-if="loading">Adding user...</div>
-          <div v-if="error" style="color: red;">{{ error }}</div>
-          <div v-if="success">User added successfully!</div>
         </template>
-      </Card>
-    </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-import InputText from 'primevue/inputtext';
-import FloatLabel from 'primevue/floatlabel';
+      </Column>
+    </DataTable>
+
+    <Dialog header="Edit Payment" v-model:visible="editDialog" :modal="true" :closable="false">
+      <template #footer>
+        <Button label="Save" icon="pi pi-check" @click="savePayment"></Button>
+        <Button label="Cancel" icon="pi pi-times" @click="cancelEdit"></Button>
+      </template>
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="total_fee">Total Fee</label>
+          <InputNumber v-model="selectedPayment.total_fee"></InputNumber>
+        </div>
+        <div class="p-field">
+          <label for="claiming_date">Claiming Date</label>
+          <Calendar v-model="selectedPayment.claiming_date" dateFormat="yy-mm-dd"></Calendar>
+        </div>
+        <div class="p-field" v-for="(doc, index) in selectedPayment.documents" :key="doc.document_type_id">
+          <label :for="'document_' + doc.document_type_id">{{ doc.name }}</label>
+          <div>
+            <Button icon="pi pi-minus" @click="decreaseQuantity(index)"></Button>
+            <InputNumber v-model="doc.quantity" :min="0"></InputNumber>
+            <Button icon="pi pi-plus" @click="increaseQuantity(index)"></Button>
+          </div>
+        </div>
+      </div>
+    </Dialog>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import axios from 'axios';
 import Button from 'primevue/button';
-import Card from 'primevue/card';
-  import axios from 'axios';
-  
-  const newUser = ref({
-  student_school_id: '',
-  first_name: '',
-  middle_name: '',
-  last_name: '',
-  suffix: '',
-  address: '',
-  contact: '',
-  last_school_year: '',
-  degree: '',
-  email: '',
-  password: ''
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import Dialog from 'primevue/dialog';
+import Calendar from 'primevue/calendar';
+import InputNumber from 'primevue/inputnumber';
+
+const payments = ref([]);
+const editDialog = ref(false);
+const selectedPayment = ref({
+  request_number: 0,
+  total_fee: 0,
+  claiming_date: new Date(), // Initialize with the current date
+  documents: []
 });
 
-const loading = ref(false);
-const error = ref(null);
-const success = ref(false);
-
-const addUser = async () => {
-  loading.value = true;
-  error.value = null;
-  success.value = false;
+const fetchPayments = async () => {
   try {
-    await axios.post('http://127.0.0.1:8000/api/addusers/', newUser.value, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json'
-      }
-    });
-    success.value = true;
-    newUser.value = { 
-      student_school_id: '',
-      first_name: '',
-      middle_name: '',
-      last_name: '',
-      suffix: '',
-      address: '',
-      contact: '',
-      last_school_year: '',
-      degree: '',
-      email: '',
-      password: ''
-    }; // Reset form fields after successful submission
-  } catch (err) {
-    console.error('Error adding user:', err);
-    error.value = 'Failed to add user. Please try again later.';
-  } finally {
-    loading.value = false;
+    const response = await axios.get('http://127.0.0.1:8000/api/payments/');
+    payments.value = response.data;
+  } catch (error) {
+    console.error('There was an error fetching payments:', error);
   }
 };
-  </script>
-  
-  <style scoped>
-  .customstyle {
-    padding: 15px;
+
+const editPayment = (payment) => {
+  selectedPayment.value = JSON.parse(JSON.stringify(payment));
+  editDialog.value = true;
+};
+
+const savePayment = async () => {
+  try {
+    // Check if claiming_date is a valid Date object
+    let claimingDate = selectedPayment.value.claiming_date;
+    if (!(claimingDate instanceof Date)) {
+      claimingDate = new Date(claimingDate); // Convert to Date object if it's not already
+    }
+
+    // Adjust the date forward by one day
+    claimingDate.setDate(claimingDate.getDate() + 1);
+
+    // Format the adjusted date
+    const formattedClaimingDate = claimingDate.toISOString().split('T')[0];
+
+    const requestData = {
+      request_number: selectedPayment.value.request_number,
+      total_fee: selectedPayment.value.total_fee,
+      claiming_date: formattedClaimingDate,
+      documents: selectedPayment.value.documents || [] // Ensure documents field is included, even if empty
+    };
+
+    await axios.put('http://127.0.0.1:8000/api/payments/update/', requestData);
+    fetchPayments();
+    editDialog.value = false;
+  } catch (error) {
+    console.error('There was an error updating the payment:', error);
   }
-  </style>
-  
+};
+
+
+
+
+const cancelEdit = () => {
+  editDialog.value = false;
+  selectedPayment.value = null;
+};
+
+const updateStatus = async (payment, status) => {
+  try {
+    const updatedPayment = { ...payment, status };
+    await axios.put('http://127.0.0.1:8000/api/payments/update-status/', updatedPayment);
+    fetchPayments();
+  } catch (error) {
+    console.error('There was an error updating the status:', error);
+  }
+};
+
+const decreaseQuantity = (index) => {
+  if (selectedPayment.value.documents[index].quantity > 0) {
+    selectedPayment.value.documents[index].quantity--;
+  }
+};
+
+const increaseQuantity = (index) => {
+  selectedPayment.value.documents[index].quantity++;
+};
+
+fetchPayments();
+</script>
+
+<style>
+/* Add any styles you need here */
+</style>

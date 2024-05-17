@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import newNavbar from "./newNavbar.vue";
 import Footer from "./Footer.vue";
 import router from '@/router';
@@ -13,11 +13,14 @@ import Button from 'primevue/button';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
+import Dialog from 'primevue/dialog';
 
 
   import axios from 'axios';
   const dt = ref(); // Define a ref for the DataTable component
   const newAccounts = ref([]);
+  const displayModal = ref(false);
+const selectedUser = ref(null);
   const filters = ref({
     'global': { value: null }
   });
@@ -26,11 +29,19 @@ import InputText from 'primevue/inputtext';
     try {
       const response = await axios.get('http://127.0.0.1:8000/api/new_accounts/');
       newAccounts.value = response.data;
+      console.log(newAccounts.value); // Log the newAccounts to check the fetched data
     } catch (error) {
       console.error('Error fetching new accounts:', error);
     }
   };
+  const showDetails = (user) => {
+  selectedUser.value = user;
+  displayModal.value = true;
+};
+
+onMounted(() => {
   fetchNewAccounts();
+});
   
   const exportCSV = () => {
   dt.value.exportCSV(); // Access the exportCSV method using the defined ref for DataTable
@@ -45,11 +56,24 @@ const approveAccount = async (userId) => {
     });
     console.log(response.data);
     alert('Account successfully approved!');
-    router.push('/AdminA');
+    fetchNewAccounts();
   } catch (error) {
     console.error('Error approving account:', error.response.data.detail);
   }
 };
+const denyAccount = async (userId) => {
+  try {
+    await axios.put('http://127.0.0.1:8000/api/update_approval_status/', {
+      user_id: userId,
+      approved: 'DECLINE',
+    });
+    alert(`Account for user ID ${userId} has been denied.`);
+    fetchNewAccounts(); // Refresh the accounts list after denial
+  } catch (error) {
+    console.error('Failed to deny account:', error);
+    alert('Failed to deny account.');
+  }
+};  
 </script>
 
 <template>
@@ -202,11 +226,32 @@ const approveAccount = async (userId) => {
           <Column field="account_approval_status" header="Approval Status" sortable></Column>
           <Column header="Action">
         <template #body="slotProps">
+          <Button label="View" @click="showDetails(slotProps.data)"></Button>
           <button @click="approveAccount(slotProps.data.user_id)" type="button" class="btn btn-dark" data-mdb-ripple-init>Approve</button>
+          <Button label="Deny" @click="denyAccount(slotProps.data.user_id)" class="p-button-danger"></Button>
         </template>
     </Column>
         
         </DataTable>
+        <Dialog header="User Details" v-model:visible="displayModal" :modal="true" :closable="true">
+      <div v-if="selectedUser">
+        <p><strong>User ID:</strong> {{ selectedUser.user_id }}</p>
+        <p><strong>Student School ID:</strong> {{ selectedUser.student_school_id }}</p>
+        <p><strong>First Name:</strong> {{ selectedUser.first_name }}</p>
+        <p><strong>Middle Name:</strong> {{ selectedUser.middle_name }}</p>
+        <p><strong>Last Name:</strong> {{ selectedUser.last_name }}</p>
+        <p><strong>Suffix:</strong> {{ selectedUser.suffix }}</p>
+        <p><strong>Degree:</strong> {{ selectedUser.degree }}</p>
+        <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+        <p><strong>Registration Date:</strong> {{ selectedUser.registration_date }}</p>
+        <p><strong>Role:</strong> {{ selectedUser.role }}</p>
+        <p><strong>Account Approval Status:</strong> {{ selectedUser.account_approval_status }}</p>
+        <!-- Include student specific fields -->
+        <p><strong>Contact:</strong> {{ selectedUser.contact }}</p>
+        <p><strong>Address:</strong> {{ selectedUser.address }}</p>
+        <p><strong>Last School Year:</strong> {{ selectedUser.last_school_year }}</p>
+      </div>
+    </Dialog>
 <!-- <div class="arrangement">
             <table class="table table-striped">
           <thead>

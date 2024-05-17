@@ -85,7 +85,9 @@ const login = async () => {
     const data = await response.data;
 
     if (data) {
-      if (data.role === 'admin') {
+      if (data.role === 'super_admin') {
+        router.push('/superAdminH'); // Assuming '/superAdminH' is the route for the Super Admin dashboard
+      } else if (data.role === 'admin') {
         router.push('/adminH');
       } else if (data.role === 'student') {
         router.push('/');

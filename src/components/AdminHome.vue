@@ -174,7 +174,10 @@ const approveRequest = async (requestId, approval) => {
 onMounted(() => {
   fetchDocumentRequests();
 });
-
+const filters = ref({
+    'global': { value: null }
+  });
+  
 
 </script>
 
@@ -275,11 +278,7 @@ onMounted(() => {
                 <div class="div-21">DASHBOARD</div>
               </div>
               <div class="div-22">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/316dddf451e95c71793dba7fdaffc4bbed6686ed6f912c7c1f83e852850504c5?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-8"
-                />
+    
                 <div class="div-23">
                   <img
                     loading="lazy"
@@ -462,6 +461,7 @@ onMounted(() => {
             </div>
 
 <!-- <div class="arrangement">
+  
             <table class="table table-striped">
           <thead>
             <tr>
@@ -502,6 +502,7 @@ onMounted(() => {
           </tbody>
         </table>
       </div> -->
+      <InputText class="form-outline" v-model="filters['global'].value" placeholder="Search..." />
       <DataTable
      :pt="{
       table: 'custom-table',
@@ -547,7 +548,7 @@ onMounted(() => {
       <div v-if="selectedRequest">
         <!-- Display detailed information here -->
         <p><strong>Request ID:</strong> {{ selectedRequest.request_id }}</p>
-        <p><strong>Student ID:</strong> {{ selectedRequest.student_id }}</p>
+        <!-- <p><strong>Student ID:</strong> {{ selectedRequest.student_id }}</p> -->
         <p><strong>Student School ID:</strong> {{ selectedRequest.student_school_id }}</p>
         <p><strong>Student Name:</strong> {{ selectedRequest.student_full_name }}</p>
         <p><strong>Degree:</strong> {{ selectedRequest.degree }}</p>

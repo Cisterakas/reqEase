@@ -34,16 +34,24 @@ import Footer from "./Footer.vue";
 
 // };
 
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
   import axios from 'axios';
   import DataTable from 'primevue/datatable';
   import Column from 'primevue/column';
   import Button from 'primevue/button';
   import Dialog from 'primevue/dialog';
+  import InputText from 'primevue/inputtext';
+  import Rating from 'primevue/rating';
   
   const documentRequests = ref([]);
   const displayModal = ref(false);
   const selectedRequest = ref(null);
+  const newReceiptLink = ref('');
+
+  const filters = ref({
+    'global': { value: null }
+  });
+  
   
   const fetchDocumentRequests = async () => {
     try {
@@ -69,7 +77,98 @@ import { ref, onMounted } from 'vue';
     fetchDocumentRequests();
   });
 
+  const isToPayStatus = computed(() => {
+  return selectedRequest.value && selectedRequest.value.status === 'To Pay';
+});
 
+const sendReceiptLinkUpdate = async () => {
+  try {
+    const response = await axios.put(
+      'http://127.0.0.1:8000/api/auth/update_receipt_link',
+      { request_id: selectedRequest.value.request_id, receipt_link: newReceiptLink.value },
+      { withCredentials: true }
+    );
+    console.log(response.data); // Log response for verification or further processing
+    // Optionally, you may want to update the receipt link in the selected request object
+    selectedRequest.value.receipt_link = newReceiptLink.value;
+    // Optionally, you may want to reset the newReceiptLink variable after successful update
+    newReceiptLink.value = '';
+  } catch (error) {
+    console.error('Failed to update receipt link:', error);
+    // Handle error, e.g., show error message to the user
+  }
+};
+
+const canCancelRequest = computed(() => {
+  return selectedRequest.value && 
+    selectedRequest.value.status !== 'Received' && 
+    selectedRequest.value.status !== 'Cancelled' &&  selectedRequest.value.status !== 'Denied Request';
+});
+const cancelRequest = async () => {
+  try {
+    const response = await axios.put(
+      'http://127.0.0.1:8000/api/auth/update_status',
+      { request_id: selectedRequest.value.request_id, new_status: 'Cancelled' },
+      { withCredentials: true }
+    );
+    console.log(response.data); // Log response for verification or further processing
+    // Optionally, you may want to update the status in the selected request object
+    selectedRequest.value.status = 'Cancelled';
+    // Optionally, you may want to close the modal after successful cancellation
+    displayModal.value = false;
+  } catch (error) {
+    console.error('Failed to cancel request:', error);
+    // Handle error, e.g., show error message to the user
+  }
+};
+
+const canMarkAsReceived = computed(() => {
+  return selectedRequest.value && selectedRequest.value.status === 'To Receive';
+});
+
+const markAsReceived = async () => {
+  try {
+    const response = await axios.put(
+      'http://127.0.0.1:8000/api/auth/update_status',
+      { request_id: selectedRequest.value.request_id, new_status: 'Received' },
+      { withCredentials: true }
+    );
+    console.log(response.data); // Log response for verification or further processing
+    // Optionally, you may want to update the status in the selected request object
+    selectedRequest.value.status = 'Received';
+    // Optionally, you may want to close the modal after marking as received
+    displayModal.value = false;
+  } catch (error) {
+    console.error('Failed to mark as received:', error);
+    // Handle error, e.g., show error message to the user
+  }
+};
+
+const canProvideFeedback = computed(() => {
+  return selectedRequest.value && selectedRequest.value.status === 'Received';
+});
+
+const feedbackText = ref('');
+const feedbackRating = ref(0);
+
+const submitFeedback = async () => {
+  try {
+    const response = await axios.put(
+      'http://127.0.0.1:8000/api/auth/update_feedback',
+      { request_id: selectedRequest.value.request_id, feedback_text: feedbackText.value, feedback_rating: feedbackRating.value },
+      { withCredentials: true }
+    );
+    console.log(response.data); // Log response for verification or further processing
+    // Optionally, you may want to reset feedback text and rating after successful submission
+    feedbackText.value = '';
+    feedbackRating.value = 0;
+    // Optionally, you may want to close the modal after submitting feedback
+    displayModal.value = false;
+  } catch (error) {
+    console.error('Failed to submit feedback:', error);
+    // Handle error, e.g., show error message to the user
+  }
+};
 </script>
 <template>
   <newNavbar/>
@@ -135,6 +234,7 @@ import { ref, onMounted } from 'vue';
             </tr>
           </tbody>
         </table>   -->
+        <InputText class="form-outline" v-model="filters['global'].value" placeholder="Search..." />
         <DataTable
      :pt="{
       table: 'custom-table',
@@ -166,9 +266,9 @@ import { ref, onMounted } from 'vue';
         <Column field="claiming_date" header="Claiming Date"></Column>
         <!-- <Column field="id_link" header="ID Link"></Column> -->
         <Column field="total_amount_paid" header="Total Amount Paid"></Column>
-        <Column field="receipt_link" header="Receipt Link"></Column>
-        <Column field="mode_of_claiming" header="Mode of Claiming"></Column>
-        <Column field="status" header="Status"></Column>
+        <!-- <Column field="receipt_link" header="Receipt Link"></Column> -->
+        <Column field="mode_of_claiming" header="Mode of Claiming" sortable></Column>
+        <Column field="status" header="Status" sortable></Column>
         <Column header="Actions">
         <template #body="slotProps">
           <Button label="View" @click="showDetails(slotProps.data)"></Button>
@@ -206,6 +306,20 @@ import { ref, onMounted } from 'vue';
           <p><strong>Feedback Text:</strong> {{ selectedRequest.feedback_text }}</p>
           <p><strong>Feedback Rating:</strong> {{ selectedRequest.feedback_rating }}</p>
           <p><strong>Feedback Date:</strong> {{ selectedRequest.feedback_date }}</p>
+          <div v-if="selectedRequest.status === 'To Pay'">
+          <p><strong>Update Receipt Link:</strong></p>
+          <input type="text" v-model="newReceiptLink" :disabled="!isToPayStatus" />
+          <Button label="Send" @click="sendReceiptLinkUpdate" :disabled="!isToPayStatus"></Button>
+        </div>
+        <div v-if="canProvideFeedback">
+          <p>Provide Feedback:</p>
+          <input type="text" v-model="feedbackText" placeholder="Enter feedback text" />
+          <p>Rating:</p>
+          <Rating v-model="feedbackRating" :cancel="false" :readonly="false" :stars="5" @change="handleRatingChange"></Rating>
+          <Button label="Submit Feedback" @click="submitFeedback"></Button>
+        </div>
+        <Button label="Cancel Request" @click="cancelRequest" v-if="canCancelRequest"></Button>
+        <Button label="Received" @click="markAsReceived" v-if="canMarkAsReceived"></Button>
         </div>
       </Dialog>
      

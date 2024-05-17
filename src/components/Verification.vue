@@ -4,25 +4,25 @@ import ApplicationNavigationBar from "./ApplicationNavigationBar.vue";
 import Footer from "./Footer.vue";
 
 
-import { ref } from 'vue';
+// import { ref } from 'vue';
 
-const counters = ref([1, 2, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+// const counters = ref([1, 2, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
 
-const increment = (index) => {
-  counters.value[index]++;
+// const increment = (index) => {
+//   counters.value[index]++;
   
-};
+// };
 
-const decrement = (index) => {
-  if (counters.value[index]) {
-    counters.value[index]--;
-    ;
-  } else {
-    counters.value[index] = 0;
+// const decrement = (index) => {
+//   if (counters.value[index]) {
+//     counters.value[index]--;
+//     ;
+//   } else {
+//     counters.value[index] = 0;
     
-  }
-};  
+//   }
+// };  
 </script>
 <template>
   <newNavbar/>
@@ -30,130 +30,12 @@ const decrement = (index) => {
     <div class="div">
       <div class="div-2">
         <div class="div-3">
-          <router-link to="/shipping" type="button">
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d60bd5e6c13b359f29bfa89f05071f1092c5bdc8b6eb63cc4c3dc2eef1800195?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-            class="img"
-          />
-        </router-link>
-          <div class="div-4">
-            <div class="div-5">VERIFICATION</div>
-            <div class="div-6">
-              <span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 700;
-                "
-                >SUMMARY<br /></span
-              ><span
-                style="
-                  font-family: Poppins, -apple-system, Roboto, Helvetica,
-                    sans-serif;
-                  font-weight: 400;
-                "
-                >All transactions are secure and encrypted
-              </span>
-            </div>
-            <div class="div-7">
-              <div class="div-8">
-
-                <div class="div-43a">
-                  <div class="div-44a">
-                    <div class="div-45a">Document Code</div>
-                    <div class="div-46a">Document Name</div>
-                  </div>
-                  <div class="div-47a">
-                    <div class="div-48a">Document Fee</div>
-                    <div class="div-49a">No. of Copies</div>
-                  </div>
-                </div>
-
-                <div class="div-58">
-                  <div class="div-59">4</div>
-                  <div class="div-60">
-                    Certificate of Enrollment
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4-"
-                      @click="decrement(0)"
-                    />
-                    <div class="div-63">{{ counters[0] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5-"
-                      @click="increment(0)"
-                    />
-                  </div>
-                </div>
 
 
-
-                <div class="div-58">
-                  <div class="div-59">6</div>
-                  <div class="div-60">
-                    Certificate of Government Recognition of the Program
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(1)"
-                    />
-                    <div class="div-63">{{ counters[1] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(1)"
-                    />
-                  </div>
-                </div>
-                
-            
-            
-              </div>
-            </div>
-            <div class="div-32">
-              <div class="div-33">VERY IMPORTANT</div>
-              <div class="div-34">
-                <span
-                  style="
-                    font-family: Poppins, -apple-system, Roboto, Helvetica,
-                      sans-serif;
-                    font-weight: 400;
-                  "
-                  >Please wait for the confirmation from the registrar, before
-                  moving on to the payment. While waiting, you can check your
-                  status at the official website by going to </span
-                ><span
-                  style="
-                    font-family: Poppins, -apple-system, Roboto, Helvetica,
-                      sans-serif;
-                    font-weight: 700;
-                  "
-                  >TRACK DOCUMENT.<br
-                /></span>
-              </div>
-            </div>
-            <div class="div-35">Page 3 of 3</div>
-          </div>
         </div>
-        <a class="div-36" href="#open-modal">Submit</a>
+      
         
-        <div id="open-modal" class="modal-window">
+     
   
     
     <!-- Your Modal Content Goes Here -->
@@ -185,11 +67,10 @@ const decrement = (index) => {
           >.<br
         /></span>
       </div>
-      <router-link to="/" type="button" class="div-4-">SUBMIT</router-link>
+      <router-link to="/track" type="button" class="div-4-">Track Document</router-link>
    
     </div>
     </div>
-</div>
 
 
 
@@ -275,7 +156,6 @@ flex-direction: column;
   border-radius: 10px;
   background-color: var(--, #fff);
   display: flex;
-  max-width: 889px;
   flex-direction: column;
   padding: 45px 60px;
 }
@@ -324,7 +204,7 @@ flex-direction: column;
   width: 275px;
   max-width: 100%;
   align-items: center;
-  padding: 27px 60px;
+  padding: 30px 10px;
   font: 700 24px Montserrat, sans-serif;
 }
 @media (max-width: 991px) {

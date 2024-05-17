@@ -101,6 +101,18 @@ import InputText from 'primevue/inputtext';
                 <div class="div-12">New Account</div>
               </div>
             </router-link>
+            <!-- Add document button -->
+            <router-link to="/adminD" type="button">
+              <div class="div-9">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e9ab5b1e64dd837619d0ab460143b6a820a2c102039a94924b3b213cba6bb444?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                  class="img-6"
+                />
+                <div class="div-12">Documents</div>
+              </div>
+            </router-link>
+<!-- until here -->
             <router-link to="/adminHy" type="button">
               <div class="div-9">
                 <img
@@ -182,6 +194,7 @@ import InputText from 'primevue/inputtext';
       :paginator-template="paginatorTemplate"
       :rows-per-page-options="[10, 20, 50, 100]"
       :current-page-report-template="currentPageReportTemplate"
+      sortField="request_number" :sortOrder="-1"
     >
       <Column field="request_number" header="Request Number" sortable></Column>
       <Column field="school_student_id" header="School ID" sortable></Column>

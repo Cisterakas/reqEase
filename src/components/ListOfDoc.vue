@@ -1,114 +1,133 @@
 <template>
   <div>
-    <div>
-      <button @click="showDialog = true">New Document Type</button>
+    <div class="toolbar">
+      <InputText placeholder="Search..." v-model="searchQuery" @input="filterDocuments" />
+      <Button label="Add Document" icon="pi pi-plus" @click="showAddDialog = true" />
     </div>
 
-    <DataTable :value="documentTypes" :paginator="true" :rows="5">
-      <Column field="document_type_id" header="ID"></Column>
+    <DataTable :value="filteredDocumentTypes" responsiveLayout="scroll">
       <Column field="name" header="Name"></Column>
       <Column field="fee" header="Fee"></Column>
       <Column field="unit_name" header="Unit Name"></Column>
-      <Column header="Actions">
-        <template #body="rowData">
-          <button @click="editDocumentType(rowData)">Edit</button>
-          <button @click="deleteDocumentType(rowData.document_type_id)">Delete</button>
+      <Column header="Actions" bodyStyle="text-align: center">
+        <template #body="slotProps">
+          <Button icon="pi pi-pencil" @click="editDocument(slotProps.data)" />
+          <Button icon="pi pi-trash" class="p-button-danger" @click="showDeleteConfirmation(slotProps.data)" />
         </template>
       </Column>
     </DataTable>
 
-    <Dialog v-model="showDialog" :visible="showDialog" @hide="clearForm">
-      <form @submit.prevent="submitForm">
-        <div>
-          <label>ID:</label>
-          <input type="text" v-model="form.document_type_id" readonly>
-        </div>
-        <div>
-          <label>Name:</label>
-          <input type="text" v-model="form.name" required>
-        </div>
-        <div>
-          <label>Fee:</label>
-          <input type="number" v-model="form.fee" required>
-        </div>
-        <div>
-          <label>Unit Name:</label>
-          <input type="text" v-model="form.unit_name" required>
-        </div>
-        <button type="submit">Save</button>
-      </form>
+    <Dialog header="Add Document Type" v-model:visible="showAddDialog">
+      <!-- Add Document Dialog Content -->
+    </Dialog>
+
+    <Dialog header="Edit Document Type" v-model:visible="showEditDialog">
+      <!-- Edit Document Dialog Content -->
+    </Dialog>
+
+    <Dialog header="Delete Document Type" :visible="deleteVisible" @update:visible="deleteVisible = $event">
+      <template #footer>
+        <Button label="No" @click="cancelDelete" />
+        <Button label="Yes" class="p-button-danger" @click="confirmDelete" />
+      </template>
+      <div class="p-fluid">
+        <p>Are you sure you want to delete this document type?</p>
+      </div>
     </Dialog>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import Button from 'primevue/button';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Dialog from 'primevue/dialog';
-
+import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
 
 const documentTypes = ref([]);
-const form = reactive({
+const filteredDocumentTypes = ref([]);
+const showAddDialog = ref(false);
+const showEditDialog = ref(false);
+const deleteVisible = ref(false);
+const deleteDocumentId = ref(null);
+const searchQuery = ref('');
+
+const newDocument = ref({
+  name: '',
+  fee: 0,
+  unit_name: '',
+});
+
+const editDocumentData = ref({
   document_type_id: null,
   name: '',
-  fee: null,
-  unit_name: ''
+  fee: 0,
+  unit_name: '',
 });
-const showDialog = ref(false);
 
-const fetchData = async () => {
+const fetchDocumentTypes = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/document_types/'); // Update the URL
+    const response = await axios.get('http://127.0.0.1:8000/api/document_types/');
     documentTypes.value = response.data;
+    filteredDocumentTypes.value = response.data;
   } catch (error) {
     console.error('Error fetching document types:', error);
   }
 };
 
-onMounted(fetchData);
-
-const clearForm = () => {
-  form.document_type_id = null;
-  form.name = '';
-  form.fee = null;
-  form.unit_name = '';
-  showDialog.value = false;
+const addDocumentType = async () => {
+  // Add Document Type Logic
 };
 
-const submitForm = async () => {
+const editDocument = (document) => {
+  // Edit Document Type Logic
+};
+
+const updateDocumentType = async () => {
+  // Update Document Type Logic
+};
+
+const showDeleteConfirmation = (document) => {
+  deleteDocumentId.value = document.document_type_id;
+  deleteVisible.value = true;
+};
+
+const cancelDelete = () => {
+  deleteVisible.value = false;
+  deleteDocumentId.value = null;
+};
+
+const confirmDelete = async () => {
   try {
-    if (form.document_type_id) {
-      // Update document type
-      await axios.put(`http://127.0.0.1:8000/api/document_types/${form.document_type_id}`, form); // Update the URL
-    } else {
-      // Create new document type
-      await axios.post('http://127.0.0.1:8000/api/document_types/', form); // Update the URL
-    }
-    clearForm();
-    fetchData();
+    await axios.delete(`http://127.0.0.1:8000/api/document_types/${deleteDocumentId.value}`);
+    documentTypes.value = documentTypes.value.filter(doc => doc.document_type_id !== deleteDocumentId.value);
+    filteredDocumentTypes.value = [...documentTypes.value]; // Update filtered data
+    deleteVisible.value = false;
+    deleteDocumentId.value = null;
   } catch (error) {
-    console.error('Error saving document type:', error);
+    console.error('Error deleting document type:', error);
   }
 };
 
-const editDocumentType = (documentType) => {
-  form.document_type_id = documentType.document_type_id;
-  form.name = documentType.name;
-  form.fee = documentType.fee;
-  form.unit_name = documentType.unit_name;
-  showDialog.value = true;
+const filterDocuments = () => {
+  const query = searchQuery.value.toLowerCase();
+  filteredDocumentTypes.value = documentTypes.value.filter((doc) => 
+    doc.name.toLowerCase().includes(query) ||
+    doc.unit_name.toLowerCase().includes(query) ||
+    doc.fee.toString().includes(query)
+  );
 };
 
-const deleteDocumentType = async (documentTypeId) => {
-  if (confirm('Are you sure you want to delete this document type?')) {
-    try {
-      await axios.delete(`http://127.0.0.1:8000/api/document_types/${documentTypeId}`); // Update the URL
-      fetchData();
-    } catch (error) {
-      console.error('Error deleting document type:', error);
-    }
-  }
-};
+onMounted(fetchDocumentTypes);
 </script>
+
+<style>
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+</style>

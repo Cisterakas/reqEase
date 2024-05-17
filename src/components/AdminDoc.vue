@@ -1,190 +1,151 @@
 <script setup>
 
+// import { ref } from 'vue';
+// import newNavbar from "./newNavbar.vue";
+// import Footer from "./Footer.vue";
+
+// import Toolbar from 'primevue/toolbar';
+//   import DataTable from 'primevue/datatable';
+// import Column from 'primevue/column';
+// import Button from 'primevue/button';
+// import IconField from 'primevue/iconfield';
+// import InputIcon from 'primevue/inputicon';
+// import InputText from 'primevue/inputtext';
+
+
+//   import axios from 'axios';
+//   const dt = ref(); // Define a ref for the DataTable component
+//   const payments= ref([]);
+//   const filters = ref({
+//     'global': { value: null }
+//   });
+  
+//   const fetchPayments = async () => {
+//     try {
+//       const response = await axios.get('http://127.0.0.1:8000/api/payments/');
+//       payments.value = response.data;
+//     } catch (error) {
+//       console.error('Error fetching payments:', error);
+//     }
+//   };
+//   fetchPayments();
+  
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import newNavbar from "./newNavbar.vue";
-import Footer from "./Footer.vue";
-import Toolbar from 'primevue/toolbar';
-  import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
 import Button from 'primevue/button';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 import Dialog from 'primevue/dialog';
-import router from '@/router';
-import IconField from 'primevue/iconfield';
-import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
 
+const documentTypes = ref([]);
+const filteredDocumentTypes = ref([]);
+const showAddDialog = ref(false);
+const showEditDialog = ref(false);
+const deleteVisible = ref(false);
+const deleteDocumentId = ref(null);
+const searchQuery = ref('');
 
-const columns = ref([
-  {
-    image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/f13e7b110d3e68a9198f94cc62908e92d71903440f9059f245f49ec915f061dc?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&',
-    alt: 'Announcement Image',
-    title: 'Announcement',
-    content: `Please be advised that the Office of the University Registrar will be conducting the 
-              Year-End Strategic Planning on M-Date-Date-Year. Hence, the in-person transaction of 
-              our clients on the said dates can be accommodated from <b>7:00 a.m. to 11:30 a.m.</b><br>
-
-              <br>Furthermore, there will be limited and no in-person transaction on dates listed 
-              below to allow for the preparation of the office year end reports. <br>
-
-              <br>For TRANSACTION DAYS: <br>
-              <b>12/13/23 - no transaction</b> <br>
-              <b>12/18/23 - 7:00 a.m. to 11:50 a.m. </b><br>      
-              <b>12/25/23 - no in-person transaction </b><br>
-
-              <br>In-person transactions will resume on m-d-y. <br>
-
-              <br><b>Thank you.</b>`,
-    editable: false,
-  },
-  {
-    image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/598b10c01e63a5f391e75b78de13697483ce806ac84053477e5df95e7eb796e7?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&',
-    alt: 'Reminders Image',
-    title: 'Reminders',
-    content: `1. Please allow a maximum of
-              <b>3 working days</b> to
-              verify your request. You will receive an
-              <b>email or SMS for the costs</b>, and the manner of payment and confirmation. If you
-              haven’t received a confirmation that your request has been
-              attended to after 3 working days, please send us an email
-              at for assistance.<br />2.
-              <b>Only the owner </b>of
-              the records is allowed to request for documents in
-              connection with his/her records.<br />3. This University
-              reserves the right to withhold, deny or cancel any request
-              for a document due to pending accountabilities (bank
-              accounts, incomplete credentials on file, etc.)<br />4.
-              Processing time of the request commences only upon receipt of
-              payment and confirmation from the Cashier.<br />5.
-              Request
-              <b>not claimed after 60 days</b
-              >
-              from the date of the request will be discarded. Therefore,
-              another request will be charged.`,
-    editable: false,
-  },
-  {
-    image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/2505edc742d3582db1c015d9e1516424e20babe97f7bf37e739007ff8cb746e3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&',
-    alt: 'Privacy Consent Image',
-    title: 'Privacy Consent',
-    content: `I hereby agree and consent that the University of the Immaculate
-              Conception may collect, use, disclose and process my
-              personal information set out in <br />this form and/or
-              otherwise provided by me for the purpose of requesting
-              school documents as stated in the R.A. 10173, otherwise
-              known as the Data Privacy Act of 2012 and other related data
-              privacy policies. <br /> <br>The information will only be
-              accessed by authorized university staff. I understand that
-              my data will be held securely and will not be disclosed to
-              third parties without my permission. When this information
-              is no longer required, the official university procedure will be
-              followed to dispose of my data. <br /> <br>By clicking the
-              <b>“REQUEST FOR OFFICIAL DOCUMENT ” </b
-              >option I represent and warrant that I am the data subject
-              and that I have read and understood all the conditions and
-              reminders in connection with this request and agree to
-              comply with them. By clicking selecting an option, I also
-              certify that the information given is true to the best of
-              my knowledge and belief.`,
-    editable: false,
-  },
-]);
-
-
-const editContent = (index) => {
-  columns.value.forEach((column, i) => {
-    column.editable = i === index;
-  });
-  // Focus on the editable content after setting it to editable
-  if (columns.value[index].editable) {
-    const editableContent = this.$refs.editableContent;
-    if (editableContent) {
-      editableContent.focus();
-      // Place the cursor at the end of the content
-      const range = document.createRange();
-      range.selectNodeContents(editableContent);
-      range.collapse(false);
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-  }
-};
-
-const publishContent = (index) => {
-  columns.value[index].editable = false;
-  // You can perform any additional logic here to handle the published content
-};
-
-const updateContent = (index, event) => {
-  columns.value[index].content = event.target.innerHTML;
-};
-
-const finishEditing = (index) => {
-  columns.value[index].editable = false;
-};
-
-const clearContent = (index) => {
-  columns.value[index].content = '';
-};
-
-
-const documentRequests = ref([]);
-const displayModal = ref(false);
-const selectedRequest = ref(null);
-
-const fetchDocumentRequests = async () => {
-  try {
-    const response = await axios.get('http://127.0.0.1:8000/api/get-document-requests/');
-    documentRequests.value = response.data.map(item => ({
-      ...item,
-      courier_info: item.courier_info || null
-    }));
-  } catch (error) {
-    console.error('Error fetching document requests:', error);
-  }
-};
-
-const showDetails = (request) => {
-  console.log('Showing details for:', request);
-  selectedRequest.value = request;
-  displayModal.value = true;
-};
-
-const approveRequest = async (requestId, approval) => {
-  try {
-      const response = await axios.post('http://127.0.0.1:8000/api/auth/approve-request/', { request_id: requestId, approved: approval });
-       
-      console.log(response.data.message);
-    // Refresh document requests after approval
-    fetchDocumentRequests();
-    if (approval === 'Approve') {
-      alert(`Request ID ${requestId} has been approved.`);
-    } else {
-      alert(`Request ID ${requestId} has been declined.`);
-    }
-  } catch (error) {
-    console.error('Error approving request:', error);
-  }
-};
-
-onMounted(() => {
-  fetchDocumentRequests();
+const newDocument = ref({
+  name: '',
+  fee: 0,
+  unit_name: '',
 });
 
+const editDocumentData = ref({
+  document_type_id: null,
+  name: '',
+  fee: 0,
+  unit_name: '',
+});
+
+const fetchDocumentTypes = async () => {
+  try {
+    const response = await axios.get('http://127.0.0.1:8000/api/document_types/');
+    documentTypes.value = response.data;
+    filteredDocumentTypes.value = response.data;
+  } catch (error) {
+    console.error('Error fetching document types:', error);
+  }
+};
+
+const addDocumentType = async () => {
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/document_types/', {
+      name: newDocument.value.name,
+      fee: newDocument.value.fee,
+      unit_name: newDocument.value.unit_name,
+    });
+    documentTypes.value.push(response.data);
+    filteredDocumentTypes.value.push(response.data);
+    showAddDialog.value = false;
+    newDocument.value = { name: '', fee: 0, unit_name: '' };
+  } catch (error) {
+    console.error('Error adding document type:', error);
+  }
+};
+
+const editDocument = (document) => {
+  editDocumentData.value = { ...document };
+  showEditDialog.value = true;
+};
+
+const updateDocumentType = async () => {
+  try {
+    const response = await axios.put(`http://127.0.0.1:8000/api/document_types/${editDocumentData.value.document_type_id}`, editDocumentData.value);
+    const index = documentTypes.value.findIndex(doc => doc.document_type_id === editDocumentData.value.document_type_id);
+    documentTypes.value.splice(index, 1, response.data);
+    filteredDocumentTypes.value = [...documentTypes.value]; // Update filtered data
+    showEditDialog.value = false;
+  } catch (error) {
+    console.error('Error updating document type:', error);
+  }
+};
+
+const showDeleteConfirmation = (document) => {
+  deleteDocumentId.value = document.document_type_id;
+  deleteVisible.value = true;
+};
+
+const cancelDelete = () => {
+  deleteVisible.value = false;
+  deleteDocumentId.value = null;
+};
+
+const confirmDelete = async () => {
+  try {
+    await axios.delete(`http://127.0.0.1:8000/api/document_types/${deleteDocumentId.value}`);
+    documentTypes.value = documentTypes.value.filter(doc => doc.document_type_id !== deleteDocumentId.value);
+    filteredDocumentTypes.value = [...documentTypes.value]; // Update filtered data
+    deleteVisible.value = false;
+    deleteDocumentId.value = null;
+  } catch (error) {
+    console.error('Error deleting document type:', error);
+  }
+};
+
+const filterDocuments = () => {
+  const query = searchQuery.value.toLowerCase();
+  filteredDocumentTypes.value = documentTypes.value.filter((doc) => 
+    doc.name.toLowerCase().includes(query) ||
+    doc.unit_name.toLowerCase().includes(query) ||
+    doc.fee.toString().includes(query)
+  );
+};
+
+onMounted(fetchDocumentTypes);
 
 </script>
 
 <template>
+  
     <div class="div">
       <div class="div-2">
         <div class="column">
           <div class="div-3">
             <div class="div-4">
-              <router-link to="/" type="button">
+                <router-link to="/" type="button">
               <img
                 loading="lazy"
                 srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/3026b8e8ceb59ce1fe93670e9c4f812c8d03c203f4fd499f461af14de72ac7b9?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -231,7 +192,7 @@ onMounted(() => {
                 <div class="div-12">New Account</div>
               </div>
             </router-link>
-<!-- Add document button -->
+            <!-- Add document button -->
             <router-link to="/adminD" type="button">
               <div class="div-9">
                 <img
@@ -271,15 +232,16 @@ onMounted(() => {
           <div class="div-17">
             <div class="div-18">
               <div class="div-19">
-                <div class="div-20">Primary</div>
-                <div class="div-21">DASHBOARD</div>
+                
+                <div class="div-21">DOCUMENTS</div>
+                
+                <div class="div-48-">
+                    You can edit, add and  delete a specific document.
+              </div>
+
               </div>
               <div class="div-22">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/316dddf451e95c71793dba7fdaffc4bbed6686ed6f912c7c1f83e852850504c5?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-8"
-                />
+           
                 <div class="div-23">
                   <img
                     loading="lazy"
@@ -290,176 +252,124 @@ onMounted(() => {
                 </div>
               </div>
             </div>
-            <!-- <div class="div-25">
-              <div class="div-26">
-                <div class="column-3">
-                  <div class="div-27">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/f13e7b110d3e68a9198f94cc62908e92d71903440f9059f245f49ec915f061dc?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-10"
-                    />
-                    <div class="div-28">Announcement</div>
-                    <div class="div-29"> <div class="div-36">
-                      Please be advised that the Office of the University Registrar will be conducting the 
-                      Year-End Strategic Planning on M-Date-Date-Year. Hence, the in-person transaction of 
-                      our clients on the said dates can be accommodated from <b>7:00 a.m. to 11:30 a.m.</b><br>
+        
+            <div class="div-46">
+      
+      <div class="div-48">
+        <div class="input-group">
+<div class="form-outline" data-mdb-input-init>
+<!-- <InputText class="form-outline" v-model="filters['global'].value" placeholder="Search..." /> -->
+<InputText class="form-outline" placeholder="Search..." v-model="searchQuery" @input="filterDocuments" />
+</div>
+</div>
 
-                      <br>Furthermore, there will be limited and no in-person transaction on dates listed 
-                      below to allow for the preparation of the office year end reports. <br>
+      </div>
+      <button @click="showAddDialog = true" class="btn btn-warning" data-mdb-ripple-init>
+        <i class="fas fa-plus"></i>     Add Document</button>
+    </div>
+    <DataTable :pt="{
+      table: 'custom-table',
+      header: 'custom-header',
+      tbody: 'custom-body'
+    }" 
+    stripedRows
+      tableStyle="min-width: 50rem"
+      :paginator="true"
+      :rows="10"
+      :paginator-template="paginatorTemplate"
+      :rows-per-page-options="[10, 20, 50, 100]"
+      :current-page-report-template="currentPageReportTemplate"
+      :value="filteredDocumentTypes" responsiveLayout="scroll">
+      <Column field="name" header="Name"></Column>
+      <Column field="fee" header="Fee"></Column>
+      <Column field="unit_name" header="Unit Name"></Column>
+      <Column header="Actions" bodyStyle="text-align: center">
+        <template #body="slotProps">
+          <Button icon="pi pi-pencil" severity="secondary" rounded @click="editDocument(slotProps.data)" />
+          <Button icon="pi pi-trash" severity="danger" rounded @click="showDeleteConfirmation(slotProps.data)" />
+        </template>
+      </Column>
+    </DataTable>
 
-                      <br>For TRANSACTION DAYS: <br>
-                      <b>12/13/23 - no transaction</b> <br>
-                      <b>12/18/23 - 7:00 a.m. to 11:50 a.m. </b><br>      
-                      <b>12/25/23 - no in-person transaction </b><br>
-
-                      <br>In-person transactions will resume on m-d-y. <br>
-
-                      <br><b>Thank you.</b>
-                      </div></div>
-                    <div class="div-30">
-                        
-                      
-                      <button type="button" class="btn btn-warning btn-rounded" data-mdb-ripple-init>Edit</button>
-                      <button type="button" class="btn btn-danger btn-rounded" data-mdb-ripple-init>Publish</button>
-                      
-                    </div>
-                  </div>
-                </div>
-                <div class="column-3">
-                  <div class="div-33">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/598b10c01e63a5f391e75b78de13697483ce806ac84053477e5df95e7eb796e7?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-11"
-                    />
-                    <div class="div-34">Reminders</div>
-                    <div class="div-35">
-                      <div class="div-36">
-                        1. Please allow maximum of
-                        <b>3 working days</b> to
-                        verify your request. You will receive an
-                        <b>email or SMS for the costs</b>, and the manner of payment and confirmation. If you
-                        haven’t received a confirmation that your request has been
-                        attended to after 3 working days, please send us an email
-                        at for assistance.<br />2.
-                        <b>Only the owner </b>of
-                        the records is allowed to request for documents in
-                        connection with his/her records.<br />3. This University
-                        reserves the right to withhold, deny or cancel any request
-                        for document due to pending accountabilities (bank
-                        accounts, incomplete credentials on file, etc.)<br />4.
-                        Processing time of request commences only upon receipt of
-                        payment and confirmation from the Cashier.<br />5.
-                        Request
-                        <b>not claimed after 60 days</b
-                        >
-                        from the date of request will be discarded. Therefore,
-                        another request will be charged.
-                      </div>
-                      <div class="div-37">
-                        <button type="button" class="btn btn-warning btn-rounded" data-mdb-ripple-init>Edit</button>
-                      <button type="button" class="btn btn-danger btn-rounded" data-mdb-ripple-init>Publish</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="column-3">
-                  <div class="div-40">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/2505edc742d3582db1c015d9e1516424e20babe97f7bf37e739007ff8cb746e3?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-12"
-                    />
-                    <div class="div-41">Privacy Consent</div>
-                    <div class="div-42">
-                      I hereby agree and consent the University of the Immaculate
-                      Conception may collect, use, disclose and process my
-                      personal information set out in <br />this form and/or
-                      otherwise provided by me for the purpose of requesting
-                      school documents as stated in the R.A. 10173, otherwise
-                      known as the Data Privacy Act of 2012 and other related data
-                      privacy policies. <br /> <br>The information will only be
-                      accessed by authorized university staff. I understand that
-                      my data will be held securely and will not be disclosed to
-                      third parties without my permission. When this information
-                      is no longer required, official university procedure will be
-                      followed to dispose my data. <br /> <br>By clicking the
-                      <b>“REQUEST FOR OFFICIAL DOCUMENT ” </b
-                      >option I represent and warrant that I am the data subject
-                      and that I have read and understood all the conditions and
-                      reminders in connection with this request and agree to
-                      comply with them. By clicking selecting an option, I also
-                      certify that the information given are true to the best of
-                      my knowledge and belief.
-                    </div>
-                    <div class="div-43">
-                        <button type="button" class="btn btn-warning btn-rounded" data-mdb-ripple-init>Edit</button>
-                      <button type="button" class="btn btn-danger btn-rounded" data-mdb-ripple-init>Publish</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            </div> -->
-            
-            <div class="div-25">
-    <div class="div-26">
-      <div v-for="(column, index) in columns" :key="index" class="column-3">
-        <div class="div-27">
-          <img :src="column.image" :alt="column.alt" class="img-10" />
-          <div class="div-28">{{ column.title }}</div>
-          <div class="div-29">
-            <div
-              v-if="!column.editable"
-              class="div-36"
-              v-html="column.content"
-            ></div>
-            <div
-              v-if="column.editable"
-              ref="editableContent"
-              class="div-36 editable"
-              contenteditable="true"
-              @input="updateContent(index, $event)"
-              @blur="finishEditing(index)"
-            ></div>
-          </div>
-          <div class="div-30">
-            <button
-              @click="editContent(index)"
-              class="btn btn-warning btn-rounded"
-              data-mdb-ripple-init
-            >
-              Edit
-            </button>
-            <button
-              @click="publishContent(index)"
-              class="btn btn-danger btn-rounded"
-              data-mdb-ripple-init
-            >
-              Publish
-            </button>
-            <button
-              v-if="!column.editable"
-              @click="clearContent(index)"
-              class="btn btn-secondary btn-rounded"
-              data-mdb-ripple-init
-            >
-              Clear
-            </button>
-          </div>
+    <Dialog header="Add Document Type" v-model:visible="showAddDialog">
+      <template #footer>
+        <Button label="Cancel" @click="showAddDialog = false" />
+        <Button label="Add" @click="addDocumentType" />
+      </template>
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="name">Name</label>
+          <InputText id="name" v-model="newDocument.name" />
+        </div>
+        <div class="p-field">
+          <label for="fee">Fee</label>
+          <InputNumber id="fee" v-model="newDocument.fee" />
+        </div>
+        <div class="p-field">
+          <label for="unit_name">Unit Name</label>
+          <InputText id="unit_name" v-model="newDocument.unit_name" />
         </div>
       </div>
-    </div>
-  </div>
+    </Dialog>
 
-            <div class="div-46">
-              <div class="div-47">Pending Request</div>
-              <div class="div-48">
-                You can view and update the status and schedule to release the
-                document request.
-              </div>
-            </div>
+    <Dialog header="Edit Document Type" v-model:visible="showEditDialog">
+      <template #footer>
+        <Button label="Cancel" @click="showEditDialog = false" />
+        <Button label="Save" @click="updateDocumentType" />
+      </template>
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="edit_name">Name</label>
+          <InputText id="edit_name" v-model="editDocumentData.name" />
+        </div>
+        <div class="p-field">
+          <label for="edit_fee">Fee</label>
+          <InputNumber id="edit_fee" v-model="editDocumentData.fee" />
+        </div>
+        <div class="p-field">
+          <label for="edit_unit_name">Unit Name</label>
+          <InputText id="edit_unit_name" v-model="editDocumentData.unit_name" />
+        </div>
+      </div>
+    </Dialog>
+    <Dialog header="Delete Document Type" :visible="deleteVisible" @update:visible="deleteVisible = $event">
+      <template #footer>
+        <Button label="No" @click="cancelDelete" />
+        <Button label="Yes" class="p-button-danger" @click="confirmDelete" />
+      </template>
+      <div class="p-fluid">
+        <p>Are you sure you want to delete this document type?</p>
+      </div>
+    </Dialog>
+
+    <!-- <DataTable
+      ref="dt"
+     :pt="{
+      table: 'custom-table',
+      header: 'custom-header',
+      tbody: 'custom-body'
+    }"
+      :value="payments"
+      stripedRows
+      tableStyle="min-width: 50rem"
+      dataKey="id"
+      :paginator="true"
+      :rows="10"
+      :filters="filters"
+      :paginator-template="paginatorTemplate"
+      :rows-per-page-options="[10, 20, 50, 100]"
+      :current-page-report-template="currentPageReportTemplate"
+    >
+      <Column field="request_number" header="Request Number" sortable></Column>
+      <Column field="school_student_id" header="School ID" sortable></Column>
+      <Column field="full_name" header="Full Name" sortable></Column>
+      <Column field="document_names" header="Requested Document" sortable></Column>
+      <Column field="total_fee" header="Amount" sortable></Column>
+      <Column field="receipt_link" header="Receipts" sortable></Column>
+      <Column field="payment_date" header="Payment Date" sortable></Column>
+      <Column field="claiming_date" header="Claiming Date" sortable></Column>
+      <Column field="status" header="Status" sortable></Column>
+    </DataTable> -->
 
 <!-- <div class="arrangement">
             <table class="table table-striped">
@@ -469,10 +379,12 @@ onMounted(() => {
               <th>Student No.</th>
               <th>Student Name</th>
               <th>Requested Document</th>
-              <th>Date Requested</th>
-              <th>Claiming Method</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th>Receipts</th>
+              <th>Payment Date</th> 
+              <th>Schedule to Release</th>
+              <th>Amount</th>
+              <th>Payment Status</th>
+       
 
             </tr>
           </thead>
@@ -482,96 +394,31 @@ onMounted(() => {
               <td class="">{{ category.id }}</td>
               <td class="">{{ category.studentNum}}</td>
               <td class="">{{ category.studentName }}</td>
-          
-              <td class="">{{ category.requestedDocument }}</td>
-         
-              <td class="">{{ category.dateReq }}</td>
-              <td class="">
-                {{ category.claim }}</td>
-              <td class="">
-                <span v-if="category.status === 'To be approve'" class="badge rounded-pill badge-warning">{{ category.status }}</span></td>
+              <td class="">{{ category.requestedDocument}}</td>
+              <td class="">{{ category.receipt }}</td>
+              <td class="">{{ category.paymentDate }}</td>
               
               <td class="">
-                
+                <input type="date"></td>
+                <td class="">{{ category.amount }}</td>
+              <td class="">
                 <button type="button" class="btn btn-outline-dark" data-mdb-ripple-init data-mdb-ripple-color="dark">View</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Approve</button>
-             
-                </td>
+                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Paid</button>
+            </td>
          
             </tr>
           </tbody>
         </table>
       </div> -->
-      <DataTable
-     :pt="{
-      table: 'custom-table',
-      header: 'custom-header',
-      tbody: 'custom-body'
-    }"
-      :value="documentRequests"
-      stripedRows
-      tableStyle="min-width: 50rem"
-      dataKey="id"
-      :paginator="true"
-      :rows="5"
-      :filters="filters"
-      :paginator-template="paginatorTemplate"
-      :rows-per-page-options="[5, 15, 50, 100]"
-      :current-page-report-template="currentPageReportTemplate"
-      sortField="request_id" :sortOrder="-1"
-    >
-    <Column field="request_id" header="Request ID" sortable></Column>
-      <!-- <Column field="student_id" header="Student ID"></Column> -->
-      <Column field="student_school_id" header="Student School ID" sortable></Column>
-      <Column field="student_full_name" header="Student Name" sortable></Column>
-      <Column field="degree" header="Degree"></Column>
-      <!-- <Column field="address" header="Address"></Column> -->
-      <!-- <Column field="contact" header="Contact"></Column> -->
-      <Column field="email" header="Email"></Column>
-      <Column field="document_name" header="Document Name" sortable></Column>
-      <Column field="request_date" header="Request Date" sortable></Column>
-      <!-- <Column field="id_link" header="ID Link"></Column> -->
-      <Column field="total_amount_paid" header="Total Amount Paid" sortable></Column>
-      <Column field="claiming_method" header="Claiming Method" sortable></Column>
-      <Column field="status" header="Status"></Column>
-      <Column header="Actions">
-        <template #body="slotProps">
-          <Button severity="contrast" raised label="View" @click="showDetails(slotProps.data)"></Button>
-          <Button severity="success" rounded label="Approve" @click="approveRequest(slotProps.data.request_id, 'Approve')"></Button>
-          <Button severity="secondary" raised label="Decline" @click="approveRequest(slotProps.data.request_id, 'Decline')"></Button>
-        </template>
-      </Column>
-    </DataTable>
+        
          
-    <Dialog header="Document Request Details" v-model:visible="displayModal" :modal="true" :closable="true">
-      <div v-if="selectedRequest">
-        <!-- Display detailed information here -->
-        <p><strong>Request ID:</strong> {{ selectedRequest.request_id }}</p>
-        <p><strong>Student ID:</strong> {{ selectedRequest.student_id }}</p>
-        <p><strong>Student School ID:</strong> {{ selectedRequest.student_school_id }}</p>
-        <p><strong>Student Name:</strong> {{ selectedRequest.student_full_name }}</p>
-        <p><strong>Degree:</strong> {{ selectedRequest.degree }}</p>
-        <p><strong>Address:</strong> {{ selectedRequest.address }}</p>
-        <p><strong>Contact:</strong> {{ selectedRequest.contact }}</p>
-        <p><strong>Email:</strong> {{ selectedRequest.email }}</p>
-        <p><strong>Document Name:</strong> {{ selectedRequest.document_name }}</p>
-        <p><strong>Request Date:</strong> {{ selectedRequest.request_date }}</p>
-        <p><strong>ID Link:</strong> <a :href="selectedRequest.id_link" target="_blank">{{ selectedRequest.id_link }}</a></p>
-        <p><strong>Total Amount Paid:</strong> {{ selectedRequest.total_amount_paid }}</p>
-        <p><strong>Claiming Method:</strong> {{ selectedRequest.claiming_method }}</p>
-        <p><strong>Status:</strong> {{ selectedRequest.status }}</p>
-        <div v-if="selectedRequest.courier_info">
-          <h4>Courier Information</h4>
-          <p><strong>Province:</strong> {{ selectedRequest.courier_info.province }}</p>
-          <p><strong>Municipality:</strong> {{ selectedRequest.courier_info.municipality }}</p>
-          <p><strong>Barangay:</strong> {{ selectedRequest.courier_info.barangay }}</p>
-          <p><strong>Present Address:</strong> {{ selectedRequest.courier_info.present_address }}</p>
-          <p><strong>Delivery Contact:</strong> {{ selectedRequest.courier_info.delivery_contact }}</p>
-          <p><strong>Email:</strong> {{ selectedRequest.courier_info.email }}</p>
-        </div>
-      </div>
-    </Dialog>  
-
+        
+            <!-- <div class="div-98">
+                <button type="button" class="btn btn-warning" data-mdb-ripple-init>Sort Date</button>
+                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Previous</button>
+                <button type="button" class="btn btn-dark" data-mdb-ripple-init>next</button>
+              
+            </div> -->
           </div>
         </div>
       </div>
@@ -582,12 +429,6 @@ onMounted(() => {
   
   
   <style scoped>
- .editable {
-  border: 1px solid #ccc;
-  padding: 8px;
-}
-
-  
   .arrangement{
     flex-direction: column;
 
@@ -874,7 +715,7 @@ onMounted(() => {
     font: 500 18px Poppins, sans-serif;
   }
   .column-2 {
-    
+   
     flex-direction: column;
     line-height: normal;
     width: 80%;
@@ -918,7 +759,10 @@ onMounted(() => {
   }
   .div-19 {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-self: center;
+    gap: 20px;
+    padding: 18px 46px;
   }
   .div-20 {
     justify-content: center;
@@ -1357,8 +1201,20 @@ onMounted(() => {
     letter-spacing: -0.15px;
     font: 500 20px Poppins, sans-serif;
   }
+
+  .div-48- {
+   color:  #fff;
+    align-self: center;
+    flex-grow: 1;
+    font: 300 15px/127% Montserrat, sans-serif;
+  }
+  @media (max-width: 991px) {
+    .div-48 {
+      max-width: 100%;
+    }
+  }
   .div-48 {
-    color:  #fff;
+    background-color:  #fff;
     align-self: center;
     flex-grow: 1;
     font: 300 15px/127% Montserrat, sans-serif;

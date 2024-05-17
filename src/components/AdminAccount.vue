@@ -106,6 +106,18 @@ const approveAccount = async (userId) => {
                 <div class="div-12">New Account</div>
               </div>
             </router-link>
+            <!-- Add document button -->
+            <router-link to="/adminD" type="button">
+              <div class="div-9">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e9ab5b1e64dd837619d0ab460143b6a820a2c102039a94924b3b213cba6bb444?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                  class="img-6"
+                />
+                <div class="div-12">Documents</div>
+              </div>
+            </router-link>
+<!-- until here -->
             <router-link to="/adminHy" type="button">
               <div class="div-9">
                 <img
@@ -175,6 +187,7 @@ const approveAccount = async (userId) => {
     }" ref="dt" :value="newAccounts" stripedRows tableStyle="min-width: 50rem" dataKey="id"
                    :paginator="true" :rows="10" :filters="filters"
                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[10, 20, 50, 100]"
+                   sortField="user_id" :sortOrder="-1"
                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} accounts">
                    <Column field="user_id" header="User ID" sortable></Column> <!-- Add this line for user_id column -->
           <Column field="student_school_id" header="Student School ID" sortable></Column>

@@ -83,10 +83,29 @@ const router = createRouter({
         component: () => import('./components/UserDashboard.vue'),
         meta: { requiresAuth: true }, 
       },
+      { path: '/ship2/:requestId', 
+        name: 'UpdateClaimingInformation', 
+        component: () => import('./components/shippment.vue'), props: true },
+      // {
+      //   path: '/ship2',
+      //   name: 'Claiming',
+      //   component: () => import('./components/shippment.vue'), 
+      // },
       {
-        path: '/ship2',
-        name: 'ship2',
-        component: () => import('./components/shippment.vue'), 
+        path: '/trackD',
+        name: 'trackDocs',
+        component: () => import('./components/trackdocuments.vue'), 
+        meta: { requiresAuth: true }, 
+      }, {
+        path: '/adminD',
+        name: 'adminDocs',
+        component: () => import('./components/AdminDoc.vue'), 
+      },
+      {
+        path: '/adminDash',
+        name: 'adminDash',
+        component: () => import('./components/adminDashboard.vue'), 
+        meta: { requiresAuth: true }, 
       },
         { path: '/category', component: Category },
     { path: '/about', component: About },
@@ -97,6 +116,11 @@ const router = createRouter({
     { path: '/shipping', 
     component: () => import('./components/Shipping.vue'),
      },
+    //  {
+    //   path: '/claiming-page/:request_id',
+    //   name: 'ClaimingPage',
+    //   component: ClaimingPage
+    // },
     { path: '/regStudent', component: AsStudent },
     { path: '/regAdmin', component: AsAdmin },
     {

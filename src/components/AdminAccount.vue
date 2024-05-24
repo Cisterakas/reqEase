@@ -1,18 +1,9 @@
 <script setup>
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import newNavbar from "./newNavbar.vue";
 import Footer from "./Footer.vue";
-
-
-
-// const categories = ref([
-//     { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Admin", regDate: "11 / 06 / 23", status: "To be approve" },
-//     { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Student", regDate: "11 / 06 / 23", status: "To be approve" },
-//     { id: 1, firstN: "Namjoon", middleN: "Hybelabels", lastN: "Kim", suffix: "-" , email: "reqease_22000000123@uic.edu.ph", role: "Developer", regDate: "11 / 06 / 23", status: "To be approve" },
-
-
-//   ]);
+import router from '@/router';
 
 
   import Toolbar from 'primevue/toolbar';
@@ -22,11 +13,14 @@ import Button from 'primevue/button';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
+import Dialog from 'primevue/dialog';
 
 
   import axios from 'axios';
   const dt = ref(); // Define a ref for the DataTable component
   const newAccounts = ref([]);
+  const displayModal = ref(false);
+const selectedUser = ref(null);
   const filters = ref({
     'global': { value: null }
   });
@@ -35,16 +29,51 @@ import InputText from 'primevue/inputtext';
     try {
       const response = await axios.get('http://127.0.0.1:8000/api/new_accounts/');
       newAccounts.value = response.data;
+      console.log(newAccounts.value); // Log the newAccounts to check the fetched data
     } catch (error) {
       console.error('Error fetching new accounts:', error);
     }
   };
+  const showDetails = (user) => {
+  selectedUser.value = user;
+  displayModal.value = true;
+};
+
+onMounted(() => {
   fetchNewAccounts();
+});
   
   const exportCSV = () => {
   dt.value.exportCSV(); // Access the exportCSV method using the defined ref for DataTable
 };
 
+const approveAccount = async (userId) => {
+  try {
+    const approvalDate = new Date();
+    const formattedApprovalDate = approvalDate.toISOString().split('T')[0]; // format the date as "YYYY-MM-DD"
+    const response = await axios.put(`http://127.0.0.1:8000/api/new_accounts/${userId}/approve?approval_date=${formattedApprovalDate}`, {
+      approved: 'TRUE'
+    });
+    console.log(response.data);
+    alert('Account successfully approved!');
+    fetchNewAccounts();
+  } catch (error) {
+    console.error('Error approving account:', error.response.data.detail);
+  }
+};
+const denyAccount = async (userId) => {
+  try {
+    await axios.put('http://127.0.0.1:8000/api/update_approval_status/', {
+      user_id: userId,
+      approved: 'DECLINE',
+    });
+    alert(`Account for user ID ${userId} has been denied.`);
+    fetchNewAccounts(); // Refresh the accounts list after denial
+  } catch (error) {
+    console.error('Failed to deny account:', error);
+    alert('Failed to deny account.');
+  }
+};  
 </script>
 
 <template>
@@ -101,6 +130,18 @@ import InputText from 'primevue/inputtext';
                 <div class="div-12">New Account</div>
               </div>
             </router-link>
+            <!-- Add document button -->
+            <router-link to="/adminD" type="button">
+              <div class="div-9">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e9ab5b1e64dd837619d0ab460143b6a820a2c102039a94924b3b213cba6bb444?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                  class="img-6"
+                />
+                <div class="div-12">Documents</div>
+              </div>
+            </router-link>
+<!-- until here -->
             <router-link to="/adminHy" type="button">
               <div class="div-9">
                 <img
@@ -137,11 +178,7 @@ import InputText from 'primevue/inputtext';
 
               </div>
               <div class="div-22">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/316dddf451e95c71793dba7fdaffc4bbed6686ed6f912c7c1f83e852850504c5?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-8"
-                />
+        
                 <div class="div-23">
                   <img
                     loading="lazy"
@@ -167,11 +204,16 @@ import InputText from 'primevue/inputtext';
               <button @click="exportCSV" type="button" class="btn btn-warning" data-mdb-ripple-init>
                 <i class="fas fa-download"></i>  Download Report</button>
             </div>
-            <DataTable ref="dt" :value="newAccounts" stripedRows tableStyle="min-width: 50rem" dataKey="id"
-                   :paginator="true" :rows="5" :filters="filters"
-                   paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,25]"
+            <DataTable id="dtable" ::pt="{
+      table: 'custom-table',
+      header: 'custom-header',
+      tbody: 'custom-body'
+    }" ref="dt" :value="newAccounts" stripedRows tableStyle="min-width: 50rem" dataKey="id"
+                   :paginator="true" :rows="10" :filters="filters"
+                   paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[10, 20, 50, 100]"
+                   sortField="user_id" :sortOrder="-1"
                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} accounts">
-        
+                   <Column field="user_id" header="User ID" sortable></Column> <!-- Add this line for user_id column -->
           <Column field="student_school_id" header="Student School ID" sortable></Column>
           <Column field="first_name" header="First Name" sortable></Column>
           <Column field="middle_name" header="Middle Name" sortable></Column>
@@ -182,9 +224,35 @@ import InputText from 'primevue/inputtext';
           <Column field="registration_date" header="Registration Date" sortable></Column>
           <Column field="role" header="Role" sortable></Column>
           <Column field="account_approval_status" header="Approval Status" sortable></Column>
+          <Column header="Action">
+        <template #body="slotProps">
+          <Button label="View" @click="showDetails(slotProps.data)"></Button>
+          <button @click="approveAccount(slotProps.data.user_id)" type="button" class="btn btn-dark" data-mdb-ripple-init>Approve</button>
+          <Button label="Deny" @click="denyAccount(slotProps.data.user_id)" class="p-button-danger"></Button>
+        </template>
+    </Column>
         
         </DataTable>
-<div class="arrangement">
+        <Dialog header="User Details" v-model:visible="displayModal" :modal="true" :closable="true">
+      <div v-if="selectedUser">
+        <p><strong>User ID:</strong> {{ selectedUser.user_id }}</p>
+        <p><strong>Student School ID:</strong> {{ selectedUser.student_school_id }}</p>
+        <p><strong>First Name:</strong> {{ selectedUser.first_name }}</p>
+        <p><strong>Middle Name:</strong> {{ selectedUser.middle_name }}</p>
+        <p><strong>Last Name:</strong> {{ selectedUser.last_name }}</p>
+        <p><strong>Suffix:</strong> {{ selectedUser.suffix }}</p>
+        <p><strong>Degree:</strong> {{ selectedUser.degree }}</p>
+        <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+        <p><strong>Registration Date:</strong> {{ selectedUser.registration_date }}</p>
+        <p><strong>Role:</strong> {{ selectedUser.role }}</p>
+        <p><strong>Account Approval Status:</strong> {{ selectedUser.account_approval_status }}</p>
+        <!-- Include student specific fields -->
+        <p><strong>Contact:</strong> {{ selectedUser.contact }}</p>
+        <p><strong>Address:</strong> {{ selectedUser.address }}</p>
+        <p><strong>Last School Year:</strong> {{ selectedUser.last_school_year }}</p>
+      </div>
+    </Dialog>
+<!-- <div class="arrangement">
             <table class="table table-striped">
           <thead>
             <tr>
@@ -219,7 +287,7 @@ import InputText from 'primevue/inputtext';
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
         
       <!-- <button type="button" class="btn btn-outline-dark" data-mdb-ripple-init data-mdb-ripple-color="dark">view</button>
                 <button type="button" class="btn btn-dark" data-mdb-ripple-init>approve</button> -->
@@ -233,6 +301,9 @@ import InputText from 'primevue/inputtext';
   
   
   <style scoped>
+
+
+
   .arrangement{
     flex-direction: column;
 

@@ -3,11 +3,10 @@
 @import url('https://unpkg.com/primevue/resources/themes/saga-blue/theme.css');
 @import url('https://unpkg.com/primevue/resources/primevue.min.css');
 @import url('https://unpkg.com/primeicons/primeicons.css');
-body {
+/* body {
     font-family: var(--font-family);
     font-weight: normal;
     background: var(--surface-ground);
-    color: var(--text-color);
     padding: 1rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -33,6 +32,7 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+  } */
+
 
   

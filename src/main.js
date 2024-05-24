@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-// import './style.css'
+import './style.css'
 import App from './App.vue'
 import 'mdb-vue-ui-kit/css/mdb.min.css';
 import router from './router'; // Import the router configuration
@@ -115,13 +115,9 @@ import VirtualScroller from 'primevue/virtualscroller';
 
 
 const app = createApp(App);
-app.use(PrimeVue);
-
-app.use(PrimeVue, { ripple: true  });
 app.use(ConfirmationService);
 app.use(ToastService);
 app.use(DialogService);
-app.use(router);
 
 app.directive('tooltip', Tooltip);
 app.directive('badge', BadgeDirective);
@@ -230,8 +226,9 @@ app.component('TriStateCheckbox', TriStateCheckbox);
 app.component('VirtualScroller', VirtualScroller);
 
 // createApp(App).mount('#app')
+app.use(router);
 createApp(App)
     .use(router)
-    .use(PrimeVue, { ripple: true})
+    .use(PrimeVue, { ripple: true}, { unstyled: true })
     .mount('#app')
 

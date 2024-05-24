@@ -1,7 +1,7 @@
 <script setup>
 
 
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import InputText from "primevue/inputtext";
 import FloatLabel from "primevue/floatlabel";
 import Button from "primevue/button";
@@ -33,6 +33,15 @@ const success = ref(false);
 
 const errorMessage = ref("");
 const submitButtonActive = ref(false);
+
+const lastSchoolYears = computed(() => {
+  const currentYear = new Date().getFullYear();
+  const years = [];
+  for (let year = 2000; year <= currentYear; year++) {
+    years.push(`${year}-${year + 1}`);
+  }
+  return years;
+});
 
 const checkEmailExists = async (email) => {
   try {
@@ -179,7 +188,7 @@ const submitForm = async () => {
                     <div class="material-textfield1">
                     
                       <input placeholder=" " id="student_school_id" v-model="newUser.student_school_id"/>
-                      <label for="schoolId">School ID</label>
+                      <label for="schoolId">Student ID</label>
                     </div>
                     <div class="material-textfield">
                       <input placeholder=" " id="first_name" v-model="newUser.first_name"/>
@@ -205,16 +214,83 @@ const submitForm = async () => {
                       <input placeholder=" " id="contact" v-model="newUser.contact"/>
                       <label for="contactNumber">Contact Number</label>
                     </div>
+               
                     <div class="material-textfield">
-                      <input placeholder=" " id="last_school_year" v-model="newUser.last_school_year"/>
-                      <label for="lastSchoolYearAttended"
-                        >Last School Year Attended</label
-                      >
-                    </div>
+  <select id="last_school_year" v-model="newUser.last_school_year">
+    <option value="">Select Last School Year Attended</option>
+    <!-- Generate options for last school year attended from 2000 to 2024 -->
+    <!-- You can adjust the range as needed -->
+    <option v-for="year in lastSchoolYears" :value="year">{{ year }}</option>
+  </select>
+  <label for="last_school_year">Last School Year Attended</label>
+</div>
                     <div class="material-textfield">
-                      <input placeholder=" " id="degree" v-model="newUser.degree"/>
-                      <label for="degree">Degree</label>
-                    </div>
+  <select id="degree" v-model="newUser.degree">
+    <option value="">Select Degree</option>
+    <!-- Doctoral Degrees -->
+    <optgroup label="Doctoral">
+      <option value="Doctor of Philosophy in Education Major in Applied Linguistics">Doctor of Philosophy in Education Major in Applied Linguistics</option>
+      <option value="Doctor of Philosophy in Education Major in Educational Leadership">Doctor of Philosophy in Education Major in Educational Leadership</option>
+      <option value="Doctor of Philosophy in Education Major in Physical Education">Doctor of Philosophy in Education Major in Physical Education</option>
+      <option value="Doctor of Philosophy in Pharmacy">Doctor of Philosophy in Pharmacy</option>
+      <option value="Doctor in Business Management">Doctor in Business Management</option>
+      <option value="Doctor in Business Management Specialized in Information Systems">Doctor in Business Management Specialized in Information Systems</option>
+    </optgroup>
+    <!-- Masteral Degrees -->
+    <optgroup label="Masteral">
+      <option value="Master in Business Administration (with Thesis)">Master in Business Administration (with Thesis)</option>
+      <option value="Master in Business Administration (Non-Thesis)">Master in Business Administration (Non-Thesis)</option>
+      <option value="Master in Business Administration for Health Professionals (Non-Thesis)">Master in Business Administration for Health Professionals (Non-Thesis)</option>
+      <option value="Master in Information Systems">Master in Information Systems</option>
+      <option value="Master in Information Technology">Master in Information Technology</option>
+      <option value="Master in Counseling">Master in Counseling</option>
+      <option value="Master in Pastoral Ministry Specialized in Pastoral Management (Non-Thesis)">Master in Pastoral Ministry Specialized in Pastoral Management (Non-Thesis)</option>
+      <option value="Master of Arts in Education Major in English">Master of Arts in Education Major in English</option>
+      <option value="Master of Arts in Education Major in Mathematics">Master of Arts in Education Major in Mathematics</option>
+      <option value="Master of Arts in Education Major in Physical Education">Master of Arts in Education Major in Physical Education</option>
+      <option value="Master of Arts in Education Major in Sociology">Master of Arts in Education Major in Sociology</option>
+      <option value="Master of Arts in Education Major in Guidance & Counseling">Master of Arts in Education Major in Guidance & Counseling</option>
+      <option value="Master of Arts in Education Major in Information Technology Integration">Master of Arts in Education Major in Information Technology Integration</option>
+      <option value="Master of Arts in Educational Management">Master of Arts in Educational Management</option>
+      <option value="Master of Arts in Elementary Education">Master of Arts in Elementary Education</option>
+      <option value="Master of Arts in Religious Education">Master of Arts in Religious Education</option>
+      <option value="Master of Arts in Values Education">Master of Arts in Values Education</option>
+      <option value="Master of Arts in Teaching College Chemistry">Master of Arts in Teaching College Chemistry</option>
+      <option value="Master of Arts in Teaching College Physics">Master of Arts in Teaching College Physics</option>
+      <option value="Master of Science in Pharmacy">Master of Science in Pharmacy</option>
+      <option value="Master of Science in Medical Technology / Medical Laboratory Science">Master of Science in Medical Technology / Medical Laboratory Science</option>
+      <option value="Master of Arts in Engineering Education Major in Civil Engineering">Master of Arts in Engineering Education Major in Civil Engineering</option>
+      <option value="Master of Arts in Engineering Education Major in Electronics & Communication Engineering">Master of Arts in Engineering Education Major in Electronics & Communication Engineering</option>
+      <!-- Add more Masteral options here -->
+    </optgroup>
+    <!-- Undergraduate Studies Courses -->
+    <optgroup label="Undergraduate Studies Courses">
+      <option value="BS in Accountancy">BS in Accountancy</option>
+      <option value="BS in Accounting Technology">BS in Accounting Technology</option>
+      <option value="BS in Business Administration (Majors in: Financial Mgt., Marketing Mgt.)">BS in Business Administration (Majors in: Financial Mgt., Marketing Mgt.)</option>
+      <option value="Bachelor in Elementary Education (Specialized in: Generalist, Pre-School Education, Special Education)">Bachelor in Elementary Education (Specialized in: Generalist, Pre-School Education, Special Education)</option>
+      <option value="Bachelor in Secondary Education (Majors in: English, Filipino, Mathematics, Biological Science and MAPEH)">Bachelor in Secondary Education (Majors in: English, Filipino, Mathematics, Biological Science and MAPEH)</option>
+      <option value="BS in Computer Science">BS in Computer Science</option>
+      <option value="BS in Information Technology (Specialized in Computer Networks, Multimedia, Software Engineering)">BS in Information Technology (Specialized in Computer Networks, Multimedia, Software Engineering)</option>
+      <option value="BS in Information Systems">BS in Information Systems</option>
+      <option value="BS in Pharmacy">BS in Pharmacy</option>
+      <option value="BS in Chemistry">BS in Chemistry</option>
+      <option value="BS in Clinical Pharmacy">BS in Clinical Pharmacy</option>
+      <option value="Bachelor in Music (Majors in: Piano and Music Education)">Bachelor in Music (Majors in: Piano and Music Education)</option>
+      <option value="Bachelor in Medical Laboratory Science">Bachelor in Medical Laboratory Science</option>
+      <option value="BS in Civil Engineering">BS in Civil Engineering</option>
+      <option value="BS in Electronics and Communications Engineering">BS in Electronics and Communications Engineering</option>
+      <option value="BS in Computer Engineering">BS in Computer Engineering</option>
+      <option value="BS in Nursing">BS in Nursing</option>
+      <option value="Bachelor of Arts (Majors in: Comm. Arts, Psychology, English)">Bachelor of Arts (Majors in: Comm. Arts, Psychology, English)</option>
+      <option value="AB in Philosophy">AB in Philosophy</option>
+      <option value="BS in Nutrition and Dietetics">BS in Nutrition and Dietetics</option>
+      <option value="BS in HRM">BS in HRM</option>
+      <!-- Add more Undergraduate options here -->
+    </optgroup>
+  </select>
+  <label for="degree">Degree</label>
+</div>
                     <div class="material-textfield1">
                       <input placeholder=" " id="email" v-model="newUser.email"/>           
                       <label for="email">Email Address</label>
@@ -298,7 +374,7 @@ const submitForm = async () => {
                       </div>
                       <router-link
                         id="done-button"
-                        to="/"
+                        to="/login"
                         type="button"
                         class="div-3-"
                         >DONE</router-link
@@ -489,6 +565,34 @@ input:focus + label {
   transform: translateY(-50%) scale(0.9);
 }
 input:not(:placeholder-shown) + label {
+  top: 0;
+  transform: translateY(-50%) scale(0.9);
+}
+
+
+select{
+  font: 275 22px Poppins, sans-serif;
+  outline: none;
+
+  color: #000;
+  transition: 0.1s ease-out;
+
+  border-radius: 10px;
+  border: 2px solid #2f3030;
+  align-self: stretch;
+  display: flex;
+  height: 68px;
+  width: 671px;
+}
+select:focus {
+  border-color: #e54f70;
+}
+select:focus + label {
+  color: #e54f70;
+  top: 0;
+  transform: translateY(-50%) scale(0.9);
+}
+select:not(:placeholder-shown) + label {
   top: 0;
   transform: translateY(-50%) scale(0.9);
 }

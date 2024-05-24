@@ -1,21 +1,68 @@
 <script setup>
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import newNavbar from "./newNavbar.vue";
 import Footer from "./Footer.vue";
 
 
 
-const categories = ref([
-    { id: 1, studentNum: "22000000123", studentName: "Kim Namjoon", requestedDocument: "Certificate of Enrollment, Certifica", claim: "Pick-Up" , dateReq: "11 / 03 / 23", amount: "180.00", release: "11 / 06 / 23", status: "To be approve" },
-    { id: 5, studentNum: "22000000123", studentName: "Kim Namjoon", requestedDocument: "Certificate of Enrollment, Certifica", claim: "Pick-Up" , dateReq: "11 / 03 / 23", amount: "180.00", release: "11 / 06 / 23", status: "To be approve" },
-    { id: 4, studentNum: "22000000123", studentName: "Kim Namjoon", requestedDocument: "Certificate of Enrollment, Certifica", claim: "Pick-Up" , dateReq: "11 / 03 / 23", amount: "180.00", release: "11 / 06 / 23", status: "To be approve" },
+// const categories = ref([
+//     { id: 1, studentNum: "22000000123", studentName: "Kim Namjoon", requestedDocument: "Certificate of Enrollment, Certifica", claim: "Pick-Up" , dateReq: "11 / 03 / 23", amount: "180.00", release: "11 / 06 / 23", status: "To be approve" },
+//     { id: 5, studentNum: "22000000123", studentName: "Kim Namjoon", requestedDocument: "Certificate of Enrollment, Certifica", claim: "Pick-Up" , dateReq: "11 / 03 / 23", amount: "180.00", release: "11 / 06 / 23", status: "To be approve" },
+//     { id: 4, studentNum: "22000000123", studentName: "Kim Namjoon", requestedDocument: "Certificate of Enrollment, Certifica", claim: "Pick-Up" , dateReq: "11 / 03 / 23", amount: "180.00", release: "11 / 06 / 23", status: "To be approve" },
 
 
 
-  ]);
+//   ]);
+import axios from 'axios';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import Button from 'primevue/button';
+import Dialog from 'primevue/dialog';
+import router from '@/router';
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
+import InputText from 'primevue/inputtext';
+const dt = ref(); // Define a ref for the DataTable component
+const documentRequests = ref([]);
+const displayModal = ref(false);
+const selectedRequest = ref(null);
+
+const filters = ref({
+    'global': { value: null }
+  });
+
+  const fetchDocumentRequests = async () => {
+  try {
+    const response = await axios.get('http://127.0.0.1:8000/api/confirmations/', { withCredentials: true });
+    documentRequests.value = response.data;
+    console.log(documentRequests.value); // Log the documentRequests to check the fetched data
+  }
+  catch (error) {
+    console.error('Failed to fetch document requests:', error);
+  }
+};
+
+const showDetails = (request) => {
+  selectedRequest.value = request;
+  displayModal.value = true;
+};
 
 
+const updateStatus = async (requestId) => {
+  try {
+    await axios.put(`http://127.0.0.1:8000/api/confirmations/update-status/`, { request_id: requestId }, { withCredentials: true });
+    fetchDocumentRequests();
+  } catch (error) {
+    console.error('Failed to update status:', error);
+  }
+};
+onMounted(() => {
+  fetchDocumentRequests();
+});
+const exportCSV = () => {
+  dt.value.exportCSV(); // Access the exportCSV method using the defined ref for DataTable
+};
 </script>
 
 <template>
@@ -72,6 +119,18 @@ const categories = ref([
                 <div class="div-12">New Account</div>
               </div>
             </router-link>
+            <!-- Add document button -->
+            <router-link to="/adminD" type="button">
+              <div class="div-9">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e9ab5b1e64dd837619d0ab460143b6a820a2c102039a94924b3b213cba6bb444?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                  class="img-6"
+                />
+                <div class="div-12">Documents</div>
+              </div>
+            </router-link>
+<!-- until here -->
             <router-link to="/adminHy" type="button">
               <div class="div-9">
                 <img
@@ -109,11 +168,7 @@ const categories = ref([
 
               </div>
               <div class="div-22">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/316dddf451e95c71793dba7fdaffc4bbed6686ed6f912c7c1f83e852850504c5?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-8"
-                />
+          
                 <div class="div-23">
                   <img
                     loading="lazy"
@@ -130,18 +185,16 @@ const categories = ref([
               <div class="div-48">
                 <div class="input-group">
   <div class="form-outline" data-mdb-input-init>
-    <input type="search" id="form1" class="form-control" />
-    <label class="form-label" for="form1">Search</label>
+    <InputText class="form-outline" v-model="filters['global'].value" placeholder="Search..." />
   </div>
-  <button type="button" class="btn btn-warning" data-mdb-ripple-init>
-    <i class="fas fa-search"></i>
-  </button>
 </div>
 
               </div>
+              <button @click="exportCSV" type="button" class="btn btn-warning" data-mdb-ripple-init>
+        <i class="fas fa-download"></i>  Download Report</button>
             </div>
 
-<div class="arrangement">
+<!-- <div class="arrangement">
             <table class="table table-striped">
           <thead>
             <tr>
@@ -176,16 +229,71 @@ const categories = ref([
             </tr>
           </tbody>
         </table>
+      </div> -->
+      <DataTable :value="documentRequests" ref="dt"
+     :pt="{
+      table: 'custom-table',
+      header: 'custom-header',
+      tbody: 'custom-body'
+    }"
+      stripedRows
+      tableStyle="min-width: 50rem"
+      dataKey="id"
+      :paginator="true"
+      :rows="10"
+      :filters="filters"
+      :paginator-template="paginatorTemplate"
+      :rows-per-page-options="[10, 20, 50, 100]"
+      :current-page-report-template="currentPageReportTemplate"
+      sortField="request_id" :sortOrder="-1">
+      <Column field="request_id" header="Request ID"></Column>
+      <Column field="student_full_name" header="Student Name"></Column>
+      <Column field="degree" header="Degree" ></Column>
+      <Column field="email" header="Email"></Column>
+      <!-- <Column field="address" header="Address" ></Column> -->
+      <!-- <Column field="contact" header="Contact" ></Column> -->
+      <Column field="document_name" header="Document Name" ></Column>
+      <Column field="request_date" header="Request Date" ></Column>
+      <Column field="id_link" header="ID Link" ></Column>
+      <Column field="total_amount_paid" header="Total Amount Paid" ></Column>
+      <Column field="claiming_method" header="Claiming Method" ></Column>
+      <Column field="status" header="Status"></Column>
+      <Column header="Actions">
+        <template #body="slotProps">
+          <Button label="View" @click="showDetails(slotProps.data)" />
+          <Button label="Received" @click="updateStatus(slotProps.data.request_id)" />
+        </template>
+      </Column>
+    </DataTable>
+    <Dialog header="Document Request Details" v-model:visible="displayModal" :modal="true" :closable="true">
+      <div v-if="selectedRequest">
+        <p><strong>Request ID:</strong> {{ selectedRequest.request_id }}</p>
+        <p><strong>Student Name:</strong> {{ selectedRequest.student_full_name }}</p>
+        <p><strong>Degree:</strong> {{ selectedRequest.degree }}</p>
+        <p><strong>Email:</strong> {{ selectedRequest.email }}</p>
+        <p><strong>Address:</strong> {{ selectedRequest.address }}</p>
+        <p><strong>Contact:</strong> {{ selectedRequest.contact }}</p>
+        <p><strong>Document Name:</strong> {{ selectedRequest.document_name }}</p>
+        <p><strong>Request Date:</strong> {{ selectedRequest.request_date }}</p>
+        <p><strong>Payment Date:</strong> {{ selectedRequest.payment_date }}</p>
+        <p><strong>Claiming Date:</strong> {{ selectedRequest.claiming_date }}</p>
+        <p><strong>ID Link:</strong> <a :href="selectedRequest.id_link" target="_blank">{{ selectedRequest.id_link }}</a></p>
+        <p><strong>Total Amount Paid:</strong> {{ selectedRequest.total_amount_paid }}</p>
+        <p><strong>Claiming Method:</strong> {{ selectedRequest.claiming_method }}</p>
+        <p><strong>Status:</strong> {{ selectedRequest.status }}</p>
+        <div v-if="selectedRequest.claiming_method === 'Courier' && selectedRequest.courier_info">
+          <p><strong>Courier Information:</strong></p>
+          <p><strong>Province:</strong> {{ selectedRequest.courier_info.province }}</p>
+          <p><strong>Municipality:</strong> {{ selectedRequest.courier_info.municipality }}</p>
+          <p><strong>Barangay:</strong> {{ selectedRequest.courier_info.barangay }}</p>
+          <p><strong>Address:</strong> {{ selectedRequest.courier_info.present_address }}</p>
+          <p><strong>Delivery Contact:</strong> {{ selectedRequest.courier_info.delivery_contact }}</p>
+          <p><strong>Email:</strong> {{ selectedRequest.courier_info.email }}</p>
+        </div>
       </div>
+    </Dialog>
         
-         
-        
-            <div class="div-98">
-                <button type="button" class="btn btn-warning" data-mdb-ripple-init>Sort Date</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>Previous</button>
-                <button type="button" class="btn btn-dark" data-mdb-ripple-init>next</button>
-              
-            </div>
+          
           </div>
         </div>
       </div>

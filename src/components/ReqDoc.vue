@@ -1,25 +1,104 @@
+
+
 <script setup>
 import newNavbar from './newNavbar.vue';
 import ApplicationNavigationBar from './ApplicationNavigationBar.vue';
 import Footer from './Footer.vue';
+import { ref, onMounted, computed } from 'vue';
+import axios from 'axios';
+import Dialog from 'primevue/dialog';
+import Button from 'primevue/button';
+import router from '@/router';
 
-import { ref } from 'vue';
+const documentTypes = ref([]);
+const modeOfClaiming = ref('');
+const courierData = ref({
+  province: '',
+  municipality: '',
+  barangay: '',
+  present_address: '',
+  delivery_contact: '',
+  email: ''
+});
+const idLink = ref('');
+const displayModal = ref(false);
 
-const counters = ref([0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
-
-const limit = 2; // Define your limit here
-
-const increment = (index) => {
-  if (counters.value[index] < limit) {
-    counters.value[index]++;
+const fetchDocumentTypes = async () => {
+  try {
+    const response = await axios.get('http://127.0.0.1:8000/api/document_types/');
+    console.log('API response:', response.data);
+    documentTypes.value = response.data.map(item => ({
+      ...item,
+      quantity: parseFloat(item.quantity) || 0 // Parse quantity to float or default to 0
+    }));
+  } catch (error) {
+    console.error('Error fetching document types:', error);
   }
 };
 
-const decrement = (index) => {
-  if (counters.value[index] > 0) {
-    counters.value[index]--;
+const incrementQuantity = (index) => {
+  documentTypes.value[index].quantity++;
+};
+
+const decrementQuantity = (index) => {
+  if (documentTypes.value[index].quantity > 0) {
+    documentTypes.value[index].quantity--;
   }
 };
+
+const isValidQuantity = (quantity) => {
+  const parsedQuantity = parseInt(quantity);
+  return !isNaN(parsedQuantity) && parsedQuantity > 0;
+};
+
+const selectedDocuments = computed(() => {
+  return documentTypes.value.filter(item => isValidQuantity(item.quantity));
+});
+
+const totalFee = computed(() => {
+  return selectedDocuments.value.reduce((acc, curr) => {
+    return acc + (parseFloat(curr.fee) * parseFloat(curr.quantity));
+  }, 0);
+});
+
+const proceedToNextPage = async () => {
+  if (selectedDocuments.value.length === 0) {
+    console.error('Please request at least one document.');
+    alert('Please request at least one document.');
+    return;
+  }
+  const requestBody = {
+    items: {
+      id_link: idLink.value,
+      items: selectedDocuments.value.map(item => ({
+        document_type_id: item.document_type_id,
+        quantity: item.quantity,
+        mode_of_claiming: modeOfClaiming.value
+      }))
+    }
+  }
+
+  // Include courier information only if mode of claiming is "Courier"
+  if (modeOfClaiming.value === 'Courier') {
+    requestBody.courier_info = courierData.value;
+  }
+
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/auth/document_requests/', requestBody, {
+      withCredentials: true
+    });
+    console.log('Document request created successfully:', response.data);
+    alert('Document request created successfully!');
+    
+    // Navigate to the next page if needed
+    router.push('/verify');
+  }
+ catch (error) {
+    console.error('Error creating document request:', error);
+  }
+};
+
+onMounted(fetchDocumentTypes);
 </script>
 
 
@@ -120,9 +199,11 @@ const decrement = (index) => {
             <div class="div-40">REQUEST DOCUMENT</div>
             <div class="div-41">
               <div class="div-42">
-                <div class="div-43">
+
+    <table>
+      <div class="div-43">
                   <div class="div-44">
-                    <div class="div-45">Document Code</div>
+                    <!-- <div class="div-45">Document Code</div> -->
                     <div class="div-46">Document Name</div>
                   </div>
                   <div class="div-47">
@@ -130,571 +211,33 @@ const decrement = (index) => {
                     <div class="div-49">No. of Copies</div>
                   </div>
                 </div>
-            
-
-                <div class="div-58">
-                  <div class="div-59">1</div>
-                  <div class="div-60">
-                    Authentication
-                  </div>
-                  <div class="div-61">30.00 / page</div>
-                  <div class="div-62">
-                    
-                    <img
-                      type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(0)"
-                    />
-                    <div class="div-63">{{ counters[0] }}</div>
-                    <img
-                      type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(0)"
-                    />
-                  </div>
-                </div>
-
-
-
-
-                <div class="div-58">
-                  <div class="div-59">2</div>
-                  <div class="div-60">
-                    CAV or Certificate, Authentication,<br />Verification (Local /
-                    DFA)
-                  </div>
-                  <div class="div-61">370.00 / set</div>
-                  <div class="div-62">
+      <tbody>
+        <tr class="div-58" v-for="(documentType, index) in documentTypes" :key="documentType.document_type_id">
+          <!-- <td>{{ documentType.document_type_id }}</td> -->
+          <td class="div-60">{{ documentType.name }}</td>
+          <td class="div-61">{{ documentType.fee }} / {{ documentType.unit_name }}</td>
+          <td>
+            <div class="div-62">
                     <img
                     type="button"
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                       class="img-4"
-                      @click="decrement(1)"
+                      @click="decrementQuantity(index)"
                     />
-                    <div class="div-63">{{ counters[1] }}</div>
+                    <span>{{ parseFloat(documentType.quantity) || 0 }}</span>
                     <img
                     type="button"
                       loading="lazy"
                       src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                       class="img-5"
-                      @click="increment(1)"
+                      @click="incrementQuantity(index)"
                     />
                   </div>
-                </div>
-
-                <div class="div-58">
-                  <div class="div-59">3</div>
-                  <div class="div-60">
-                    Certificate of English as Mediumof Instruction
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(2)"
-                    />
-                    <div class="div-63">{{ counters[2] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(2)"
-                    />
-                  </div>
-                </div>
-
-                <div class="div-58">
-                  <div class="div-59">4</div>
-                  <div class="div-60">
-                    Certificate of Enrollment
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(3)"
-                    />
-                    <div class="div-63">{{ counters[3] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(3)"
-                    />
-                  </div>
-                </div>
-
-                <div class="div-58">
-                  <div class="div-59">5</div>
-                  <div class="div-60">
-                    Certificate of General WeightedAverage (GWA)
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(4)"
-                    />
-                    <div class="div-63">{{ counters[4] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(4)"
-                    />
-                  </div>
-                </div>
-      
-                <div class="div-58">
-                  <div class="div-59">6</div>
-                  <div class="div-60">
-                    Certificate of Government Recognition of the Program
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(5)"
-                    />
-                    <div class="div-63">{{ counters[5] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(5)"
-                    />
-                  </div>
-                </div>
-
-                <div class="div-58">
-                  <div class="div-59">7</div>
-                  <div class="div-60">
-                    Certificate of Grades
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(6)"
-                    />
-                    <div class="div-63">{{ counters[6] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(6)"
-                    />
-                  </div>
-                </div>
-
-                <div class="div-58">
-                  <div class="div-59">8</div>
-                  <div class="div-60">
-                    Certificate of Grades for Written Comprehensive Examination
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(7)"
-                    />
-                    <div class="div-63">{{ counters[7] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(7)"
-                    />
-                  </div>
-                </div>
-
-                <div class="div-58">
-                  <div class="div-59">9</div>
-                  <div class="div-60">
-                    Certificate of Grading System
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(8)"
-                    />
-                    <div class="div-63">{{ counters[8] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(8)"
-                    />
-                  </div>
-                </div>
-               
-                <div class="div-58">
-                  <div class="div-59">10</div>
-                  <div class="div-60">
-                    Certificate of Graduation / Degree Completion
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(9)"
-                    />
-                    <div class="div-63">{{ counters[9] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(9)"
-                    />
-                  </div>
-                </div>
-                <div class="div-58">
-                  <div class="div-59">11</div>
-                  <div class="div-60">
-                    Certificate of Latin Honor
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(10)"
-                    />
-                    <div class="div-63">{{ counters[10] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(10)"
-                    />
-                  </div>
-                </div>
-               
-               
-                <div class="div-58">
-                  <div class="div-59">12</div>
-                  <div class="div-60">
-                    Certificate of Units Earned
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(11)"
-                    />
-                    <div class="div-63">{{ counters[11] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(11)"
-                    />
-                  </div>
-                </div>
-
-
-                <div class="div-58">
-                  <div class="div-59">13</div>
-                  <div class="div-60">
-                    Certificate True Copy of Special Order (5.0)
-                  </div>
-                  <div class="div-61">50.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(12)"
-                    />
-                    <div class="div-63">{{ counters[12] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(12)"
-                    />
-                  </div>
-                </div>
-
-
-                
-                <div class="div-58">
-                  <div class="div-59">14</div>
-                  <div class="div-60">
-                    Certificate of Academic Requirements (CAR)
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(13)"
-                    />
-                    <div class="div-63">{{ counters[13] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(13)"
-                    />
-                  </div>
-                </div>
-        
- 
-  
-                <div class="div-58">
-                  <div class="div-59">15</div>
-                  <div class="div-60">
-                    Course Description
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(14)"
-                    />
-                    <div class="div-63">{{ counters[14] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(14)"
-                    />
-                  </div>
-                </div>
-
-                
-                <div class="div-58">
-                  <div class="div-59">16</div>
-                  <div class="div-60">
-                    <span
-                      style="
-                        font-family: Poppins, -apple-system, Roboto, Helvetica,
-                          sans-serif;
-                        font-weight: 400;
-                      "
-                      >Diploma </span
-                    ><span
-                      style="
-                        font-family: Poppins, -apple-system, Roboto, Helvetica,
-                          sans-serif;
-                        font-weight: 700;
-                      "
-                      >(ISSUED ONLY ONCE AND SUBJECT TO VERIFICATION)</span
-                    >
-                  </div>
-                  <div class="div-61">400.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(15)"
-                    />
-                    <div class="div-63">{{ counters[15] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(15)"
-                    />
-                  </div>
-                </div>
-
-
-                <div class="div-58">
-                  <div class="div-59">17</div>
-                  <div class="div-60">
-                    Diploma (Second Copy) - In case the Diploma is lost or whatever reason, you
-are required to submit a notarized <b>Affidavit 
-of Loss of Explanation</b> justifying the request.In case of damaged diploma, the samemust be surrendered to UIC for 
-appropriate disposition.
-                  </div>
-                  <div class="div-61">400.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(16)"
-                    />
-                    <div class="div-63">{{ counters[16] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(16)"
-                    />
-                  </div>
-                </div>
-
-
-
-                <div class="div-58">
-                  <div class="div-59">18</div>
-                  <div class="div-60">
-                    Honorable Dismissal <b>(ISSUED ONLY ONCE AND SUBJECT TO VERIFICATION)</b>
-                  </div>
-                  <div class="div-61">300.00 / set</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(17)"
-                    />
-                    <div class="div-63">{{ counters[17] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(17)"
-                    />
-                  </div>
-                </div>
-
-                <div class="div-58">
-                  <div class="div-59">19</div>
-                  <div class="div-60">
-                    Letter of No Objection
-                  </div>
-                  <div class="div-61">60.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(18)"
-                    />
-                    <div class="div-63">{{ counters[18] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(18)"
-                    />
-                  </div>
-                </div>
-
-                <div class="div-58">
-                  <div class="div-59">20</div>
-                  <div class="div-60">
-                    Official Transcript of Records
-                  </div>
-                  <div class="div-61">250.00 / set</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(19)"
-                    />
-                    <div class="div-63">{{ counters[19] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(19)"
-                    />
-                  </div>
-                </div>
-           
-                <div class="div-58">
-                  <div class="div-59">21</div>
-                  <div class="div-60">
-                    Related Learning Experience (RLE)
-                  </div>
-                  <div class="div-61">150.00 / copy</div>
-                  <div class="div-62">
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/e10d8e42c80f938ff54ce1bdd994e95da3006eb959e2388fb76ad9c9a3e9d679?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-4"
-                      @click="decrement(20)"
-                    />
-                    <div class="div-63">{{ counters[20] }}</div>
-                    <img
-                    type="button"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/cbbc9da1b982c2639c9ffbe7f65250502689f3dfbd32c1d7c2f5aa390c081441?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-5"
-                      @click="increment(20)"
-                    />
-                  </div>
-                </div>
-
-     
-             
-                <div class="div-196">Purposes</div>
-                
-                <textarea class="div-197">
-
-</textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
               </div>
             </div>
             <div class="div-198">
@@ -729,15 +272,153 @@ appropriate disposition.
                 /></span>
               </div>
             </div>
-            <div class="div-200">Page 1 of 3</div>
+            <div class="div-40">CLAIMING INFORMATION</div>
+            <div class="shipping-info">
+  <span style="font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif; font-weight: 700;">SHIPPING INFORMATION<br /></span>
+  <span style="font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif; font-weight: 400;">Mail Requested Documents</span>
+</div>
+<div class="claim-documents">
+  <div class="claim-documents-heading">MODE OF CLAIMING DOCUMENTS</div>
+  <div class="claim-options-container">
+  <div class="claim-option">
+    <input class="radio-img" type="radio" id="pick-up" name="mode" value="Pick-up" v-model="modeOfClaiming" />
+    <div class="claim-option-label">For Pickup</div>
+  </div>
+  <div class="claim-option">
+    <input class="radio-img" type="radio" id="representative" name="mode" value="Representative" v-model="modeOfClaiming" />
+    <div class="claim-option-label">Through Representative (please provide an authorization letter)</div>
+  </div>
+  <div class="claim-option">
+    <input class="radio-img" type="radio" id="courier" name="mode" value="Courier" v-model="modeOfClaiming" />
+    <div class="claim-option-label">Through Courier</div>
+  </div>
+  <div class="claim-option">
+    <input class="radio-img" type="radio" id="email" name="mode" value="Email" v-model="modeOfClaiming" />
+    <div class="claim-option-label">Through Email (soft copy)</div>
+  </div>
+</div>
+
+
+<div v-if="modeOfClaiming === 'Courier'">
+  <div class="courier-address">
+    <span style="font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif; font-weight: 600;">If THROUGH COURIER</span>
+    <span style="font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif; font-weight: 400;">, Please indicate Complete Mailing Address:</span>
+  </div>
+  <div class="material-textfield">
+    <input placeholder=" " type="text" v-model="courierData.province" class="info" />
+    <label>Province</label>
+  </div>
+  <div class="material-textfield">
+    <input placeholder=" " type="text" v-model="courierData.municipality" class="info" />
+    <label>Municipality</label>
+  </div>
+  <div class="material-textfield">
+    <input placeholder=" " type="text" v-model="courierData.barangay" class="info"/>
+    <label>Barangay</label>
+  </div>
+  <div class="material-textfield">
+    <input placeholder=" " type="text" v-model="courierData.present_address" class="info"/>
+    <label>Present Address</label>
+  </div>
+  <div class="material-textfield">
+    <input placeholder=" " type="text" v-model="courierData.delivery_contact" class="info"/>
+    <label>Contact Number</label>
+  </div>
+  <div class="material-textfield">
+    <input placeholder=" " type="email" v-model="courierData.email" class="info" />
+    <label>Email Address</label>
+  </div>
+    </div>
+
+
+  
+</div>
+
+<div class="claim-info-container">
+  <div class="claim-info">
+    <div class="claim-info-text">
+      <span>Please allow a maximum of </span>
+      <span>3 working days</span>
+      <span> to verify your request. You will receive an </span>
+      <span>email or SMS for the costs</span>
+      <span>, and the manner of payment and confirmation. If you haven’t received a confirmation that your request has been attended to after 3 working days, please send us an email at </span>
+      <a href="mailto:registrar_request@uic.edu.ph" target="_blank">registrar_request@uic.edu.ph</a>
+      <span> for assistance. Additionally;<br /></span>
+      <span><br />Paying Online: <br></span>
+      <span>Please note that online payments may experience slight delays. Ensure timely submission to account for any processing time.<br /></span>
+      <span><br>Paying Walk-In: <br></span>
+      <span>Opt for walk-in payments for immediate processing at the registrar. Receive your receipt on the spot and proceed with your requests to the <br />registrar’s window promptly.<br /><br /></span>
+    </div>
+    <div class="important-note">VERY IMPORTANT</div>
+    <div class="instruction">
+      <span>Please wait for the confirmation from the registrar before moving on to the payment. While waiting, you can check your status at the official website by going to </span>
+      <span>TRACK DOCUMENT.<br/></span>
+    </div>
+    <div class="id-upload-info">
+      <span>Kindly</span>
+      <span>upload your identification (ID) card</span>
+      <span> for verification purposes. Any valid ID will do as long as it has your signature (e.g., Company ID, School ID, Alumni ID, government-issued IDs)<br /></span>
+    </div>
+    <div class="material-textfield">
+      <input placeholder=" " type="text" v-model="idLink" class="info"/>
+      <label>Paste your link here</label>
+    </div>
+
+  </div>
+  
+</div>
+
+
+
+          
           </div>
         </div>
-        <router-link to="/shipping" type="button" class="div-391">Next</router-link>
+        <button class="div-391" @click="displayModal = true">Next</button>
       </div>
 
 
       
-      <!-- <router-link to="/shipping" type="button" class="div-201">Next</router-link> -->
+ <!-- Modal for verification -->
+ <Dialog 
+    :pt="{
+        root: 'border-none',
+        mask: {
+            style: 'backdrop-filter: blur(2px)'
+        }
+    }"
+    v-model="displayModal" :visible="displayModal" header="Confirmation" :modal="true" :closable="false">
+      <p>Please review your inputs before submitting:</p>
+      <ul>
+        <li>Mode of Claiming: {{ modeOfClaiming }}</li>
+        <li>ID Link: {{ idLink }}</li>
+        <li>Selected Documents: 
+          <ul>
+            <li v-for="item in selectedDocuments" :key="item.document_type_id">
+              {{ item.name }} - Quantity: {{ item.quantity }}
+            </li>
+          </ul>
+        </li>
+        <li v-if="modeOfClaiming === 'Courier'">Courier Data: 
+          <ul>
+            <li>Province: {{ courierData.province }}</li>
+            <li>Municipality: {{ courierData.municipality }}</li>
+            <li>Barangay: {{ courierData.barangay }}</li>
+            <li>Present Address: {{ courierData.present_address }}</li>
+            <li>Delivery Contact: {{ courierData.delivery_contact }}</li>
+            <li>Email: {{ courierData.email }}</li>
+          </ul>
+        </li>
+        <li>Total Fee: Php {{ totalFee }}.00</li>
+        <!-- Include additional fields here if needed -->
+      </ul>
+      <div class="p-grid">
+        <div class="p-col-12">
+          <Button severity="success" raised @click="proceedToNextPage">Confirm</Button>
+          <Button severity="danger" rounded text raised @click="displayModal = false">Cancel</Button>
+          <!-- Add close button here -->
+        </div>
+      </div>
+    </Dialog>
       
       
     </div>
@@ -748,6 +429,287 @@ appropriate disposition.
   
   
   <style scoped>
+  .important-info-container {
+  border: 1px solid #bdbdbd;
+  box-shadow: 8px 18px 23.3px 0px rgba(0, 0, 0, 0.25);
+  background-color: #fafafa;
+  align-self: stretch;
+  display: flex;
+  margin-top: 21px;
+  flex-direction: column;
+  align-items: start;
+  padding: 46px 78px;
+}
+@media (max-width: 991px) {
+  .important-info-container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.important-note {
+  color: #f00;
+  max-width: 1157px;
+  font: 800 15px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .important-note {
+    max-width: 100%;
+  }
+}
+
+.instruction {
+  color: #000;
+  max-width: auto;
+  margin: 18px 0 6px;
+  font: 400 12px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .instruction {
+    max-width: 100%;
+  }
+}
+
+.claim-info-container {
+  border-left: 1px solid #000;
+  align-self: stretch;
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.claim-info {
+  border: 1px solid #bdbdbd;
+  box-shadow: 8px 18px 23.3px 0px rgba(0, 0, 0, 0.25);
+  background-color: var(--, #fff);
+  display: flex;
+  flex-direction: column;
+  padding: 50px 78px 28px;
+}
+
+.claim-info-text {
+  align-self: start;
+  max-width: 1093px;
+  font: 400 12px Poppins, sans-serif;
+}
+
+.important-note {
+  color: #f00;
+  align-self: start;
+  margin-top: 58px;
+  max-width: 1175px;
+  font: 800 15px Poppins, sans-serif;
+}
+
+.id-upload-info {
+  color: #000;
+  align-self: start;
+  margin-top: 16px;
+  max-width: 1093px;
+  font: 400 12px Poppins, sans-serif;
+}
+
+.material-textfield {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 70px;
+}
+
+.label {
+  position: absolute;
+  font-size: 1rem;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  transition: 0.1s ease-out;
+  transform-origin: left top;
+  pointer-events: none;
+  color: #000;
+  white-space: nowrap;
+  justify-content: center;
+  align-self: start;
+  z-index: 1;
+  margin: 0 27px 0 25px;
+  padding: 0 10px;
+  font: 275 15px Poppins, sans-serif;
+}
+
+.info {
+  font: 275 15px Poppins, sans-serif;
+  outline: none;
+  color: #000;
+  transition: 0.1s ease-out;
+  border-radius: 10px;
+  border: 2px solid #2f3030;
+  align-self: stretch;
+  display: flex;
+  border-radius: 10px;
+  align-self: center;
+  display: flex;
+  margin-left: 11px;
+  width: 1022px;
+  max-width: 100%;
+  height: 50px;
+  flex-direction: column;
+}
+
+.upload-input {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  align-self: center;
+  margin: auto 0;
+  font: 800 15px Poppins, sans-serif;
+}
+
+.upload-preview {
+  display: flex;
+}
+
+
+  .claim-documents {
+  background-color: rgba(251, 251, 251, 1);
+  border: 1px solid rgba(189.125, 189.125, 189.125, 1);
+  box-shadow: 8px 18px 23.3px rgba(0, 0, 0, 0.25);
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 80px 50px;
+}
+
+.claim-documents-heading {
+  color: #000;
+  align-self: start;
+  white-space: nowrap;
+  font: 600 15px Poppins, sans-serif;
+}
+
+.claim-options-container {
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+
+.claim-option {
+  align-self: start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 0 84px;
+}
+
+
+.radio-img {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+  margin: auto 0;
+}
+
+.claim-option-label {
+  color: #000;
+  align-self: center;
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 400 15px Poppins, sans-serif;
+}
+
+.courier-address {
+  color: #000;
+  align-self: start;
+  margin-top: 34px;
+  max-width: 1103px;
+  font: 600 15px Poppins, sans-serif;
+}
+
+.material-textfield {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 70px;
+}
+
+label {
+  position: absolute;
+  font-size: 1rem;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  transition: 0.1s ease-out;
+  transform-origin: left top;
+  pointer-events: none;
+  color: #000;
+  white-space: nowrap;
+  justify-content: center;
+  align-self: start;
+  z-index: 1;
+  margin: 0 27px 0 25px;
+  padding: 0 10px;
+  font: 275 15px Poppins, sans-serif;
+}
+
+.info {
+  font: 275 15px Poppins, sans-serif;
+  outline: none;
+  color: #000;
+  transition: 0.1s ease-out;
+  border-radius: 10px;
+  border: 2px solid #2f3030;
+  align-self: stretch;
+  display: flex;
+  border-radius: 10px;
+  align-self: center;
+  display: flex;
+  margin-left: 11px;
+  width: 1022px;
+  max-width: 100%;
+  height: 50px;
+  flex-direction: column;
+}
+
+input.info:focus {
+  border-color: #e54f70;
+}
+
+input.info:focus + label {
+  color: #e54f70;
+  top: 0;
+  transform: translateY(-50%) scale(0.9);
+}
+
+input.info:not(:placeholder-shown) + label {
+  top: 0;
+  transform: translateY(-50%) scale(0.9);
+}
+
+  .shipping-info {
+  color: #fff;
+  max-width: auto;
+  background-color: rgba(70.00000342726707, 70.00000342726707, 70.00000342726707, 1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  align-self: stretch;
+  margin-top: 15px;
+  align-items: start;
+  padding: 29px 60px 18px;
+  font: 400 15px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .shipping-info {
+    max-width: 100%;
+    padding: 0 20px 0 30px;
+  }
+}
+
+  .button-with-image {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
     .div-197 {
     
     font: 275 15px Poppins, sans-serif;
@@ -1294,14 +1256,15 @@ input:not(:placeholder-shown) + label {
     display: flex;
     width: 100%;
     align-items: start;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 16px 91px 16px 37px;
+    justify-content: flex-start;
+    gap: 360px;
+    padding: 16px 91px 16px 100px;
   }
   @media (max-width: 991px) {
     .div-43 {
       max-width: 100%;
       flex-wrap: wrap;
+      gap: 36px;
       padding: 0 20px;
     }
   }
@@ -1309,6 +1272,7 @@ input:not(:placeholder-shown) + label {
     display: flex;
     justify-content: space-between;
     gap: 120px;
+    color:  #fff;
   }
   .div-45 {
     color:  #fff;
@@ -1325,7 +1289,7 @@ input:not(:placeholder-shown) + label {
     display: flex;
     align-items: start;
     justify-content: space-between;
-    gap: 120px;
+    gap: 180px;
   }
   .div-48 {
     color:  #fff;

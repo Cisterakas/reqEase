@@ -1,13 +1,13 @@
-<script setup>
+<!-- <script setup>
 import { ref, onMounted} from 'vue';
+import router from '@/router';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 
-const email = ref('');
-const password = ref('');
+
 const showPassword = ref(false);
 const rememberMe = ref(false);
-const router = useRouter();
+
 const errorMessage = ref('');
 let errorTimeout = null;
 
@@ -15,63 +15,203 @@ const toggleVisibility = () => {
   showPassword.value = !showPassword.value;
 };
 
-const login = () => {
-  // Reset error message and clear existing timeout
-  errorMessage.value = '';
-  clearTimeout(errorTimeout);
 
-  // Check if email and password are not empty
-  if (!email.value || !password.value) {
+const userlogin = ref({
+  username: '',
+  password: '',
+});
+
+
+const login = async () => {
+  try {
+    const response = await axios.post('http://127.0.0.1:8000/api/login', userlogin.value, { withCredentials: true });
+    const data = await response.data;
+
+    if (data) {
+      router.push('/');
+      // Clear any previous error message on successful login
+      alert('Student successfully logged in!');
+      errorMessage.value = '';
+    } else {
+      // Improved error handling: Check for specific error codes or messages from the server
+      errorMessage.value = 'Invalid login credentials. Please check your username and password.';
+      startErrorTimeout();
+    }
+  } catch (error) {
+    console.error('Failed to login:', error);
     errorMessage.value = 'Please enter both email and password';
-    startErrorTimeout();
-    return;
-  }
-
-  // Check credentials and redirect accordingly
-  if (email.value === 'student@example.com' && password.value === '12345') {
-    router.push('/');
-    alert('Student successfully logged in!');
-  } else if (email.value === 'admin@example.com' && password.value === '12345') {
-    router.push('/adminH');
-    alert('Admin successfully logged in!');
-  } else {
-    // Handle invalid credentials
-    errorMessage.value = 'Invalid email or password';
     startErrorTimeout();
   }
 };
-
-
-
 
 const startErrorTimeout = () => {
   errorTimeout = setTimeout(() => {
     errorMessage.value = '';
-  }, 5000); // 5 seconds
+  }, 5000); // 5 seconds to clear the error message
 };
 
 
-const fetchUsers = async () => {
-  try {
-    const response = await fetch('http://127.0.0.1:8000/api/users');
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+
 
 
 onMounted(() => {
-  fetchUsers();
 });
 
+</script> -->
+<script setup>
+// import { ref, onMounted } from 'vue';
+// import router from '@/router';
+// import { useRouter } from 'vue-router';
+// import axios from 'axios';
+
+// const showPassword = ref(false);
 
 
+// const errorMessage = ref('');
+// let errorTimeout = null;
+
+// const toggleVisibility = () => {
+//   showPassword.value = !showPassword.value;
+// };
+
+// const userlogin = ref({
+//   username: '',
+//   password: '',
+// });
+
+// const login = async () => {
+//   try {
+//     const response = await axios.post('http://127.0.0.1:8000/api/login', userlogin.value, { withCredentials: true });
+//     const data = await response.data;
+
+//     if (data) {
+//       if (data.role === 'super_admin') {
+//         router.push('/superAdminH'); // Assuming '/superAdminH' is the route for the Super Admin dashboard
+//       } else if (data.role === 'admin') {
+//         router.push('/adminH');
+//       } else if (data.role === 'student') {
+//         router.push('/');
+//       } else {
+//         router.push('/');
+//       }
+//       alert('Logged in!');
+//       errorMessage.value = '';
+//     }
+//   } catch (error) {
+//     if (error.response) {
+//       const response = error.response;
+//       if (response.status === 403 && response.data.detail === 'Account not approved') {
+//         alert('Account not yet approved. Please contact administrator.');
+//       } else if (response.status === 400) {
+//         errorMessage.value = 'Invalid login credentials or request. Please check your details.';
+//       } else {
+//         errorMessage.value = 'An unexpected error occurred. Please try again later.';
+//         console.error('Login error:', error);
+//       }
+//     } else {
+//       errorMessage.value = 'Please enter both email and password';
+//       console.error('Login error:', error);
+//     }
+//   } finally {
+//     startErrorTimeout();
+//   }
+// };
+
+
+// const startErrorTimeout = () => {
+//   errorTimeout = setTimeout(() => {
+//     errorMessage.value = '';
+//   }, 5000); // 5 seconds to clear the error message
+// };
+
+// onMounted(() => {});
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+
+const showPassword = ref(false);
+const errorMessage = ref('');
+let errorTimeout = null;
+
+const router = useRouter();
+
+const toggleVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
+
+const userlogin = ref({
+  username: '',
+  password: '',
+});
+
+const login = async () => {
+  // Check for blank fields
+  if (!userlogin.value.username || !userlogin.value.password) {
+    errorMessage.value = 'Please fill in both username and password fields.';
+    startErrorTimeout();
+    return;
+  }
+
+  try {
+    console.log('Attempting to log in:', userlogin.value);
+    const response = await axios.post('http://127.0.0.1:8000/api/login', userlogin.value, { withCredentials: true });
+    console.log('Response received:', response);
+    const data = response.data;
+
+    if (data && data.role) {
+      switch (data.role) {
+        case 'super_admin':
+          router.push('/superAdminH'); // Route for Super Admin dashboard
+          break;
+        case 'admin':
+          router.push('/adminH'); // Route for Admin dashboard
+          break;
+        case 'student':
+        default:
+          router.push('/'); // Default route for student and other roles
+      }
+      alert('Logged in!');
+      errorMessage.value = '';
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    if (error.response) {
+      const response = error.response;
+      if (response.status === 403 && response.data.detail === 'Account not approved') {
+        errorMessage.value = 'Account not yet approved. Please contact administrator.';
+      } else if (response.status === 400) {
+        if (response.data.detail === 'Invalid credentials') {
+          errorMessage.value = 'Incorrect username or password. Please try again.';
+        } else {
+          errorMessage.value = 'Invalid login credentials or request. Please check your details.';
+        }
+      } else {
+        errorMessage.value = 'An unexpected error occurred. Please try again later.';
+      }
+    } else if (error.request) {
+      errorMessage.value = 'Network error. Please check your connection.';
+    } else {
+      errorMessage.value = 'An unexpected error occurred. Please try again later.';
+    }
+    startErrorTimeout();
+  }
+};
+
+const startErrorTimeout = () => {
+  if (errorTimeout) {
+    clearTimeout(errorTimeout);
+  }
+  errorTimeout = setTimeout(() => {
+    errorMessage.value = '';
+  }, 5000); // 5 seconds to clear the error message
+};
 </script>
 
+
+
+
 <template>
-<div v-if="errorMessage" data-testid="error-message">{{ errorMessage }}</div>
+
   <div class="div">
     <div class="div-2">
       <img
@@ -112,30 +252,31 @@ onMounted(() => {
                   ><span style="color: rgba(229, 79, 112, 1)">ReqEase!</span>
                 </div>
                 <div class="div-11">Please login to your Account</div>
-
+                <form @submit.prevent="login">
                 <div class="material-textfield">
-  <input data-testid="email" placeholder=" " v-model="email" type="text">
+  <input id="username" placeholder=" " v-model="userlogin.username" type="text">
   <label>Email</label>
 </div>
 
 <div class="material-textfield">
   <input
     placeholder=" "
-    v-model="password"
+    v-model="userlogin.password"
     :type="showPassword ? 'text' : 'password'"
     id="password"
   >
   <label for="password">Password</label>
 </div>
 
+
 <div class="div-16">
   <!-- <input data-testid="password" placeholder=" " v-model="password" :type="showPassword ? 'text' : 'password'" id="password"> -->
   <input data-testid="password" @click="toggleVisibility" type="checkbox" class="div-17">{{ showPassword ? 'Hide' : 'Show' }} Password
-  <input type="checkbox" class="div-17" v-model="rememberMe">Remember Me
 </div>
 
-<button data-testid="login-button" type="button" class="div-19" @click="login">Log In</button>
-
+<button data-testid="login-button" type="submit"  class="div-19">Log In</button>
+<div v-if="errorMessage" data-testid="error-message">{{ errorMessage }}</div>
+</form>
                 
                 <a data-testid="account-button" class="div-20" href="#open-modal">Create a New Account</a>
 

@@ -106,7 +106,7 @@ const displayModal = ref(false);
 
 const fetchDocumentTypes = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/document_types/');
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/document_types/');
     console.log('API response:', response.data);
     documentTypes.value = response.data.map(item => ({
       ...item,
@@ -165,7 +165,7 @@ const proceedToNextPage = async () => {
   }
 
   try {
-    const response = await axios.post('http://127.0.0.1:8000/api/auth/document_requests/', requestBody, {
+    const response = await axios.post('https://reqease-fastapi.vercel.app/api/auth/document_requests/', requestBody, {
       withCredentials: true
     });
     console.log('Document request created successfully:', response.data);

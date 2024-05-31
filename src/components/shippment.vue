@@ -47,7 +47,7 @@ const router = useRouter();
 const updateClaimingInformation = async () => {
   try {
     const requestId = route.params.requestId;
-    const response = await axios.put(`http://127.0.0.1:8000/api/auth/document_requests/${requestId}/claiming_information/`, {
+    const response = await axios.put(`https://reqease-fastapi.vercel.app/api/auth/document_requests/${requestId}/claiming_information/`, {
       mode_of_claiming: modeOfClaiming.value,
     }, {
       withCredentials: true

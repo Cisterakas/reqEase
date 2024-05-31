@@ -71,7 +71,7 @@ const selectedRequest = ref(null);
 
 const fetchDocumentRequests = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/get-document-requests/');
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/get-document-requests/');
     documentRequests.value = response.data.map(item => ({
       ...item,
       courier_info: item.courier_info || null
@@ -89,7 +89,7 @@ const showDetails = (request) => {
 
 const approveRequest = async (requestId, approval) => {
   try {
-      const response = await axios.post('http://127.0.0.1:8000/api/auth/approve-request/', { request_id: requestId, approved: approval });
+      const response = await axios.post('https://reqease-fastapi.vercel.app/api/auth/approve-request/', { request_id: requestId, approved: approval });
        
       console.log(response.data.message);
     // Refresh document requests after approval

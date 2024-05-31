@@ -193,7 +193,7 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
     if (to.meta.requiresAuth) {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/authenticate', {
+        const response = await axios.get('https://reqease-fastapi.vercel.app/api/authenticate', {
           withCredentials: true,
         });
         const data = await response.data;

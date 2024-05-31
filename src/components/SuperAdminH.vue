@@ -137,7 +137,7 @@ const selectedUser = ref(null);
 
 const fetchAdminAccounts = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/admin_accounts');
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/admin_accounts');
     adminAccounts.value = response.data;
   } catch (error) {
     console.error('Failed to fetch admin accounts:', error);
@@ -152,7 +152,7 @@ const approveAccount = async (userId) => {
   try {
     const approvalDate = new Date();
     const formattedApprovalDate = approvalDate.toISOString().split('T')[0]; // format the date as "YYYY-MM-DD"
-    const response = await axios.put(`http://127.0.0.1:8000/api/new_accounts/${userId}/approve?approval_date=${formattedApprovalDate}`, {
+    const response = await axios.put(`https://reqease-fastapi.vercel.app/api/new_accounts/${userId}/approve?approval_date=${formattedApprovalDate}`, {
       approved: 'TRUE'
     });
     console.log(response.data);
@@ -164,7 +164,7 @@ const approveAccount = async (userId) => {
 };
 const denyAccount = async (userId) => {
   try {
-    await axios.put('http://127.0.0.1:8000/api/update_approval_status/', {
+    await axios.put('https://reqease-fastapi.vercel.app/api/update_approval_status/', {
       user_id: userId,
       approved: 'DECLINE',
     });
@@ -184,7 +184,7 @@ const filters = ref({
   });
   const logout = async () => {
   try {
-    await axios.post('http://127.0.0.1:8000/api/logout', {}, { withCredentials: true });
+    await axios.post('https://reqease-fastapi.vercel.app/api/logout', {}, { withCredentials: true });
     router.push('/login'); // Redirect to login page after logout
     alert('Logged out!');
     name.value = '';

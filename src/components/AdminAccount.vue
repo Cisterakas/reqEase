@@ -27,7 +27,7 @@ const selectedUser = ref(null);
   
   const fetchNewAccounts = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/new_accounts/');
+      const response = await axios.get('https://reqease-fastapi.vercel.app/api/new_accounts/');
       newAccounts.value = response.data;
       console.log(newAccounts.value); // Log the newAccounts to check the fetched data
     } catch (error) {
@@ -51,7 +51,7 @@ const approveAccount = async (userId) => {
   try {
     const approvalDate = new Date();
     const formattedApprovalDate = approvalDate.toISOString().split('T')[0]; // format the date as "YYYY-MM-DD"
-    const response = await axios.put(`http://127.0.0.1:8000/api/new_accounts/${userId}/approve?approval_date=${formattedApprovalDate}`, {
+    const response = await axios.put(`https://reqease-fastapi.vercel.app/api/new_accounts/${userId}/approve?approval_date=${formattedApprovalDate}`, {
       approved: 'TRUE'
     });
     console.log(response.data);
@@ -63,7 +63,7 @@ const approveAccount = async (userId) => {
 };
 const denyAccount = async (userId) => {
   try {
-    await axios.put('http://127.0.0.1:8000/api/update_approval_status/', {
+    await axios.put('https://reqease-fastapi.vercel.app/api/update_approval_status/', {
       user_id: userId,
       approved: 'DECLINE',
     });

@@ -10,7 +10,7 @@ const isAuthenticated = ref(false);
 
 const accessname = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/auth/me', {
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/auth/me', {
       withCredentials: true,  
     });
     const data = await response.data;
@@ -28,7 +28,7 @@ const accessname = async () => {
 
 const logout = async () => {
   try {
-    await axios.post('http://127.0.0.1:8000/api/logout', {}, { withCredentials: true });
+    await axios.post('https://reqease-fastapi.vercel.app/api/logout', {}, { withCredentials: true });
     router.push('/login'); // Redirect to login page after logout
     alert('Logged out!');
     name.value = '';

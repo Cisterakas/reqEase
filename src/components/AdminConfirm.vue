@@ -34,7 +34,7 @@ const filters = ref({
 
   const fetchDocumentRequests = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/confirmations/', { withCredentials: true });
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/confirmations/', { withCredentials: true });
     documentRequests.value = response.data;
     console.log(documentRequests.value); // Log the documentRequests to check the fetched data
   }
@@ -51,7 +51,7 @@ const showDetails = (request) => {
 
 const updateStatus = async (requestId) => {
   try {
-    await axios.put(`http://127.0.0.1:8000/api/confirmations/update-status/`, { request_id: requestId }, { withCredentials: true });
+    await axios.put(`https://reqease-fastapi.vercel.app/api/confirmations/update-status/`, { request_id: requestId }, { withCredentials: true });
     fetchDocumentRequests();
   } catch (error) {
     console.error('Failed to update status:', error);

@@ -62,7 +62,7 @@ const editDocumentData = ref({
 
 const fetchDocumentTypes = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/document_types/');
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/document_types/');
     documentTypes.value = response.data;
     filteredDocumentTypes.value = response.data;
   } catch (error) {
@@ -72,7 +72,7 @@ const fetchDocumentTypes = async () => {
 
 const addDocumentType = async () => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/api/document_types/', {
+    const response = await axios.post('https://reqease-fastapi.vercel.app/api/document_types/', {
       name: newDocument.value.name,
       fee: newDocument.value.fee,
       unit_name: newDocument.value.unit_name,

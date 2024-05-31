@@ -22,7 +22,7 @@
   
 //   const fetchPayments = async () => {
 //     try {
-//       const response = await axios.get('http://127.0.0.1:8000/api/payments/');
+//       const response = await axios.get('https://reqease-fastapi.vercel.app/api/payments/');
 //       payments.value = response.data;
 //     } catch (error) {
 //       console.error('Error fetching payments:', error);
@@ -62,7 +62,7 @@ const editDocumentData = ref({
 
 const fetchDocumentTypes = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/document_types/');
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/document_types/');
     documentTypes.value = response.data;
     filteredDocumentTypes.value = response.data;
   } catch (error) {
@@ -72,7 +72,7 @@ const fetchDocumentTypes = async () => {
 
 const addDocumentType = async () => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/api/document_types/', {
+    const response = await axios.post('https://reqease-fastapi.vercel.app/api/document_types/', {
       name: newDocument.value.name,
       fee: newDocument.value.fee,
       unit_name: newDocument.value.unit_name,
@@ -93,7 +93,7 @@ const editDocument = (document) => {
 
 const updateDocumentType = async () => {
   try {
-    const response = await axios.put(`http://127.0.0.1:8000/api/document_types/${editDocumentData.value.document_type_id}`, editDocumentData.value);
+    const response = await axios.put(`https://reqease-fastapi.vercel.app/api/document_types/${editDocumentData.value.document_type_id}`, editDocumentData.value);
     const index = documentTypes.value.findIndex(doc => doc.document_type_id === editDocumentData.value.document_type_id);
     documentTypes.value.splice(index, 1, response.data);
     filteredDocumentTypes.value = [...documentTypes.value]; // Update filtered data
@@ -115,7 +115,7 @@ const cancelDelete = () => {
 
 const confirmDelete = async () => {
   try {
-    await axios.delete(`http://127.0.0.1:8000/api/document_types/${deleteDocumentId.value}`);
+    await axios.delete(`https://reqease-fastapi.vercel.app/api/document_types/${deleteDocumentId.value}`);
     documentTypes.value = documentTypes.value.filter(doc => doc.document_type_id !== deleteDocumentId.value);
     filteredDocumentTypes.value = [...documentTypes.value]; // Update filtered data
     deleteVisible.value = false;

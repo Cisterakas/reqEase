@@ -91,7 +91,7 @@ const newReceiptLink = ref('');
 
 const fetchDocumentRequests = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/auth/track_document_requests', { withCredentials: true });
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/auth/track_document_requests', { withCredentials: true });
     documentRequests.value = response.data.map(item => {
       if (item.document_names) {
         item.document_names = item.document_names.split(', ').join(', ');
@@ -120,7 +120,7 @@ const isToPayStatus = computed(() => {
 const sendReceiptLinkUpdate = async () => {
   try {
     const response = await axios.put(
-      'http://127.0.0.1:8000/api/auth/update_receipt_link',
+      'https://reqease-fastapi.vercel.app/api/auth/update_receipt_link',
       { request_id: selectedRequest.value.request_id, receipt_link: newReceiptLink.value },
       { withCredentials: true }
     );
@@ -143,7 +143,7 @@ const canCancelRequest = computed(() => {
 const cancelRequest = async () => {
   try {
     const response = await axios.put(
-      'http://127.0.0.1:8000/api/auth/update_status',
+      'https://reqease-fastapi.vercel.app/api/auth/update_status',
       { request_id: selectedRequest.value.request_id, new_status: 'Cancelled' },
       { withCredentials: true }
     );
@@ -165,7 +165,7 @@ const canMarkAsReceived = computed(() => {
 const markAsReceived = async () => {
   try {
     const response = await axios.put(
-      'http://127.0.0.1:8000/api/auth/update_status',
+      'https://reqease-fastapi.vercel.app/api/auth/update_status',
       { request_id: selectedRequest.value.request_id, new_status: 'Received' },
       { withCredentials: true }
     );
@@ -190,7 +190,7 @@ const feedbackRating = ref(0);
 const submitFeedback = async () => {
   try {
     const response = await axios.put(
-      'http://127.0.0.1:8000/api/auth/update_feedback',
+      'https://reqease-fastapi.vercel.app/api/auth/update_feedback',
       { request_id: selectedRequest.value.request_id, feedback_text: feedbackText.value, feedback_rating: feedbackRating.value },
       { withCredentials: true }
     );

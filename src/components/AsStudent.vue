@@ -45,7 +45,7 @@ const lastSchoolYears = computed(() => {
 
 const checkEmailExists = async (email) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/addusers/email-exists/?email=${email}`);
+    const response = await axios.get(`https://reqease-fastapi.vercel.app/api/addusers/email-exists/?email=${email}`);
     return response.data.email_exists;
   } catch (error) {
     console.error('Error checking email existence:', error);
@@ -55,7 +55,7 @@ const checkEmailExists = async (email) => {
 
 const checkStudentSchoolIdExists = async (studentSchoolId) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/addusers/student-school-id-exists/?student_school_id=${studentSchoolId}`);
+    const response = await axios.get(`https://reqease-fastapi.vercel.app/api/addusers/student-school-id-exists/?student_school_id=${studentSchoolId}`);
     return response.data.student_school_id_exists;
   } catch (error) {
     console.error('Error checking student school ID existence:', error);
@@ -91,7 +91,7 @@ const handleSubmit = async () => {
 
 const submitForm = async () => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/api/addusers/', newUser.value, {
+    const response = await axios.post('https://reqease-fastapi.vercel.app/api/addusers/', newUser.value, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json'

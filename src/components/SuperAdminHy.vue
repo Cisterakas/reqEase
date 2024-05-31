@@ -25,7 +25,7 @@ const filters = ref({
 
   const fetchDocumentRequests = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/history');
+    const response = await axios.get('https://reqease-fastapi.vercel.app/api/history');
     documentRequests.value = response.data.map(item => {
       if (item.document_names) {
         item.document_names = item.document_names.split(', ').join(', ');

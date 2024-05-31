@@ -24,7 +24,7 @@ const userlogin = ref({
 
 const login = async () => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/api/login', userlogin.value, { withCredentials: true });
+    const response = await axios.post('https://reqease-fastapi.vercel.app/api/login', userlogin.value, { withCredentials: true });
     const data = await response.data;
 
     if (data) {
@@ -81,7 +81,7 @@ onMounted(() => {
 
 // const login = async () => {
 //   try {
-//     const response = await axios.post('http://127.0.0.1:8000/api/login', userlogin.value, { withCredentials: true });
+//     const response = await axios.post('https://reqease-fastapi.vercel.app/api/login', userlogin.value, { withCredentials: true });
 //     const data = await response.data;
 
 //     if (data) {
@@ -154,7 +154,7 @@ const login = async () => {
 
   try {
     console.log('Attempting to log in:', userlogin.value);
-    const response = await axios.post('http://127.0.0.1:8000/api/login', userlogin.value, { withCredentials: true });
+    const response = await axios.post('https://reqease-fastapi.vercel.app/api/login', userlogin.value, { withCredentials: true });
     console.log('Response received:', response);
     const data = response.data;
 
